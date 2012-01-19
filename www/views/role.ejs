@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+  <meta property="fb:app_id" content="159891950744662">
+  <title>Insert title here</title>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="//connect.facebook.net/en_US/all.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+</head>
+<body>
+<div id="fb-root"></div>
+<a href="https://www.facebook.com/dialog/oauth?client_id=159891950744662&redirect_uri=http://doonts.lxc/vote/123/456" title="Войти через Facebook">Войти через Facebook</a>
+<h1><%= role.name %></h1>
+<ul>
+<% for(var i=0; i<role.advices.length; i++) {%>
+    <li><%= role.advices[i].text %></li>
+    <% if(role.advices[i].youtubeId && role.advices[i].youtubeId.length >0) { %>
+        <iframe width="200" height="131" autohide="1" src="http://www.youtube.com/embed/<%= role.advices[i].youtubeId %>?rel=0" frameborder="0" allowfullscreen></iframe>
+    <% } %>
+    <% if(role.advices[i].amazonId && role.advices[i].amazonId.length >0) { %>
+        <iframe src="http://rcm.amazon.com/e/cm?t=doonts-20&o=1&p=8&l=as1&asins=<%= role.advices[i].amazonId %>&ref=tf_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+    <% } %>
+    
+    <fb:like href="<%= role.href + "/" + role.advices[i].id %>" send="false" layout="button_count" show_faces="false"></fb:like>
+<% } %>
+</ul>
+</body>
+</html>
