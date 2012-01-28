@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /login
+Disallow: /role/create
+Disallow: /role/update

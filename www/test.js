@@ -1,24 +1,14 @@
-db = require('mongoose');
-db.connect('mongodb://localhost/test');
+function myFunc() {
+	console.log(this.variable);
+}
 
-var Schema = db.Schema, ObjectId = Schema.ObjectId;
+var A = function(val) {
+	console.log(this);
+	this.variable = val;
+};
 
-var roleSchema = new Schema({
-	_id     : { type: Number, unique: true },
-    age : {type: Number}
-}, { strict: true });
+A.prototype.newMethod = myFunc;
 
-var Role = db.model('Role', roleSchema, "roles");
-//Role.remove({},{});
-Role.create({_id: 143, age: 30}, function(){});
-
-Role.findOne({},function(err, role) {
-	if (role) {
-		role.age = 32;
-		role.save(function(err){
-			if (err) {console.log(err); return;};
-			console.log("Role id = " + role._id + " is updated");
-		});
-	}
-});
-
+var securityManager = new A("testa");
+//console.log(securityManager);
+securityManager.newMethod();

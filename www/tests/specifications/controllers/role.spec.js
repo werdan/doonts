@@ -106,10 +106,11 @@ describe('role controller', function(){
 	
 	it('checks role creation', function () {
 		var routes = app.match.get('/role/create');
-		var callback = routes[0].callbacks[0];
+		var callback = routes[0].callbacks[1];
 		var req = {params: {roleUID: 144}};
 
 		var res = function() {};
+		
 		res.render = function() {};
 		spyOn(res, 'render');
 
@@ -120,7 +121,6 @@ describe('role controller', function(){
 		next.isCalled = function() {
 			return next.wasCalled;
 		};
-		
 		callback(req, res, next);
 		waitsFor(function(){return res.render.wasCalled;} ,'res.render() is never called',1000);
 	});

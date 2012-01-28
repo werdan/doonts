@@ -6,7 +6,11 @@ process.env.NODE_ENV="production";
 
 require('./config/env.js')(app, express);
 require('./config/orm.js')(app);
-require('./controllers/role.js')(app);
+
+var fb = require("facebook-api");
+var securityManager = require("./lib/securityManager")(fb);
+
+require('./controllers/role.js')(app,securityManager);
 
 app.listen(3000);
 

@@ -1,9 +1,7 @@
 var https = require('https');
 var url = require("url");
-var User = require("./models/user");
+var User = db.model("User");
 
-
-//var userService = require('./services/userService');
 
 function authToFacebook(req, next) {
 	//TODO: move client_id && secret to config file

@@ -1,7 +1,7 @@
-var Role = require("../models/role").Role;
-var User = require("../models/user").User;
+var Role = db.model("Role");
+var User = db.model("User");
 
-module.exports = function(app) {
+module.exports = function(app, securityManager) {
 	app.get('/role/:roleUID/:urlTitle/:adviceId?', function(req, res, next) {
 		Role.findByUID(req.params.roleUID, function(err, role) {
 			if (err) {
@@ -18,7 +18,7 @@ module.exports = function(app) {
 		});
 	});
 
-	app.get('/role/create', secureRequest, function(req,res, next){
+	app.get('/role/create', securityManager.requireAuth, function(req,res, next){
 		res.render('role_create.ejs');
 	});
 	

@@ -23,7 +23,7 @@ roleSchema.virtual('href').get(function() {
 	return app.set("web.unsecureUrl") + "/role/" + this.uid + "/" + urlTitle;
 });
 
-roleSchema.statics.findByUID = function findByUID(uid, callback) {
+roleSchema.statics.findByUID = function (uid, callback) {
 	return this.findOne({
 		uid : uid
 	}, callback);

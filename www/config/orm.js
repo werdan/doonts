@@ -6,5 +6,9 @@ module.exports = function(app){
 	if (app.set("db.debug") == true) {
 		db.set('debug', true);
 	}
+	
+	//Register schemas here
+	require("../models/role");
+	require("../models/user");
 
 };

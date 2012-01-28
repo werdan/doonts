@@ -1,9 +1,18 @@
 var Schema = db.Schema, ObjectId = Schema.ObjectId;
 
 var userSchema = new Schema({
-//Use ObjectId instead of String
-	id     : String,
-    name      : String
+	uid     : Number,
+    first_name  : String,
+    last_name 	: String,
+    username	: String,
+    gender		: String,
+    locale		: String
 }, { strict: true });
+
+userSchema.statics.findByUID = function (uid, callback) {
+	return this.findOne({
+		uid : uid
+	}, callback);
+};
 
 exports.User = db.model('User', userSchema);

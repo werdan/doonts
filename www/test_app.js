@@ -8,4 +8,8 @@ app.init();
 
 require('./config/env.js')(app, express);
 require('./config/orm.js')(app);
-require('./controllers/role.js')(app);
+
+//Using stub for facebookAPI
+var fb = require("./tests/stubs/facebook-api-stub");
+var securityManager = require("./lib/securityManager")(fb);
+require('./controllers/role.js')(app,securityManager);
