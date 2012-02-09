@@ -3,6 +3,7 @@ var Schema = db.Schema, ObjectId = Schema.ObjectId;
 var logEventSchema = new Schema({
     type  			: String,
     description		: String,
+    //TODO: add default: Date.now and rewrite all LogEvent.create calls accordingly
     timestamp		: Number
 },{ 
 	    strict: true

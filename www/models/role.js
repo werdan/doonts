@@ -1,19 +1,11 @@
 var Schema = db.Schema;
 
-var adviceSchema = new Schema({
-	// ID in Role
-	id : Number,
-	text : String,
-	youtubeId: String,
-	amazonId: String
-}, {
-	strict : true
-});
 
 var roleSchema = new Schema({
-	uid : Number,
+	//TODO: Add unique constraint
+    uid : Number,
 	name : String,
-	advices : [ adviceSchema ]
+	advices : [{ type: Schema.ObjectId, ref: 'Advice' }]
 }, {
 	strict : true
 });
@@ -23,10 +15,11 @@ roleSchema.virtual('href').get(function() {
 	return app.set("web.unsecureUrl") + "/role/" + this.uid + "/" + urlTitle;
 });
 
+//TODO: Remove this copy/paste in all models -> use prototype
 roleSchema.statics.findByUID = function (uid, callback) {
-	return this.findOne({
-		uid : uid
-	}, callback);
+	return this.findOne(
+	        {uid : uid}, 
+	        callback);
 };
 
 module.exports.Role = db.model('Role', roleSchema);

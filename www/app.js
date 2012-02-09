@@ -8,9 +8,13 @@ require('./config/env.js')(app, express);
 require('./config/orm.js')(app);
 
 var fb = require("facebook-api");
+
+require('./config/cron.js')(app, fb);
+
 var securityManager = require("./lib/securityManager")(fb);
 
 require('./controllers/role.js')(app,securityManager);
+require('./controllers/advice.js')(app);
 
 app.listen(3000);
 

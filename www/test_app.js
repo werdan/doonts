@@ -11,5 +11,10 @@ require('./config/orm.js')(app);
 
 //Using stub for facebookAPI
 var fb = require("./tests/stubs/facebook-api-stub");
+
+require('./config/cron.js')(app, fb);
+
 var securityManager = require("./lib/securityManager")(fb);
+
 require('./controllers/role.js')(app,securityManager);
+require('./controllers/advice.js')(app);

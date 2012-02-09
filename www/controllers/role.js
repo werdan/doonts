@@ -1,9 +1,12 @@
 var Role = db.model("Role");
 var User = db.model("User");
+var logger = app.set("logger");
 
 module.exports = function(app, securityManager) {
 	app.get('/role/:roleUID/:urlTitle/:adviceId?', function(req, res, next) {
-		Role.findByUID(req.params.roleUID, function(err, role) {
+		Role.findByUID(req.params.roleUID)
+		    .populate('advices')
+		    .run(function(err, role) {
 			if (err) {
 				next(new Error(err));
 				return
@@ -22,7 +25,7 @@ module.exports = function(app, securityManager) {
 		res.render('role_create.ejs');
 	});
 	
-	app.post('/role/update/:roleUID', function(req,res, next){
+	app.post('/role/update/:roleUID', securityManager.requireAuth, function(req,res, next){
 		Role.findByUID(req.params.roleUID, function(err, role) {
 			if (err) {
 				next(new Error(err));
@@ -32,14 +35,13 @@ module.exports = function(app, securityManager) {
 				return;
 			} else {
 				role.name = req.params.name;
-				console.log("Updating with role.name = " + role.name);
+				logger.info("Updating with role.name = " + role.name);
 				role.save(function(err){
-					if (err) {console.log(err);}
-					console.log("Role id = " + role.uid + " is updated");
+					if (err) {logger.error(err);}
+					logger.info("Role id = " + role.uid + " is updated");
 					res.redirect('/role/' + role.uid + '/' + role.urlTitle);
 				});
 			}
 		});
 	});
-	
 };

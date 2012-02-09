@@ -16,7 +16,12 @@ module.exports = function(app, express){
     	app.set("web.unsecureUrl","http://doonts.com");
     	app.set("web.facebook.client_id","159891950744662");
     	app.set("web.facebook.client_secret","6ddf951ee8a086d0c3bd30c520576a31");
+    	app.set("web.authInfoTTL",86400*30);
+    	app.set("web.adviceInfoTTL",86400*1); //Interval between unconditional update of advice info
+    	app.set("web.facebook.likeUpdateJobInterval", 1); //in minutes
     	
+    	app.set("logger", log4js.getLogger());
+
     	app.use(express.logger());
     	app.use(express.cookieParser());
     	//TODO move params to app.set
@@ -25,8 +30,6 @@ module.exports = function(app, express){
 	    app.use(connect.query());
     });
     app.configure('development', function() {
-    	app.set("logger", log4js.getLogger());
-
     	app.set("web.unsecureUrl","http://doonts.lxc");
     	app.set("db.debug",true);
     	app.set('db.name', 'doonts');
@@ -35,12 +38,9 @@ module.exports = function(app, express){
 	        dumpExceptions: true,
 	        showStack: true
 	    }));
-	    
-
     });
 
     app.configure('production', function() {
     	app.use(express.errorHandler());
-    	app.set("logger", log4js.getLogger());
     });
 };

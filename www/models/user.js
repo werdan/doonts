@@ -4,7 +4,6 @@ var userSchema = new Schema({
 	uid     : Number,
     first_name  : String,
     last_name 	: String,
-    username	: String,
     gender		: String,
     locale		: String
 }, { strict: true });

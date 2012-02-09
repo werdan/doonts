@@ -9,6 +9,7 @@ module.exports = function(app){
 	
 	//Register schemas here
 	require("../models/role");
+	require("../models/advice");
 	require("../models/user");
-
+	require("../models/logEvent");
 };

@@ -1,4 +1,5 @@
 var Role = db.model("Role");
+var Advice = db.model("Advice");
 
 describe('role controller', function(){
 	
@@ -8,11 +9,15 @@ describe('role controller', function(){
 				return latch;
 			};
 			Role.remove(function() {
-				Role.create({ uid: 144, 
-					name: "Project manager",
-					advices: [{text: "Best advice ever"}]}, function(){
-						latch = true;
-					});
+			    Advice.remove(function(){
+    				var newAdvice = new Advice({uid:12785, text: "Best advice ever", nextFacebookInfoUpdateTime: 123123123});
+    				newAdvice.save(function(err) {
+    				    Role.create({ uid: 144, 
+    				        name: "Project manager", advices: [newAdvice._id]}, function(){
+    				            latch = true;
+    				        });
+    				});
+			    });
 			});
 			waitsFor(done,"Before each init is timeouted",1000);
 	});
@@ -58,14 +63,14 @@ describe('role controller', function(){
 			expect(next).not.toHaveBeenCalled();
 			expect(res.render).toHaveBeenCalled();
 			expect(res.render.mostRecentCall.args[1].role.uid).toEqual(144);
-			//TODO: this is strange, why can not I just use value without parsing to Int?
 			expect(res.render.mostRecentCall.args[1].role.advices[0].text).toEqual("Best advice ever");
+			expect(res.render.mostRecentCall.args[1].role.advices[0].nextFacebookInfoUpdateTime).toEqual(123123123);
 		});
 	});
 	
 	it('checks that role can be updated', function () {
 		var routes = app.match.post('/role/update/144');
-		var callback = routes[0].callbacks[0];
+		var callback = routes[0].callbacks[1];
 		
 		var testName = "My new role text";
 		
@@ -83,7 +88,6 @@ describe('role controller', function(){
 			expect(role.name).not.toEqual(testName);
 		});
 		
-		console.log("Req.params=" + req.params.name);
 		callback(req, res, next);
 		
 		waitsFor(function(){return res.redirect.wasCalled;},'next() is never called',1000);
@@ -92,7 +96,6 @@ describe('role controller', function(){
 		done = function() {
 			return latch;
 		};
-		
 		runs(function () {
 			expect(next).not.toHaveBeenCalled();
 			expect(res.redirect).toHaveBeenCalled();
@@ -118,9 +121,6 @@ describe('role controller', function(){
 			console.log(err);
 		});
 		
-		next.isCalled = function() {
-			return next.wasCalled;
-		};
 		callback(req, res, next);
 		waitsFor(function(){return res.render.wasCalled;} ,'res.render() is never called',1000);
 	});
