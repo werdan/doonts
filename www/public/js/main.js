@@ -1,3 +1,13 @@
+function getAdviceUIDFromURL(url) {
+    var matches = url.match(/#(\d+)$/);
+    if (matches && matches[1] && matches.length == 2) {
+        return matches[1];
+    } else {
+        console.log("Error while extracting advice uid from URL: = " + url);
+    }
+}
+
+        
 jQuery(document).ready(function(){
 	initFB();	
 });
@@ -20,5 +30,17 @@ function initFB() {
 	     d.getElementsByTagName('head')[0].appendChild(js);
 	     
 	   }(document));
+	  
+	  //Listen like/unlike button clicks
+	  FB.Event.subscribe('edge.create',
+	          function(url) {
+	              jQuery.post('/advice/like/' + getAdviceUIDFromURL(url));
+	          }
+	  );
+      FB.Event.subscribe('edge.remove',
+              function(url) {
+                  jQuery.post('/advice/unlike/' + getAdviceUIDFromURL(url));
+              }
+      );
 	};
 }

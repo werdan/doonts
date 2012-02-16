@@ -1,3 +1,4 @@
+var fixtures = require('mongoose-fixtures');
 var Role = db.model("Role");
 var Advice = db.model("Advice");
 
@@ -8,22 +9,14 @@ describe('role controller', function(){
 			done = function() {
 				return latch;
 			};
-			Role.remove(function() {
-			    Advice.remove(function(){
-    				var newAdvice = new Advice({uid:12785, text: "Best advice ever", nextFacebookInfoUpdateTime: 123123123});
-    				newAdvice.save(function(err) {
-    				    Role.create({ uid: 144, 
-    				        name: "Project manager", advices: [newAdvice._id]}, function(){
-    				            latch = true;
-    				        });
-    				});
-			    });
-			});
+            fixtures.load(__dirname + '/../../fixtures/controllers/role.js', function() {
+                latch = true;
+            });
 			waitsFor(done,"Before each init is timeouted",1000);
 	});
 	
 	it('checks what if role does not exists', function () {
-		var routes = app.match.get('/role/123/test');
+		var routes = app.match.get('/role/view/123/test');
 		var callback = routes[0].callbacks[0];
 		
 		var req = {params: {roleUID: 112}};
@@ -40,7 +33,7 @@ describe('role controller', function(){
 	
 	it('checks role object in view when role exists', function () {
 		
-		var routes = app.match.get('/role/144/test');
+		var routes = app.match.get('/role/view/144/test');
 		var callback = routes[0].callbacks[0];
 		
 		var req = {params: {roleUID: 144}};

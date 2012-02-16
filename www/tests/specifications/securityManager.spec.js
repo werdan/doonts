@@ -1,3 +1,4 @@
+var fixtures = require('mongoose-fixtures');
 var User = db.model("User");
 var LogEvent = db.model("LogEvent");
 
@@ -5,22 +6,12 @@ describe('Security manager test, several cases:', function(){
 	
 	beforeEach(function () {
 		var latch = false;
-		var latch2 = false;
 		done = function() {
-			return latch && latch2;
+			return latch;
 		};
-		User.remove(function() {
-			User.create({ uid: 100002043624653, 
-						  first_name: "Andriy",
-						  last_name: "Samilyak"
-						}, 
-						function(){
-							latch = true;
-						});
-		});
-		LogEvent.remove(function(){
-		    latch2 = true;
-		});
+        fixtures.load(__dirname + '/../fixtures/securityManager.js', function() {
+            latch = true;
+        });
 		waitsFor(done,"Before each init is timeouted",1000);
 	});
 	

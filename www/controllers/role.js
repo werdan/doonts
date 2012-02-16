@@ -3,7 +3,7 @@ var User = db.model("User");
 var logger = app.set("logger");
 
 module.exports = function(app, securityManager) {
-	app.get('/role/:roleUID/:urlTitle/:adviceId?', function(req, res, next) {
+	app.get('/role/view/:roleUID/:urlTitle/:adviceId?', function(req, res, next) {
 		Role.findByUID(req.params.roleUID)
 		    .populate('advices')
 		    .run(function(err, role) {

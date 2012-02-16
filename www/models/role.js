@@ -12,7 +12,7 @@ var roleSchema = new Schema({
 
 roleSchema.virtual('href').get(function() {
 	var urlTitle = this.get('name').toLowerCase().replace(/[\W]/g, "-");
-	return app.set("web.unsecureUrl") + "/role/" + this.uid + "/" + urlTitle;
+	return app.set("web.unsecureUrl") + "/role/view/" + this.uid + "/" + urlTitle;
 });
 
 //TODO: Remove this copy/paste in all models -> use prototype

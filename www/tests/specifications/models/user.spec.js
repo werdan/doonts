@@ -1,4 +1,5 @@
 var User = db.model("User");
+var fixtures = require('mongoose-fixtures');
 
 describe('Tests on user model', function(){
 
@@ -7,15 +8,9 @@ describe('Tests on user model', function(){
 		done = function() {
 			return latch;
 		};
-		User.remove(function() {
-			User.create({ uid: 14123333, 
-						  first_name: "Andriy",
-						  last_name: "Samilyak"
-						}, 
-						function(){
-							latch = true;
-						});
-		});
+        fixtures.load(__dirname + '/../../fixtures/models/user.js', function() {
+            latch = true;
+        });
 		waitsFor(done,"Before each init is timeouted",1000);
 	});
 	

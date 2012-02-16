@@ -16,8 +16,8 @@ module.exports = function(app, express){
     	app.set("web.unsecureUrl","http://doonts.com");
     	app.set("web.facebook.client_id","159891950744662");
     	app.set("web.facebook.client_secret","6ddf951ee8a086d0c3bd30c520576a31");
-    	app.set("web.authInfoTTL",86400*30);
-    	app.set("web.adviceInfoTTL",86400*1); //Interval between unconditional update of advice info
+    	app.set("web.authInfoTTL",86400*1000*30); //TTL for personal infor on facebook milliseconds
+    	app.set("web.adviceInfoTTL",86400*1000*1); //Interval between unconditional update of advice info, 
     	app.set("web.facebook.likeUpdateJobInterval", 1); //in minutes
     	
     	app.set("logger", log4js.getLogger());

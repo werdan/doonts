@@ -15,6 +15,7 @@ var securityManager = require("./lib/securityManager")(fb);
 
 require('./controllers/role.js')(app,securityManager);
 require('./controllers/advice.js')(app);
+require('./controllers/home.js')(app);
 
 app.listen(3000);
 
