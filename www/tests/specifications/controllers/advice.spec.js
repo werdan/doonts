@@ -54,17 +54,20 @@ describe('advice controller', function(){
             var res = {};
             
             res.render = jasmine.createSpy('res');
-            
             callback(req, res, null);
             
             waitsFor(function(){return res.render.wasCalled;},'res.redirect() is never called',1000);
             runs(function () {
+                latch = false;
                 expect(res.render).toHaveBeenCalledWith('empty.ejs');
                 Advice.findByUID(12785, function(err, advice){
                     if (!err) {
                         expect(parseInt(advice.facebookLikes)).toEqual(13);
                         expect(advice.nextFacebookInfoUpdateTime).toEqual(0);
-                        latch = true;
+                        advice.getRole(function(err, role){
+                            expect(parseInt(role.totalFacebookLikes)).toEqual(15);
+                            latch = true;
+                        });
                     }
                 });
                 waitsFor(function() {return done();}, 'Advice is not updated', 1000);

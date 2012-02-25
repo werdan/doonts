@@ -29,17 +29,21 @@ describe('Tests on role model', function(){
 		waitsFor(done, "Role.href has been never checked",1000);
 	});
 
-    xit('tests .getTop() function with empty params', function () {
+    it('tests .findTop(4) function', function () {
         var latch = false;
         done = function() {
             return latch;
         };
 
-        Role.getTop(function(err, roles) {
-            expect(roles.length).toEqual(href);
+        Role.findTop(4, function(err, roles) {
+            expect(roles.length).toEqual(4);
+            expect(parseInt(roles[0].uid)).toEqual(144);
+            expect(parseInt(roles[1].uid)).toEqual(152);
+            expect(parseInt(roles[2].uid)).toEqual(145);
+            expect(parseInt(roles[3].uid)).toEqual(149);
             latch = true;
         });
-        waitsFor(done, "Role.href has been never checked",1000);
+        waitsFor(done, "Function has been never called",1000);
     });
 	
 	
@@ -53,9 +57,10 @@ describe('Tests on role model', function(){
             .run(function(err, role) {
                 var href = app.set("web.unsecureUrl") + "/role/view/144/project-manager-with-spaces"; 
                 expect(role.href).toEqual(href);
-                expect(role.advices.length).toEqual(2);
+                expect(role.advices.length).toEqual(3);
                 expect(parseInt(role.advices[0].uid)).toEqual(12785);
                 expect(parseInt(role.advices[0].facebookLikes)).toEqual(177);
+                expect(parseInt(role.totalFacebookLikes)).toEqual(13);
                 latch = true;
             });
         waitsFor(done, "Role.href has been never checked",1000);

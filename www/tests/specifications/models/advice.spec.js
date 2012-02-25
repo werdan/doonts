@@ -33,7 +33,7 @@ describe('Tests on advice model', function(){
 	        return latch;
 	    };
 	    Advice.findOne({uid:129}, function(err,advice){
-	        Advice.getRoleUID(advice,function(err, role) {
+	        advice.getRole(function(err, role) {
 	            expect(role.uid).toEqual(144);
 	            latch = true;
 	        });

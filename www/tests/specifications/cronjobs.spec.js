@@ -22,8 +22,9 @@ describe('Tests on cronjobs', function(){
 	    runs(function(){
 	        var latch1 = false;
 	        var latch2 = false;
+	        var latch3 = false;
 	        done = function() {
-	            return latch1 && latch2;
+	            return latch1 && latch2 && latch3;
 	        };
 	        Advice.findByUID(130, function(err,advice){
 	            expect(advice.facebookLikes).toEqual(17804);
@@ -34,6 +35,10 @@ describe('Tests on cronjobs', function(){
                 expect(advice.facebookLikes).toEqual(0);
                 expect(parseInt(advice.nextFacebookInfoUpdateTime)).toBeGreaterThan(Date.now());
                 latch2 = true;
+            });
+            Role.findByUID(144, function(err,role){
+                expect(parseInt(role.totalFacebookLikes)).toEqual(17804);
+                latch3 = true;
             });
 	        waitsFor(done,"",1000);
 	    });

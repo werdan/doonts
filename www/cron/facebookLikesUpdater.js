@@ -2,7 +2,7 @@ var Advice = db.model("Advice");
 var logger = app.set("logger");
 
 function update(advice,fbapi) {
-    Advice.getRoleUID(advice, function(err,role){
+    advice.getRole(function(err,role){
         if (err) {
             logger.error(err);
             return
@@ -24,6 +24,7 @@ function update(advice,fbapi) {
                         return
                     } else {
                         logger.info("Advice uid: " + advice.uid + " updated info from Facebook");
+                        return
                     }
                 });
             });

@@ -8,7 +8,6 @@ var logger = app.set("logger");
     } else if (url.indexOf("/me?access_token") != -1) {
     	result = '{"id":"100002043624653","name":"Andriy Samilyak","first_name":"Andriy","last_name":"Samilyak","link":"http://www.facebook.com/people/Andriy-Samilyak/100002043624653","gender":"male","locale":"uk_UA"}';
     //cronjobs.spec.js
-    	console.log()
     } else if (url.indexOf("fql?q=SELECT%20total_count%20FROM%20link_stat%20WHERE%20url%3D%22http%3A%2F%2Fdoonts.lxc%2Frole%2Fview%2F144%2Fproject-manager-with-spaces%23130%22") != -1) {
         result = "{\"data\": [{\"total_count\": 17804}]}";
     //cronjobs.spec.js

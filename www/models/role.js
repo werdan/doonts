@@ -5,9 +5,10 @@ var roleSchema = new Schema({
 	//TODO: Add unique constraint
     uid : Number,
 	name : String,
-	advices : [{ type: Schema.ObjectId, ref: 'Advice' }]
+	advices : [{ type: Schema.ObjectId, ref: 'Advice' }],
+    totalFacebookLikes: Number
 }, {
-	strict : true
+//	strict : true
 });
 
 roleSchema.virtual('href').get(function() {
@@ -21,5 +22,19 @@ roleSchema.statics.findByUID = function (uid, callback) {
 	        {uid : uid}, 
 	        callback);
 };
+
+roleSchema.statics.findTop = function (qty, skipFirst, callback) {
+    var skipFirstType = Object.prototype.toString.call(skipFirst).slice(8, -1);
+    var query = this.find();
+    if (skipFirstType == 'Number') {
+        query = query.skip(skipFirst);
+    } else {
+        callback = skipFirst;
+    }
+    query.desc('totalFacebookLikes')
+                 .limit(qty)
+                 .run(callback);
+};
+
 
 module.exports.Role = db.model('Role', roleSchema);
