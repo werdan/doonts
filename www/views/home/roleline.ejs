@@ -1,0 +1,10 @@
+<li id="<%= role.topAdvice.uid %>"><%= role.topAdvice.text %></li>
+ <% if(role.topAdvice && role.topAdvice.youtubeId.length >0) { %>
+    <iframe width="200" height="131" autohide="1" src="http://www.youtube.com/embed/<%= role.topAdvice.youtubeId %>?rel=0" frameborder="0" allowfullscreen></iframe>
+<% } %>
+<% if(role.topAdvice && role.topAdvice.amazonId.length >0) { %>
+    <iframe src="http://rcm.amazon.com/e/cm?t=doonts-20&o=1&p=8&l=as1&asins=<%= role.topAdvice.amazonId %>&ref=tf_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<% } %>
+<fb:like href="<%= role.href + "#" + role.topAdvice.uid %>" send="false" layout="button_count" show_faces="false"></fb:like>
+
+ 
