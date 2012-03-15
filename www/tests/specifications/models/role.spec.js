@@ -34,25 +34,61 @@ describe('Tests on role model', function(){
         done = function() {
             return latch;
         };
-
-        Role.findTop(4, function(err, roles) {
-            expect(roles.length).toEqual(4);
-            expect(parseInt(roles[0].uid)).toEqual(144);
-            expect(parseInt(roles[1].uid)).toEqual(152);
-            expect(parseInt(roles[2].uid)).toEqual(145);
-            expect(parseInt(roles[3].uid)).toEqual(149);
-            latch = true;
+        waits(500);
+        runs(function(){
+            Role.findTop(4, function(err, roles) {
+                expect(roles.length).toEqual(4);
+                expect(parseInt(roles[0].uid)).toEqual(144);
+                expect(parseInt(roles[1].uid)).toEqual(152);
+                expect(parseInt(roles[2].uid)).toEqual(145);
+                expect(parseInt(roles[3].uid)).toEqual(149);
+                expect(roles[0].advices[1].text.length).toBeGreaterThan(5);
+                latch = true;
+            });
+            waitsFor(done, "Function has been never called",1000);
         });
-        waitsFor(done, "Function has been never called",1000);
     });
 	
-	
+    it('tests that findTop doesnot include roles without advices', function () {
+        var latch = false;
+        done = function() {
+            return latch;
+        };
+        waits(500);
+        runs(function(){
+            Role.findTop(10, function(err, roles) {
+                expect(roles.length).toEqual(9);
+                latch = true;
+            });
+            waitsFor(done, "Function has been never called",1000);
+        });
+    });
+
+    it('tests defaults of hasAdvices', function () {
+        var latch = false;
+        done = function() {
+            return latch;
+        };
+        waits(500);
+        runs(function(){
+            Role.findByUID(153, function(err, role) {
+                expect(role.hasAdvices).toBeDefined();
+                expect(role.hasAdvices).toBeFalsy();
+                latch = true;
+            });
+            waitsFor(done, "Function has been never called",1000);
+        });
+    });
+
+    
 	it('Checks Advice model consistency', function () {
 		var latch = false;
 		done = function() {
 			return latch;
 		};
-        Role.findOne({uid:144})
+        waits(1000);
+        runs(function(){
+            Role.findOne({uid:144})
             .populate('advices')
             .run(function(err, role) {
                 var href = app.set("web.unsecureUrl") + "/role/view/144/project-manager-with-spaces"; 
@@ -60,9 +96,10 @@ describe('Tests on role model', function(){
                 expect(role.advices.length).toEqual(3);
                 expect(parseInt(role.advices[0].uid)).toEqual(12785);
                 expect(parseInt(role.advices[0].facebookLikes)).toEqual(177);
-                expect(parseInt(role.totalFacebookLikes)).toEqual(13);
+                expect(parseInt(role.totalFacebookLikes)).toEqual(190);
                 latch = true;
             });
-        waitsFor(done, "Role.href has been never checked",1000);
-     });
+            waitsFor(done, "Role.href has been never checked",1000);
+        });
+        });
 });

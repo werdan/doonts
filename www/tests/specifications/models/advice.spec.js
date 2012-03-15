@@ -32,13 +32,34 @@ describe('Tests on advice model', function(){
 	    done = function() {
 	        return latch;
 	    };
-	    Advice.findOne({uid:129}, function(err,advice){
+	    Advice.findOne({uid:12788}, function(err,advice){
 	        advice.getRole(function(err, role) {
-	            expect(role.uid).toEqual(144);
+	            expect(role.uid).toEqual(145);
+	            expect(role.hasAdvices).toBeTruthy();
 	            latch = true;
 	        });
 	    });
         waitsFor(done, "",1000);
 	 });
-	
+    it('tests .findTop(5) function', function () {
+        var latch = false;
+        done = function() {
+            return latch;
+        };
+        waits(500);
+        runs(function(){
+            Advice.findTop(5, function(err, roles) {
+                console.log(roles);
+                expect(roles.length).toEqual(5);
+                expect(parseInt(roles[0].uid)).toEqual(144);
+                expect(parseInt(roles[1].uid)).toEqual(152);
+                expect(parseInt(roles[2].uid)).toEqual(147);
+                expect(parseInt(roles[3].uid)).toEqual(145);
+                expect(parseInt(roles[4].uid)).toEqual(150);
+                latch = true;
+            });
+            waitsFor(done, "Function has been never called",1000);
+        });
+    });
+
 });

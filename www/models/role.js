@@ -6,9 +6,10 @@ var roleSchema = new Schema({
     uid : Number,
 	name : String,
 	advices : [{ type: Schema.ObjectId, ref: 'Advice' }],
+	hasAdvices: {type: Boolean, default: false},
     totalFacebookLikes: Number
 }, {
-//	strict : true
+	strict : true
 });
 
 roleSchema.virtual('href').get(function() {
@@ -23,6 +24,12 @@ roleSchema.statics.findByUID = function (uid, callback) {
 	        callback);
 };
 
+/**
+ * Return collection of top roles rated by totalFacebookLikes. 
+ * 
+ * param skipFirst (can be ommitted) - ommit certain number of roles from the beginning of result collection
+ */
+
 roleSchema.statics.findTop = function (qty, skipFirst, callback) {
     var skipFirstType = Object.prototype.toString.call(skipFirst).slice(8, -1);
     var query = this.find();
@@ -33,8 +40,19 @@ roleSchema.statics.findTop = function (qty, skipFirst, callback) {
     }
     query.desc('totalFacebookLikes')
                  .limit(qty)
+                 .where('hasAdvices',true)
+                 .populate('advices')
                  .run(callback);
 };
+
+roleSchema.pre("save",function(next){
+    if (this.advices.length > 0) {
+        this.hasAdvices = true;
+    } else {
+        this.hasAdvices = false;
+    }
+    next();
+});
 
 
 module.exports.Role = db.model('Role', roleSchema);

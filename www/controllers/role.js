@@ -14,7 +14,7 @@ module.exports = function(app, securityManager) {
 				next(new Error("Role id=" + req.params.roleUID + " was not found"));
 				return;
 			} else {
-				res.render('role.ejs', 
+				res.render('role/role.ejs', 
 						{role: role}
 				);
 			}
@@ -22,7 +22,7 @@ module.exports = function(app, securityManager) {
 	});
 
 	app.get('/role/create', securityManager.requireAuth, function(req,res, next){
-		res.render('role_create.ejs');
+		res.render('role/role_create.ejs');
 	});
 	
 	app.post('/role/update/:roleUID', securityManager.requireAuth, function(req,res, next){
