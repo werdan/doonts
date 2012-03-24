@@ -41,7 +41,25 @@ describe('Tests on advice model', function(){
 	    });
         waitsFor(done, "",1000);
 	 });
-    it('tests .findTop(5) function', function () {
+	
+    it('tests Advice.findTop(100 from 4th) - ask more then we have', function () {
+        var latch = false;
+        done = function() {
+            return latch;
+        };
+        waits(500);
+        runs(function(){
+            Advice.findTop(100, 3, function(err, roles) {
+                //We expect less than asked and it should be ok
+                expect(roles.length).toEqual(3);
+                latch = true;
+            });
+            waitsFor(done, "Function has been never called",1000);
+        });
+    });
+
+	
+    it('tests Advice.findTop(5) function', function () {
         var latch = false;
         done = function() {
             return latch;
@@ -49,7 +67,6 @@ describe('Tests on advice model', function(){
         waits(500);
         runs(function(){
             Advice.findTop(5, function(err, roles) {
-                console.log(roles);
                 expect(roles.length).toEqual(5);
                 expect(parseInt(roles[0].uid)).toEqual(144);
                 expect(parseInt(roles[1].uid)).toEqual(152);

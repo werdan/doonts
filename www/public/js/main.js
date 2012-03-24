@@ -6,11 +6,28 @@ function getAdviceUIDFromURL(url) {
         console.log("Error while extracting advice uid from URL: = " + url);
     }
 }
-
         
 jQuery(document).ready(function(){
-	initFB();	
+	initFB();
+	initAutocomplete();
 });
+
+function initAutocomplete() {
+    var resultClickCb = function (data) {
+        $(".as-input").val(data.attributes.name);
+        $("#as-values-search-field").remove();
+        $(".search-form").submit();
+        return true;
+    };
+    
+    $(".search-form input").autoSuggest(
+                "/search/autocomplete", 
+                {selectedItemProp: "name", 
+                 searchObjProps: "name",
+                 startText: "ask for advice here...",
+                 asHtmlID : "search-field",
+                 resultClick: resultClickCb});
+}
 
 function initFB() {
 	window.fbAsyncInit = function() {
@@ -28,7 +45,6 @@ function initFB() {
 	     js = d.createElement('script'); js.id = id; js.async = true;
 	     js.src = "//connect.facebook.net/en_US/all.js";
 	     d.getElementsByTagName('head')[0].appendChild(js);
-	     
 	   }(document));
 	  
 	  //Listen like/unlike button clicks

@@ -70,6 +70,7 @@ adviceSchema.statics.findTop = function (qty, skipFirst, callback) {
                               reduceAggregateAdvices.toString(),
                               {out: {inline : 1},query: {facebookLikes: {$gt:0}}}, 
                               function(err, collection){
+                                  
                                   var skipFirstType = Object.prototype.toString.call(skipFirst).slice(8, -1);
                                   if (skipFirstType != 'Number') {
                                       callback = skipFirst;
@@ -83,18 +84,22 @@ adviceSchema.statics.findTop = function (qty, skipFirst, callback) {
                                   collection = collection.sort(compareRoles);
                                   
                                   var sortedRoles = [];
-                                  var adviceLikesPerRole = [];
-                                  for (var i=skipFirst; i<=skipFirst+qty-1; i++) {
+                                  var maxAdviceLikesPerRole = [];
+                                  
+                                  var maxIndex = Math.min(skipFirst+qty-1,collection.length - 1);
+                                  
+                                  for (var i=skipFirst; i<=maxIndex; i++) {
                                       sortedRoles.push(collection[i]._id);
-                                      adviceLikesPerRole[collection[i]._id] = collection[i].value.facebookLikes;
+                                      maxAdviceLikesPerRole[collection[i]._id] = collection[i].value.facebookLikes;
                                   }
+                                  
                                   Role.find()
                                       .$in('_id',sortedRoles)
                                       .populate('advices')
                                       .run( function(err,roles) {
                                           roles.forEach(function(role){
-                                              //This strange value.facebookLikes is to use the same compare function as described before
-                                              role.value = {facebookLikes : adviceLikesPerRole[role._id]};
+                                              //This strange notation value.facebookLikes is to use the same compare function as described before
+                                              role.value = {facebookLikes : maxAdviceLikesPerRole[role._id]};
                                           });
                                           roles.sort(compareRoles);
                                           callback(err,roles);

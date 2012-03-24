@@ -19,6 +19,8 @@ module.exports = function(app, express){
     	app.set("web.authInfoTTL",86400*1000*30); //TTL for personal infor on facebook milliseconds
     	app.set("web.adviceInfoTTL",86400*1000*1); //Interval between unconditional update of advice info, 
     	app.set("web.facebook.likeUpdateJobInterval", 1); //in minutes
+    	app.set("web.homepage.rolesOnFirstLoad", 10); 
+    	app.set("web.autocomplete.resultsNumber", 5); //Max number of results to return in search autocomplete
     	
     	app.set("logger", log4js.getLogger());
 

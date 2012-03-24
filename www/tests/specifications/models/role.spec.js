@@ -29,7 +29,7 @@ describe('Tests on role model', function(){
 		waitsFor(done, "Role.href has been never checked",1000);
 	});
 
-    it('tests .findTop(4) function', function () {
+    it('tests Role.findTop(4)', function () {
         var latch = false;
         done = function() {
             return latch;
@@ -48,7 +48,7 @@ describe('Tests on role model', function(){
             waitsFor(done, "Function has been never called",1000);
         });
     });
-	
+
     it('tests that findTop doesnot include roles without advices', function () {
         var latch = false;
         done = function() {

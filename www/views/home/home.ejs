@@ -5,8 +5,17 @@
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="//connect.facebook.net/en_US/all.js"></script>
   <script type="text/javascript" src="/js/main.js"></script>
+  <script type="text/javascript" src="/js/jquery.autoSuggest.packed.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/autoSuggest.css">
 </head>
 <body>
+
+<form class="search-form" action="/search">
+    <input name="q" type="text" />
+</form>
+
+<%- partial('home/aboutus.ejs') %>
+
 <div id="fb-root"></div>
 <ul>
 <% for(var i=0; i<roles.length; i++) {%>

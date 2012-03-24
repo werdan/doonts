@@ -31,9 +31,10 @@ describe('Home controller', function(){
             
             waitsFor(function(){return res.render.wasCalled;},'res.render() is never called',1000);
             runs(function () {
-                expect(res.render.mostRecentCall.args[1].roles.length).toBeGreaterThan(1);
+                var rolesRendered = res.render.mostRecentCall.args[1].roles;
+                expect(rolesRendered.length).toBeGreaterThan(1);
+                expect(parseInt(rolesRendered[0].topAdvice.uid)).toEqual(12785);
             });
         });
     });
-
 });
