@@ -10,6 +10,8 @@ function getAdviceUIDFromURL(url) {
 jQuery(document).ready(function(){
 	initFB();
 	initAutocomplete();
+	fillInLoginBox();
+	bindEvents();
 });
 
 function initAutocomplete() {
@@ -40,7 +42,7 @@ function initFB() {
 	    });
 
 	  // Load the SDK Asynchronously
-	  (function(d){
+	  (function(d){ 
 	     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
 	     js = d.createElement('script'); js.id = id; js.async = true;
 	     js.src = "//connect.facebook.net/en_US/all.js";
@@ -59,4 +61,17 @@ function initFB() {
               }
       );
 	};
+}
+	
+function fillInLoginBox() {
+    var pathname = window.location.pathname;
+    $.post("/myaccount/loginbox",{redirectUri: pathname},function(data){
+        $(".loginbox").html(data);
+    });
+}
+
+function bindEvents() {
+    $(".FBlogout").click(function(){
+        FB.logout();
+    });
 }

@@ -1,5 +1,7 @@
 var ObjectID = require('mongodb').BSONPure.ObjectID;
 
+var authorId1 = new ObjectID();
+
 var roleId1 = new ObjectID();
 var roleId2 = new ObjectID();
 var roleId3 = new ObjectID();
@@ -29,17 +31,22 @@ var adviceId16 = new ObjectID();
 var adviceId17 = new ObjectID();
 var adviceId18 = new ObjectID();
 
+exports.User = [
+    {_id: authorId1, uid: 123123123, first_name: "Artem", last_name: "Svitelskiy", gender: "male", locale: "uk_UA"}
+];
+
+
 exports.Role = [
-                { _id: roleId1,  uid: 144, name: "Project manager with spaces", advices: [adviceId1, adviceId2, adviceId3]},
-                { _id: roleId2, uid: 145, name: "Project manager with spaces", advices: [adviceId4,adviceId5]},
-                { _id: roleId3, uid: 146, name: "Project manager with spaces", advices: [adviceId6]},
-                { _id: roleId4, uid: 147, name: "Project manager with spaces", advices: [adviceId7]},
-                { _id: roleId5, uid: 148, name: "Project manager with spaces", advices: [adviceId8]},
-                { _id: roleId6, uid: 149, name: "Project manager with spaces", advices: [adviceId9,adviceId10,adviceId11,adviceId12]},
-                { _id: roleId7, uid: 150, name: "Project manager with spaces", advices: [adviceId13,adviceId14,adviceId15,adviceId16]},
-                { _id: roleId8, uid: 151, name: "Project manager with spaces", advices: [adviceId17]},
-                { _id: roleId9, uid: 152, name: "Project manager with spaces", advices: [adviceId18]},
-                {uid: 153, name: "Empty role"}
+                { _id: roleId1,  uid: 144, name: "Project manager with spaces", advices: [adviceId1, adviceId2, adviceId3], author: authorId1},
+                { _id: roleId2, uid: 145, name: "Project manager with spaces", advices: [adviceId4,adviceId5], author: authorId1},
+                { _id: roleId3, uid: 146, name: "Project manager with spaces", advices: [adviceId6], author: authorId1},
+                { _id: roleId4, uid: 147, name: "Project manager with spaces", advices: [adviceId7], author: authorId1},
+                { _id: roleId5, uid: 148, name: "Project manager with spaces", advices: [adviceId8], author: authorId1},
+                { _id: roleId6, uid: 149, name: "Project manager with spaces", advices: [adviceId9,adviceId10,adviceId11,adviceId12], author: authorId1},
+                { _id: roleId7, uid: 150, name: "Project manager with spaces", advices: [adviceId13,adviceId14,adviceId15,adviceId16], author: authorId1},
+                { _id: roleId8, uid: 151, name: "Project manager with spaces", advices: [adviceId17], author: authorId1},
+                { _id: roleId9, uid: 152, name: "Project manager with spaces", advices: [adviceId18], author: authorId1},
+                {uid: 153, name: "Empty role", author: authorId1}
                 ];
 
 exports.Advice = {
@@ -69,5 +76,5 @@ exports.Advice = {
     //151 role
     advice17 : {roleId: roleId8, uid:12801, text: "The next best advice ever", facebookLikes: 0, _id: adviceId17},
     //152 role
-    advice18 : {roleId: roleId9, uid:12802, text: "The next best advice ever", facebookLikes: 10, _id: adviceId18},
+    advice18 : {roleId: roleId9, uid:12802, text: "The next best advice ever", facebookLikes: 10, _id: adviceId18}
 };

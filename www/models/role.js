@@ -1,10 +1,12 @@
-var Schema = db.Schema;
+"use strict";
 
+var Schema = db.Schema;
 
 var roleSchema = new Schema({
 	//TODO: Add unique constraint
     uid : Number,
 	name : String,
+    author: [{type: Schema.ObjectId, ref: 'User'}],
 	advices : [{ type: Schema.ObjectId, ref: 'Advice' }],
 	hasAdvices: {type: Boolean, default: false},
     totalFacebookLikes: Number
@@ -42,6 +44,7 @@ roleSchema.statics.findTop = function (qty, skipFirst, callback) {
                  .limit(qty)
                  .where('hasAdvices',true)
                  .populate('advices')
+                 .populate('author')
                  .run(callback);
 };
 

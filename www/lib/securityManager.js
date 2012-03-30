@@ -68,7 +68,7 @@ function requireAuth(req, res, next) {
 		return;
 	}
 	if (!userDeniedApplication(req) && isValidFacebookReturnCode(req)) {
-		this.authToFacebook(req, res, next);
+	    this.authToFacebook(req, res, next);
 		return
 	} else if (userDeniedApplication(req) && isValidFacebookReturnCode(req)){
 		logger.warn("Hacking attempt: both error and code from facebook are set");
@@ -97,7 +97,9 @@ function requireAuth(req, res, next) {
 function getFacebookAuthRedirectURL(url) {
     var fullUrl = prependUrlWithAppDomainName(url);
     var clientId = app.set("web.facebook.client_id");
-    return "https://www.facebook.com/dialog/oauth?client_id=" + clientId + "&redirect_uri=" + fullUrl;
+    var fbAuthUrl = "https://www.facebook.com/dialog/oauth?client_id=" + clientId + "&redirect_uri=" + fullUrl;
+    logger.debug("Prepared FB auth URL = " + fbAuthUrl);
+    return fbAuthUrl;
 }
 
 function prependUrlWithAppDomainName(uri) {
@@ -153,10 +155,6 @@ function userDeniedApplication(req) {
 	return false;
 }
 
-
-
-
-//TODO check if we need all three params
 function authToFacebook(req, res, next) {
 	logger.debug("Trying to update user info on Facebook");
 	options = {
@@ -213,6 +211,7 @@ function createUpdateUser(data, req, res, next) {
 
 //Exports
 SecurityManager.prototype.requireAuth = requireAuth;
+SecurityManager.prototype.isLoggedIn = isLoggedIn;
 SecurityManager.prototype.authToFacebook = authToFacebook;
 
 module.exports = function(facebookAPI) {

@@ -20,3 +20,4 @@ require('./controllers/role.js')(app,securityManager);
 require('./controllers/advice.js')(app);
 require('./controllers/home.js')(app);
 require('./controllers/search.js')(app);
+require('./controllers/myaccount.js')(app,securityManager);
