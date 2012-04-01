@@ -1,4 +1,5 @@
 /* Module dependencies. */
+
 var express = require('express');
 app = module.exports = express.createServer();
 
@@ -18,6 +19,9 @@ require('./controllers/advice.js')(app);
 require('./controllers/home.js')(app);
 require('./controllers/search.js')(app);
 require('./controllers/myaccount.js')(app,securityManager);
+
+//ALWAYS THE LAST CONTROLLER
+require('./controllers/error.js')(app);
 
 app.listen(3000);
 

@@ -13,6 +13,20 @@ function saveRedirectUriToSession (req, res, next) {
     return;
 }
 
+function redirectToSavedUri(req, res, next) {
+    if ('redirectUri' in req.session &&
+        req.session.redirectUri !== '') {
+        var uriToRedirect = req.session.redirectUri;
+        req.session.redirectUri = '';
+        logger.debug("Redirecting to URI set in session: " + uriToRedirect);
+        res.redirect(uriToRedirect);
+        return;
+    } else {
+        logger.debug("No redirect URI set in session, redirecting to home page");
+        res.redirect("/");
+        return;
+    }
+}
 
 /**
  * Shows login box depending on isLogin status
@@ -28,14 +42,14 @@ module.exports = function(app, securityManager) {
     }
 
 	app.post('/myaccount/loginbox', function(req,res,next){
-	    if (securityManager.isLoggedIn(req)) {
-	        res.render('myaccount/loginbox/hello.ejs');
-	        return;
-	    } else {
-	        var redirectUri = "/";
-	        if (('redirectUri' in req.query) && req.query.redirectUri.indexOf("%") === 0) {
-	            redirectUri = decodeURIComponent(req.query.redirectUri);
-	        }
+        var redirectUri = "/";
+        if (req.query && ('redirectUri' in req.query) && req.query.redirectUri.indexOf("%") === 0) {
+            redirectUri = decodeURIComponent(req.query.redirectUri);
+        }
+        if (securityManager.isLoggedIn(req)) {
+            res.render('myaccount/loginbox/hello.ejs', {redirectUri: encodeURIComponent(redirectUri)});
+            return;
+        } else {
 	        res.render('myaccount/loginbox/login.ejs', {redirectUri: encodeURIComponent(redirectUri)});
             return;
 	    }
@@ -46,17 +60,16 @@ module.exports = function(app, securityManager) {
      */
 	app.get('/myaccount/login', saveRedirectUriToSession, requireAuth, function(req, res, next) {
         logger.info("Redirection from /login action, assuming that Facebook operations are completed");
-        if ('redirectUri' in req.session &&
-            req.session.redirectUri !== '') {
-            var uriToRedirect = req.session.redirectUri;
-            req.session.redirectUri = '';
-            logger.debug("Redirecting to URI set in session: " + uriToRedirect);
-            res.redirect(uriToRedirect);
-            return;
-        } else {
-            logger.debug("No redirect URI set in session, redirecting to home page");
-            res.redirect("/");
-            return;
-        }
-	});
+        redirectToSavedUri(req, res, next);
+    });
+
+    /**
+     * Logout user, that effectively remove Facebook id from session
+     */
+    app.get('/myaccount/logout', saveRedirectUriToSession, function(req, res, next) {
+        logger.info("User with id=" + req.session.userId + "is no more attached to session. Redirection from /logout action.");
+        req.session.userId = null;
+        redirectToSavedUri(req, res, next);
+    });
+
 };

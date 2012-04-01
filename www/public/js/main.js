@@ -11,7 +11,6 @@ jQuery(document).ready(function(){
 	initFB();
 	initAutocomplete();
 	fillInLoginBox();
-	bindEvents();
 });
 
 function initAutocomplete() {
@@ -67,14 +66,12 @@ function fillInLoginBox() {
     var pathname = window.location.pathname;
     $.post("/myaccount/loginbox",{redirectUri: pathname},function(data){
         $(".loginbox").html(data);
+        $(".FBlogout").click(function(){
+            FB.logout();
+        });
     });
 }
 
-function bindEvents() {
-    $(".FBlogout").click(function(){
-        FB.logout();
-    });
-}
 
 function youtubeThumbnailCallback(data) {
     jQuery('.youtubePreview-' + data['data']['id'] + " img").attr('src',data['data']['thumbnail']['sqDefault']);

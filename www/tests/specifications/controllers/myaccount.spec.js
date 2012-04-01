@@ -11,13 +11,11 @@ describe('myaccount controller', function(){
 
 		var req = {query: {redirectUri: '%2Ftest%2Ftest'}};
 
-		var next = jasmine.createSpy('next');
-
 		var res = function() {};
         res.render = function() {};
         spyOn(res, 'render');
 
-		callback(req, res, next);
+		callback(req, res, null);
 
 		waitsFor(function(){return res.render.wasCalled;},'res.render() is never called',1000);
 		runs(function () {
@@ -33,21 +31,22 @@ describe('myaccount controller', function(){
         var routes = app.match.post('/myaccount/loginbox');
         var callback = routes[0].callbacks[0];
 
-        var req = {session: {userId: 123}};
-
-        var next = jasmine.createSpy('next');
+        var req = {session: {userId: 123}, query: {redirectUri: '%2Ftest%2Ftest'}};
 
         var res = function() {};
         res.render = function() {};
         spyOn(res, 'render');
 
-        callback(req, res, next);
+        callback(req, res, null);
 
         waitsFor(function(){return res.render.wasCalled;},'res.render() is never called',1000);
         runs(function () {
             expect(res.render).toHaveBeenCalled();
             var template = res.render.mostRecentCall.args[0];
             expect(template).toMatch('hello.ejs');
+            var vars = res.render.mostRecentCall.args[1];
+            expect(vars.redirectUri).toEqual('%2Ftest%2Ftest');
+
         });
     });
 
@@ -112,5 +111,26 @@ describe('myaccount controller', function(){
             expect(redirectUri).toEqual('/test/test');
         });
     });
+
+    it('checks that myaccount/logout redirects to saved URI and clears session', function () {
+        var routes = app.match.get('/myaccount/logout');
+        var callback = routes[0].callbacks[1];
+
+        var req = {session: {redirectUri: "/test/test", userId : 123123123}};
+        var res = function() {};
+        res.redirect = function() {};
+        spyOn(res, 'redirect');
+
+        callback(req, res, null);
+
+        waitsFor(function(){return res.redirect.wasCalled;},'res.redirect() is never called',1000);
+        runs(function () {
+            expect(req.session.userId).toBeFalsy();
+            expect(res.redirect).toHaveBeenCalled();
+            var redirectUri = res.redirect.mostRecentCall.args[0];
+            expect(redirectUri).toEqual('/test/test');
+        });
+    });
+
 
 });

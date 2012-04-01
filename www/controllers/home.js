@@ -16,11 +16,11 @@ var compareAdvices = function(adviceA, adviceB) {
 
 module.exports = function(app) {
 	app.get('/', function(req, res, next) {
-	    Advice.findTop(RolesOnHomePage,function(err,roles){
-	        if (err) {
-	            next(new Error(err));
+        Advice.findTop(RolesOnHomePage,function(err,roles){
+            if (err) {
+                next(new Error(err));
 	            return
-	        } 	
+	        }
 	        var rolesWithTopAdvices = [];
             var authorIds = [];
             roles.forEach(function(role){
@@ -30,6 +30,10 @@ module.exports = function(app) {
 	            rolesWithTopAdvices.push(role);
 	        });
             User.findByIds(authorIds,function(err,authors){
+                if (err) {
+                    next(new Error(err));
+                    return;
+                }
                 var authorsWithKeys = [];
                 authors.forEach(function(author) {
                     authorsWithKeys[author._id] = author;
