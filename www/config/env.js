@@ -34,7 +34,7 @@ module.exports = function(app, express){
     app.configure('development', function() {
     	app.set("web.unsecureUrl","http://doonts.lxc");
     	app.set("db.debug",true);
-    	app.set('db.name', 'doonts');
+    	app.set('db.name', 'tests');
 
     	app.use(express.errorHandler({
 	        dumpExceptions: true,

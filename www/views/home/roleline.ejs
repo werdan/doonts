@@ -1,4 +1,6 @@
 <li id="<%= role.topAdvice.uid %>"><%= role.topAdvice.text %></li>
+<img src="https://graph.facebook.com/<%= authors[role.topAdvice.author].uid %>/picture"/>
+<div><%= authors[role.topAdvice.author].first_name %> <%= authors[role.topAdvice.author].last_name %></div>
  <% if(role.topAdvice.youtubeId && role.topAdvice.youtubeId.length >0) { %>
     <iframe width="200" height="131" autohide="1" src="http://www.youtube.com/embed/<%= role.topAdvice.youtubeId %>?rel=0" frameborder="0" allowfullscreen></iframe>
 <% } %>

@@ -31,8 +31,26 @@ describe('Tests on user model', function(){
 			expect(user.uid).not.toBeUndefined();
 			latch = true;
 		});
-		
-		
-	});
+    });
 
+    it('checks User.findByIds virtual method', function () {
+            var latch = false;
+            done = function() {
+                return latch;
+            };
+
+            var userIds = [];
+            User.find({},function(err, users) {
+                users.forEach(function(user){
+                    userIds.push(user._id);
+                    //Intentionaly pushing twice to get copies in array
+                    userIds.push(user._id);
+                });
+                User.findByIds(userIds,function(err,foundUsers){
+                    expect(foundUsers.length).toEqual(3);
+                    latch = true;
+                });
+            });
+            waitsFor(done, "User.findByIds has been never checked",1000);
+    });
 });

@@ -14,4 +14,10 @@ userSchema.statics.findByUID = function (uid, callback) {
 	}, callback);
 };
 
+userSchema.statics.findByIds = function (arrayIds, callback) {
+    this.find()
+        .$in('_id',arrayIds)
+        .run(callback);
+};
+
 exports.User = db.model('User', userSchema);

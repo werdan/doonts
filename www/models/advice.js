@@ -1,6 +1,5 @@
 var Schema = db.Schema;
 var Role = db.model("Role");
-var ObjectID = require('mongodb').BSONPure.ObjectID;
 var logger = app.set("logger");
 
 var adviceSchema = new Schema({
@@ -8,6 +7,7 @@ var adviceSchema = new Schema({
     roleId : Schema.ObjectId,
 	uid : Number,
 	text : String,
+    author: {type: Schema.ObjectId, ref: 'User'},
 	nextFacebookInfoUpdateTime: Number,
 	facebookLikes: Number,
 	youtubeId: String,

@@ -1,4 +1,5 @@
 var Advice = db.model("Advice");
+var User = db.model("User");
 var logger = app.set("logger");
 
 var RolesOnHomePage = app.set("web.homepage.rolesOnFirstLoad");
@@ -21,12 +22,20 @@ module.exports = function(app) {
 	            return
 	        } 	
 	        var rolesWithTopAdvices = [];
-	        roles.forEach(function(role){
+            var authorIds = [];
+            roles.forEach(function(role){
 	            var sortedAdvices = role.advices.sort(compareAdvices);
-	            role.topAdvice = sortedAdvices[0];
-	            rolesWithTopAdvices.push(role);  
+	            role.topAdvice = sortedAdvices[0]
+                authorIds.push(sortedAdvices[0].author);
+	            rolesWithTopAdvices.push(role);
 	        });
-	        res.render('home/home.ejs',{roles: rolesWithTopAdvices});
-	    });
+            User.findByIds(authorIds,function(err,authors){
+                var authorsWithKeys = [];
+                authors.forEach(function(author) {
+                    authorsWithKeys[author._id] = author;
+                });
+                res.render('home/home.ejs',{roles: rolesWithTopAdvices, authors: authorsWithKeys});
+            });
+        });
 	});
 };
