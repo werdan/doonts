@@ -77,5 +77,5 @@ exports.Advice = {
     //151 role
     advice17 : {roleId: roleId8, uid:12801, text: "The next best advice ever", facebookLikes: 0, _id: adviceId17, author: authorId1},
     //152 role
-    advice18 : {roleId: roleId9, uid:12802, text: "The next best advice ever", facebookLikes: 10, _id: adviceId18, author: authorId1}
+    advice18 : {roleId: roleId9, uid:12802, text: "The next best advice ever", facebookLikes: 10, _id: adviceId18, author: authorId1, youtubeId: "HLDbx4Y_ybU"}
 };

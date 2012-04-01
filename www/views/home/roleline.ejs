@@ -1,9 +1,10 @@
 <li id="<%= role.topAdvice.uid %>"><%= role.topAdvice.text %></li>
 <img src="https://graph.facebook.com/<%= authors[role.topAdvice.author].uid %>/picture"/>
 <div><%= authors[role.topAdvice.author].first_name %> <%= authors[role.topAdvice.author].last_name %></div>
+
  <% if(role.topAdvice.youtubeId && role.topAdvice.youtubeId.length >0) { %>
-    <iframe width="200" height="131" autohide="1" src="http://www.youtube.com/embed/<%= role.topAdvice.youtubeId %>?rel=0" frameborder="0" allowfullscreen></iframe>
-<% } %>
+    <%- partial('externals/youtube.preview.ejs', {videoId: role.topAdvice.youtubeId}) %>
+ <% } %>
 <% if(role.topAdvice.amazonId && role.topAdvice.amazonId.length >0) { %>
     <iframe src="http://rcm.amazon.com/e/cm?t=doonts-20&o=1&p=8&l=as1&asins=<%= role.topAdvice.amazonId %>&ref=tf_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 <% } %>

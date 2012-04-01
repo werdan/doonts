@@ -75,3 +75,9 @@ function bindEvents() {
         FB.logout();
     });
 }
+
+function youtubeThumbnailCallback(data) {
+    jQuery('.youtubePreview-' + data['data']['id'] + " img").attr('src',data['data']['thumbnail']['sqDefault']);
+    jQuery('.youtubePreview-' + data['data']['id'] + " span.title").html(data['data']['title']);
+    jQuery('.youtubePreview-' + data['data']['id'] + " span.viewCount").html(data['data']['viewCount']);
+}
