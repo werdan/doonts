@@ -11,7 +11,7 @@ var adviceSchema = new Schema({
 	nextFacebookInfoUpdateTime: Number,
 	facebookLikes: Number,
 	youtubeId: String,
-	amazonId: String
+	amazonASIN: String
 }, {
 	strict : true
 });

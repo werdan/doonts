@@ -24,6 +24,11 @@ module.exports = function(app, express){
 
     	app.set("web.autocomplete.resultsNumber", 5); //Max number of results to return in search autocomplete
 
+        app.set("web.amazon.awsId", 'AKIAJIPCNYWM3IOPRN6A');
+        app.set("web.amazon.awsSecret", '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');
+        app.set("web.amazon.assocId", 'doonts-20');
+
+
     	app.set("logger", log4js.getLogger());
         app.use(function(req,res,next){
             next();

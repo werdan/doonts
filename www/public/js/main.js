@@ -78,3 +78,10 @@ function youtubeThumbnailCallback(data) {
     jQuery('.youtubePreview-' + data['data']['id'] + " span.title").html(data['data']['title']);
     jQuery('.youtubePreview-' + data['data']['id'] + " span.viewCount").html(data['data']['viewCount']);
 }
+
+function amazonPreviewCallback(data) {
+    jQuery('.amazonPreview-' + data['asin'] + " img").attr('src',data['imgSrc']);
+    jQuery('.amazonPreview-' + data['asin'] + " a.title").html(data['title']);
+    jQuery('.amazonPreview-' + data['asin'] + " a.title").attr('href',data['url']);
+    jQuery('.amazonPreview-' + data['asin'] + " .author").html(data['author']);
+}

@@ -52,8 +52,8 @@ exports.Role = [
 
 exports.Advice = {
         //144 role
-    advice1 : {roleId: roleId1, uid:12785, text: "Best advice ever", facebookLikes: 177, _id: adviceId1, author: authorId1},
-    advice2 : {roleId: roleId1, uid:12786, text: "The next best advice ever", facebookLikes: 12, _id: adviceId2, author: authorId1},
+    advice1 : {roleId: roleId1, uid:12785, text: "Best advice ever", facebookLikes: 177, _id: adviceId1, author: authorId1, amazonASIN: '0945320531'},
+    advice2 : {roleId: roleId1, uid:12786, text: "The next best advice ever", facebookLikes: 12, _id: adviceId2, author: authorId1, amazonASIN: '0945320531'},
     advice3 : {roleId: roleId1, uid:12787, text: "The next best advice ever", facebookLikes: 1, _id: adviceId3, author: authorId1},
         //145 role
     advice4 : {roleId: roleId2, uid:12788, text: "The next best advice ever", facebookLikes: 2, _id: adviceId4, author: authorId1},
