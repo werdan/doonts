@@ -1,0 +1,50 @@
+.logo a.slogan{
+	padding:33px 0 0;
+}
+.login{
+	margin:0;
+	height:0;
+}
+.login_fb p{
+	float:none;
+}
+.column_advices p.title_advices{
+	background:url(../images/left_bg_column_advices.png) no-repeat 0px 8px;
+	position:relative;
+	zoom:1;
+}
+.column_advices_sh p.title_advices{
+	background:url(../images/left_bg_column_advices.png) no-repeat left -28px;
+	color:#75a100;
+}
+div.title_advices {
+	display:inline-block;
+	width:1024px;
+	position:relative;
+	top:12px;
+	padding-bottom:12px;
+}
+.column_advices_sh{
+	width:1064px;
+	position:relative;
+	left:0;
+}
+.content{
+	padding:25px 50px 50px 50px;
+}
+.nav_advice {
+	margin:10px 0 0;
+}
+.top_title_advice{
+	margin:20px 0 0;
+}
+.column_advices_search_sh .column_advices_inside{
+	margin:16px 7px 5px 13px;
+}
+.column_advices_sh .column_advices_inside{
+	padding:1px 0 2px;
+}
+.column_advices_sh .column_advices_inside:hover{
+	margin:-1px 6px 1px 12px;
+	padding:0;
+}
