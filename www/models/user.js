@@ -5,7 +5,9 @@ var userSchema = new Schema({
     first_name  : String,
     last_name 	: String,
     gender		: String,
-    locale		: String
+    locale		: String,
+    link        : String,
+    username    : String
 }, { strict: true });
 
 userSchema.statics.findByUID = function (uid, callback) {

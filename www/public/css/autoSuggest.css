@@ -1,22 +1,23 @@
 /* AutoSuggest CSS - Version 1.2 */
-
+.as-results{
+	position:absolute;
+	z-index:4;
+	zoom:1;
+	top:52px;
+	left:18px;
+}
+.as-list{
+	width:645px;
+	position:relative;
+	z-index:5;
+}
 ul.as-selections {
 	list-style-type: none;
-	border-top: 1px solid #888;
-	border-bottom: 1px solid #b6b6b6;
-	border-left: 1px solid #aaa;
-	border-right: 1px solid #aaa;
-	padding: 4px 0 4px 4px;
-	margin: 0;
-	overflow: auto;
-	background-color: #fff;
-	box-shadow:inset 0 1px 2px #888;
-	-webkit-box-shadow:inset 0 1px 2px #888;
-	-moz-box-shadow:inset 0 1px 2px #888;
+	position:relative;
+	z-index:10;
 }
 
 ul.as-selections.loading {
-	background-color: #eee;
 }
 
 ul.as-selections li {
@@ -25,7 +26,21 @@ ul.as-selections li {
 }
 
 ul.as-selections li.as-selection-item {
-	display: none;
+	color: #2b3840;
+	font:13px "Lucida Grande", arial, sans-serif;
+	text-shadow: 0 1px 1px #fff;
+	background-color: #ddeefe;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ddeefe), to(#bfe0f1));
+	border: 1px solid #acc3ec;
+	border-top-color: #c0d9e9;
+	padding: 2px 7px 2px 10px;
+	border-radius: 12px;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	box-shadow: 0 1px 1px #e4edf2;
+	-webkit-box-shadow: 0 1px 1px #e4edf2;
+	-moz-box-shadow: 0 1px 1px #e4edf2;
+	behavior:url(pie.htc);	
 }
 
 ul.as-selections li.as-selection-item:last-child {
@@ -38,9 +53,7 @@ ul.as-selections li.as-selection-item a.as-close {
 	padding: 0 2px;
 	cursor: pointer;
 	color: #5491be;
-	font-family: "Helvetica", helvetica, arial, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
+	font:bold 14px "Helvetica", helvetica, arial, sans-serif;
 	text-shadow: 0 1px 1px #fff;
 	-webkit-transition: color .1s ease-in;
 }
@@ -54,6 +67,7 @@ ul.as-selections li.as-selection-item.blur {
 	box-shadow: 0 1px 1px #e9e9e9;
 	-webkit-box-shadow: 0 1px 1px #e9e9e9;
 	-moz-box-shadow: 0 1px 1px #e9e9e9;
+	behavior:url(pie.htc);	
 }
 
 ul.as-selections li.as-selection-item.blur a.as-close {
@@ -88,44 +102,47 @@ ul.as-selections li.as-original {
 	margin-left: 0;
 }
 
-ul.as-selections li.as-original input {
-	border: none;
-	outline: none;
-	font-size: 13px;
-	width: 120px;
-	height: 18px;
-	padding-top: 3px;
-}
 
 ul.as-list {
 	position: absolute;
 	list-style-type: none;
 	margin: 2px 0 0 0;
-	padding: 0;
-	font-size: 14px;
+	padding:15px 0;
 	color: #000;
-	font-family: "Lucida Grande", arial, sans-serif;
-	background-color: #fff;
-	background-color: rgba(255,255,255,0.95);
-	z-index: 2;
-	box-shadow: 0 2px 12px #222;
-	-webkit-box-shadow: 0 2px 12px #222;
-	-moz-box-shadow: 0 2px 12px #222;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
+	font:14px "Lucida Grande", arial, sans-serif;
+	background:#fff;
+	z-index:55;
+	-webkit-box-shadow:0px 0px 6px rgba(0, 0, 0, 0.29);
+	-moz-box-shadow:0px 3px 6px rgba(0, 0, 0, 0.29);
+	box-shadow:0px 3px 6px rgba(0, 0, 0, 0.29);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	behavior:url(pie.htc);	
 }
 
-li.as-result-item, li.as-message {
-	margin: 0 0 0 0;
-	padding: 5px 12px;
-	background-color: transparent;
-	border: 1px solid #fff;
-	border-bottom: 1px solid #ddd;
+li.as-result-item, li.as-message{
+	margin:0;
+	padding:0 0 0 32px;
 	cursor: pointer;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+	behavior:url(pie.htc);	
+	clear:both;
+}
+li.as-result-item p, li.as-message p{
+	color:#3594b8;
+	font:22px/47px Helvetica, sans-serif;
+	margin:0;
+}
+li.as-result-item span {
+	float:right;
+	text-align:right;
+	margin:0 35px 0 0;
+	color:#818489;
+	padding:0;
+	font:12px/47px tahoma, sans-serif;
 }
 
 li:first-child.as-result-item {
@@ -145,18 +162,6 @@ li.as-result-item.active {
 	text-shadow: 0 1px 2px #122042;
 }
 
-li.as-result-item em { 
-	font-style: normal; 
-	background: #444;  
-	padding: 0 2px;
-	color: #fff;
-}
-
-li.as-result-item.active em { 
-	background: #253f7a;  
-	color: #fff;
-}
-
 /* Webkit Hacks  */
 @media screen and (-webkit-min-device-pixel-ratio:0) {	
 	ul.as-selections {
@@ -169,9 +174,7 @@ li.as-result-item.active em {
 	ul.as-selections li.as-selection-item a.as-close {
 		margin-top: -1px;
 	}
-	ul.as-selections li.as-original input {
-		height: 19px;
-	}
+
 }
 
 /* Opera Hacks  */
@@ -190,8 +193,8 @@ ul.as-list {
 	border: 1px solid #888\9;
 }
 ul.as-selections li.as-selection-item a.as-close {
-	margin-left: 4px\9;
-	margin-top: 0\9;
+	margin-left: 4px 9px;
+	margin-top:0 9px;
 }
 
 /* Firefox 3.0 Hacks */

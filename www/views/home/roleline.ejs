@@ -1,13 +1,60 @@
-<li id="<%= role.topAdvice.uid %>"><%= role.topAdvice.text %></li>
-<img src="https://graph.facebook.com/<%= authors[role.topAdvice.author].uid %>/picture"/>
-<div><%= authors[role.topAdvice.author].first_name %> <%= authors[role.topAdvice.author].last_name %></div>
+<%
+    var columnAdviceClass = "column_advices";
+    if (index % 2 == 0) {
+    columnAdviceClass = "column_advices_sh";
+    }
+%>
 
- <% if(role.topAdvice.youtubeId && role.topAdvice.youtubeId.length >0) { %>
-    <%- partial('externals/youtube.preview.ejs', {videoId: role.topAdvice.youtubeId}) %>
- <% } %>
-<% if(role.topAdvice.amazonASIN && role.topAdvice.amazonASIN.length >0) { %>
-    <%- partial('externals/amazon.preview.ejs', {amazonASIN: role.topAdvice.amazonASIN}) %>
-<% } %>
-<fb:like href="<%= role.href + "#" + role.topAdvice.uid %>" send="false" layout="button_count" show_faces="false"></fb:like>
+<!-- column_advices_sh -->
+<div class="<%= columnAdviceClass %>">
 
- 
+    <!-- column_advices_inside -->
+    <div class="column_advices_inside">
+        <div class="column_div">
+            <a href="<%= role.href %>" class="title_advices">@<%= role.name %></a>
+            <a href="#" class="comments"><%= role.advices.length %></a>
+        </div>
+        <!-- entry -->
+        <div id="<% role.topAdvice.uid %>" class="entry">
+            <p><%= role.topAdvice.text %></p>
+        </div>
+        <!-- end entry -->
+
+        <!-- author -->
+        <div class="author">
+            <img src="https://graph.facebook.com/<%= authors[role.topAdvice.author].uid %>/picture" alt=""/>
+            <a href="<%= authors[role.topAdvice.author].link %>"><%= authors[role.topAdvice.author].first_name %> <%= authors[role.topAdvice.author].last_name %></a>
+        </div>
+        <!-- end author -->
+        <% if(role.topAdvice.youtubeId || role.topAdvice.amazonASIN) { %>
+        <!-- addition -->
+        <div class="addition">
+            <p>Addition:</p>
+            <% if(role.topAdvice.youtubeId && role.topAdvice.youtubeId.length >0) { %>
+                <%- partial('externals/youtube.preview.ejs', {videoId: role.topAdvice.youtubeId}) %>
+            <% } %>
+            <% if(role.topAdvice.amazonASIN && role.topAdvice.amazonASIN.length >0) { %>
+                <%- partial('externals/amazon.preview.ejs', {amazonASIN: role.topAdvice.amazonASIN}) %>
+            <% } %>
+        </div>
+        <!-- end addition -->
+        <% } %>
+        <!-- social_like -->
+        <div class="social_like">
+            <fb:like href="<%= role.href + "#" + role.topAdvice.uid %>" send="false" layout="button_count" show_faces="false"  class=" fb_edge_widget_with_comment fb_iframe_widget"></fb:like>
+        </div>
+        <!-- end social_like -->
+
+    </div>
+    <!-- end column_advices_inside -->
+
+    <!-- note -->
+    <div class="note">
+        <a href="#"></a>
+    </div>
+    <!-- end note -->
+
+</div>
+<!-- end column_advices_sh -->
+
+

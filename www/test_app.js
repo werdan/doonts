@@ -21,6 +21,7 @@ require('./controllers/advice.js')(app);
 require('./controllers/home.js')(app);
 require('./controllers/search.js')(app);
 require('./controllers/myaccount.js')(app,securityManager);
+require('./controllers/page.js')(app,securityManager);
 
 //ALWAYS THE LAST CONTROLLER
 require('./controllers/error.js')(app);
