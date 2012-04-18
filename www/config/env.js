@@ -11,9 +11,6 @@ module.exports = function(app, express){
 
 	log4js.addAppender(log4js.fileAppender('doonts.log'), 'doonts.log');
     app.configure(function() {
-        app.set('views', __dirname + '/../views');
-
-
         app.set("web.authInfoTTL",86400*1000*30); //TTL for personal infor on facebook milliseconds
         //Configuration
     	app.set('db.name', 'doonts');

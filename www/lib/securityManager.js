@@ -197,8 +197,6 @@ function createUpdateUser(data, req, res, next) {
 		user.last_name = data.last_name;
 		user.gender = data.gender;
 		user.locale = data.locale;
-        user.link = data.link;
-        user.username = data.username;
 		user.save(function(err) {
 			if (err) {
 				next(new Error("DB error: " + err));
