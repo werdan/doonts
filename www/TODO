@@ -1,0 +1,2 @@
+Use Solr synonims from WordNet : https://issues.apache.org/jira/browse/LUCENE-2347
+Add phonetic indexing to Solr
