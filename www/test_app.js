@@ -9,6 +9,8 @@ app.init();
 require('./config/env.js')(app, express);
 require('./config/orm.js')(app);
 
+require('./config/orm.js')(app);
+
 //Using stub for facebookAPI
 var fb = require("./tests/stubs/facebook-api-stub");
 

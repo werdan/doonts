@@ -1,6 +1,7 @@
 var Schema = db.Schema;
 var Role = db.model("Role");
 var logger = app.set("logger");
+var solrUpdaterPlugin = require('./plugins/solrUpdaterPlugin.js');
 
 var adviceSchema = new Schema({
 	// ID in Role
@@ -16,6 +17,8 @@ var adviceSchema = new Schema({
 	strict : true
 });
 
+adviceSchema.plugin(solrUpdaterPlugin);
+
 adviceSchema.statics.findByUID = function (uid, callback) {
     return this.findOne(
             {uid : uid}, 
@@ -23,7 +26,7 @@ adviceSchema.statics.findByUID = function (uid, callback) {
 };
 
 adviceSchema.methods.getRole = function (callback) {
-    return Role.findById(this.roleId,callback);
+    Role.findById(this.roleId,callback);
 };
 
 /**
@@ -141,7 +144,7 @@ adviceSchema.post("save",function(){
                               });
 });
 
-function updateRole(collection) {
+    function updateRole(collection) {
     Role.findById(collection[0]._id, function(err, role){
         if (err) {
             logger.error(err);

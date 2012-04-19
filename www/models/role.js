@@ -1,6 +1,8 @@
 "use strict";
 
 var Schema = db.Schema;
+var solrUpdaterPlugin = require('./plugins/solrUpdaterPlugin.js');
+
 
 var roleSchema = new Schema({
 	//TODO: Add unique constraint
@@ -14,10 +16,19 @@ var roleSchema = new Schema({
 	strict : true
 });
 
+roleSchema.plugin(solrUpdaterPlugin);
+
 roleSchema.virtual('href').get(function() {
 	var urlTitle = this.get('name').toLowerCase().replace(/[\W]/g, "-");
 	return app.set("web.unsecureUrl") + "/role/view/" + this.uid + "/" + urlTitle;
 });
+
+/**
+ * This is necessary to establish common interface for solr client plugin
+ */
+roleSchema.methods.getRole = function (callback) {
+    callback(this);
+};
 
 //TODO: Remove this copy/paste in all models -> use prototype
 roleSchema.statics.findByUID = function (uid, callback) {
@@ -55,6 +66,5 @@ roleSchema.pre("save",function(next){
     }
     next();
 });
-
 
 module.exports.Role = db.model('Role', roleSchema);
