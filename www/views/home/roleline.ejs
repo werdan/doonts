@@ -5,9 +5,11 @@
  <% if(role.topAdvice.youtubeId && role.topAdvice.youtubeId.length >0) { %>
     <%- partial('externals/youtube.preview.ejs', {videoId: role.topAdvice.youtubeId}) %>
  <% } %>
-<% if(role.topAdvice.amazonASIN && role.topAdvice.amazonASIN.length >0) { %>
-    <%- partial('externals/amazon.preview.ejs', {amazonASIN: role.topAdvice.amazonASIN}) %>
-<% } %>
+<% if(role.topAdvice.amazon.asin && role.topAdvice.amazon.asin.length >0) { %>
+    <%- partial('externals/amazon.preview.ajax.ejs', {amazonASIN: role.topAdvice.uid}) %>
+<% } else { %>
+    <%- partial('externals/amazon.preview.ejs', {amazonInfo: role.topAdvice.amazon}) %>
+<% }  %>
 <fb:like href="<%= role.href + "#" + role.topAdvice.uid %>" send="false" layout="button_count" show_faces="false"></fb:like>
 
  

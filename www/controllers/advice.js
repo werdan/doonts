@@ -1,15 +1,6 @@
 var Advice = db.model("Advice");
 var logger = app.set("logger");
 
-var OperationHelper = require('apac').OperationHelper;
-
-var opHelper = new OperationHelper({
-    awsId:     app.set("web.amazon.awsId"),
-    awsSecret: app.set("web.amazon.awsSecret"),
-    assocId:   app.set("web.amazon.assocId")
-});
-
-
 /**
  * Like/unlike facebook buttons handling
  * 
@@ -17,7 +8,7 @@ var opHelper = new OperationHelper({
  *                 /advice/unlike/123123
  * 
  */
-module.exports = function(app) {
+module.exports = function(app, amazonClient) {
 	app.post(/^\/advice\/(un)?like\/(\d+)/, function(req,res,next){
 	    var unlike = req.params[0];
 	    var adviceUID = req.params[1];
@@ -49,33 +40,68 @@ module.exports = function(app) {
 	    });
 	});
 
-    var awsAssocId = app.set("web.amazon.assocId");
-
-    app.get('/advice/apac/:asin', function(req,res,next){
+    app.get('/advice/apac/:adviceUID', function(req,res,next){
 
         var callbackFuncName = 'amazonPreviewCallback';
 
-        opHelper.execute('ItemLookup', {
-            'ItemId': req.params.asin,
-            'RelationshipType': 'AuthorityTitle',
-            'IncludeReviewsSummary' : 'false'
-        }, function(error, results) {
-            if (error) {
-                next(new Error(error));
-                return
-            }
+        if (!req.params || ! req.params.adviceUID) {
+            next(new Error("Advice UID not found"));
+            return;
+        }
+         Advice.findByUID(req.params.adviceUID,function(err,advice){
+            var asin = advice.amazon.asin;
 
-            var result = {asin: results['Items']['Item']['ASIN'],
-                          title: results['Items']['Item']['ItemAttributes']['Title'],
-                          url: results['Items']['Item']['DetailPageURL'],
-                          author: results['Items']['Item']['ItemAttributes']['Author'],
-                          imgSrc: getImgSrc(req.params.asin)
-                         };
-            res.render('advice/apac.ejs',{resultJson: JSON.stringify(result), callback: callbackFuncName});
+            amazonClient.execute('ItemLookup', {
+                'ItemId': asin,
+                'RelationshipType': 'AuthorityTitle',
+                'IncludeReviewsSummary' : 'false'
+            }, function(error, results) {
+                if (error) {
+                    next(new Error(error));
+                    return
+                }
+                var result = {};
+
+                if (advice.amazon.title) {
+                    result = getResultWithAmazonInfo(advice)
+                } else {
+                    result = extractAmazonInfo(advice, results);
+                }
+
+                res.render('advice/apac.ejs',{resultJson: JSON.stringify(result), callback: callbackFuncName});
+            });
         });
     });
 
     function getImgSrc(asin) {
+        var awsAssocId = app.set("web.amazon.assocId");
+
         return "http://ws.assoc-amazon.com/widgets/q?_encoding=UTF8&Format=_SL110_&ID=AsinImage&WS=1&tag=" + awsAssocId + "&ServiceVersion=20070822&ASIN=" + asin;
+    }
+
+    function extractAmazonInfo(advice, results) {
+        var result = {asin: results['Items']['Item']['ASIN'],
+            title: results['Items']['Item']['ItemAttributes']['Title'],
+            url: results['Items']['Item']['DetailPageURL'],
+            author: results['Items']['Item']['ItemAttributes']['Author'],
+            imgSrc: getImgSrc(results['Items']['Item']['ASIN'])
+        };
+
+        advice.amazon.title = result.title;
+        advice.amazon.url = result.url;
+        advice.amazon.author = result.author;
+        advice.amazon.imgSrc = result.imgSrc;
+        advice.save();
+        return result;
+    }
+
+    function getResultWithAmazonInfo(advice) {
+        var result = {
+            title: advice.amazon.title,
+            url: advice.amazon.url,
+            author: advice.amazon.author,
+            imgSrc: advice.amazon.imgSrc
+        };
+        return result;
     }
 };

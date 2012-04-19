@@ -13,9 +13,10 @@ var fb = require("facebook-api");
 require('./config/cron.js')(app, fb);
 
 var securityManager = require("./lib/securityManager")(fb);
+var amazonClient = require("./lib/amazonClient.js");
 
 require('./controllers/role.js')(app,securityManager);
-require('./controllers/advice.js')(app);
+require('./controllers/advice.js')(app, amazonClient);
 require('./controllers/home.js')(app);
 require('./controllers/search.js')(app);
 require('./controllers/myaccount.js')(app,securityManager);

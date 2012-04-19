@@ -12,7 +12,13 @@ var adviceSchema = new Schema({
 	nextFacebookInfoUpdateTime: Number,
 	facebookLikes: Number,
 	youtubeId: String,
-	amazonASIN: String
+	amazon: {
+                asin: String,
+                url: String,
+                title: String,
+                author: String,
+                imgSrc: String
+            }
 }, {
 	strict : true
 });

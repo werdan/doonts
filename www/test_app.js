@@ -17,9 +17,10 @@ var fb = require("./tests/stubs/facebook-api-stub");
 require('./config/cron.js')(app, fb);
 
 var securityManager = require("./lib/securityManager")(fb);
+var amazonClientStub = require("./tests/stubs/amazonClient-stub.js");
 
 require('./controllers/role.js')(app,securityManager);
-require('./controllers/advice.js')(app);
+require('./controllers/advice.js')(app, amazonClientStub);
 require('./controllers/home.js')(app);
 require('./controllers/search.js')(app);
 require('./controllers/myaccount.js')(app,securityManager);
