@@ -47,10 +47,10 @@ module.exports = function(app, securityManager) {
             redirectUri = decodeURIComponent(req.query.redirectUri);
         }
         if (securityManager.isLoggedIn(req)) {
-            res.render('myaccount/loginbox/hello.ejs', {redirectUri: encodeURIComponent(redirectUri)});
+            res.render('myaccount/loginbox/hello.ejs', {layout: 'layout_ajax.ejs', redirectUri: encodeURIComponent(redirectUri)});
             return;
         } else {
-	        res.render('myaccount/loginbox/login.ejs', {redirectUri: encodeURIComponent(redirectUri)});
+	        res.render('myaccount/loginbox/login.ejs', {layout: 'layout_ajax.ejs', redirectUri: encodeURIComponent(redirectUri)});
             return;
 	    }
 	});
