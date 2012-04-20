@@ -12,7 +12,7 @@
     <div class="column_advices_inside">
         <div class="column_div">
             <a href="<%= role.href %>" class="title_advices">@<%= role.name %></a>
-            <a href="#" class="comments"><%= role.advices.length %></a>
+            <a href="<%= role.href %>" class="comments"><%= role.advices.length %></a>
         </div>
         <!-- entry -->
         <div id="<% role.topAdvice.uid %>" class="entry">
@@ -26,15 +26,17 @@
             <a href="<%= authors[role.topAdvice.author].link %>"><%= authors[role.topAdvice.author].first_name %> <%= authors[role.topAdvice.author].last_name %></a>
         </div>
         <!-- end author -->
-        <% if(role.topAdvice.youtubeId || role.topAdvice.amazonASIN) { %>
+        <% if(role.topAdvice.youtubeId || role.topAdvice.amazon.asin) { %>
         <!-- addition -->
         <div class="addition">
-            <p>Addition:</p>
+            <p>Media:</p>
             <% if(role.topAdvice.youtubeId && role.topAdvice.youtubeId.length >0) { %>
                 <%- partial('externals/youtube.preview.ejs', {videoId: role.topAdvice.youtubeId}) %>
             <% } %>
-            <% if(role.topAdvice.amazonASIN && role.topAdvice.amazonASIN.length >0) { %>
-                <%- partial('externals/amazon.preview.ejs', {amazonASIN: role.topAdvice.amazonASIN}) %>
+            <% if(role.topAdvice.amazon.asin && role.topAdvice.amazon.title && role.topAdvice.amazon.title.length >0 ) { %>
+                <%- partial('externals/amazon.preview.ejs', {amazonInfo: role.topAdvice.amazon}) %>
+            <% } else if (role.topAdvice.amazon.asin && role.topAdvice.amazon.asin.length > 0) {%>
+                <%- partial('externals/amazon.preview.ajax.ejs', {adviceUID: role.topAdvice.uid, amazonInfo: role.topAdvice.amazon}) %>
             <% } %>
         </div>
         <!-- end addition -->

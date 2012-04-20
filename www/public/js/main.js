@@ -60,6 +60,7 @@ function initAutocomplete() {
 
 function initFB() {
     window.fbAsyncInit = function() {
+        console.log('FB init');
         FB.init({
             appId      : '159891950744662', // App ID
             channelUrl : '//doonts.lxc/channel.html', // Channel File
@@ -109,10 +110,12 @@ function youtubeThumbnailCallback(data) {
 }
 
 function amazonPreviewCallback(data) {
+    console.log(data);
+    console.log($('.amazonPreview-' + data['asin'] + " .r_win_add a.title"));
     jQuery('.amazonPreview-' + data['asin'] + " img").attr('src',data['imgSrc']);
-    jQuery('.amazonPreview-' + data['asin'] + " a.title").html(data['title']);
-    jQuery('.amazonPreview-' + data['asin'] + " a.title").attr('href',data['url']);
-    jQuery('.amazonPreview-' + data['asin'] + " .author").html(data['author']);
+    jQuery('.amazonPreview-' + data['asin'] + " .r_win_add a.title").html(data['title']);
+    jQuery('.amazonPreview-' + data['asin'] + " .r_win_add a.title").attr('href',data['url']);
+    jQuery('.amazonPreview-' + data['asin'] + " .r_win_add .author").html(data['author']);
 }
 
 function initAnimations() {

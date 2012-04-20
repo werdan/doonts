@@ -1,0 +1,472 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>-</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css"/>
+	<link rel="stylesheet" href="css/autoSuggest.css" type="text/css"/>
+	<!--[if IE 7]><link rel="stylesheet" href="css/ie7.css" type="text/css"/><![endif]-->
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/animations.js"></script>
+</head>
+<body>
+<!-- main -->
+<div class="main">
+	<!-- header -->
+	<div class="header">		
+	
+		<!-- header_ins -->
+		<div class="header_ins">
+				
+			<!-- social -->
+			<div class="social">
+				<p>Social activity:</p>
+				<a class="twitter_soc" href="#"></a>
+				<a class="fb_soc" href="#"></a>
+			</div>
+			<!-- end social -->
+								
+			<!-- menu_header -->
+			<div class="menu_header">
+				<a href="#">About Us</a>
+				<a href="#">Contacts Us</a>
+			</div>
+			<!-- end menu_header -->
+					
+			<!-- logo -->
+			<div class="logo">
+				<a class="slogan" href="#">global aggregator <span>of social experience</span></a>
+				<a class="img" href="#"><img src="images/logo.png" alt="" /></a>
+			</div>
+			<!-- end logo -->
+	
+		</div>
+		<!-- end header_ins -->
+		
+	</div>
+	<!-- end header  -->
+	
+	<!-- wrapper -->
+	<div class="wrapper">		
+					
+		<!-- top_wrapper_block -->
+		<div class="top_wrapper_block">		
+			<!-- login -->
+			<div class="login">
+			
+				<!-- login_fb -->
+				<div class="login_fb">
+					<a href="#"><img src="images/fb.jpg" alt="" /></a>
+				</div>
+				<!-- end login_fb   -->
+				
+				<!-- login_nav -->
+				<div class="login_nav">
+					<a class="favoriter" href="#">My Favorites</a> <span>(11)</span>
+				</div>
+				<!-- end login_nav   -->
+				
+			</div>
+			<!-- end login  -->
+		
+			<p>This you will not find in books!</p>
+			<p class="title">Get social advice for:</p>		
+						
+			<!-- people -->
+			<div class="people"></div>
+			<!-- end people -->
+		
+			<!-- form_search -->
+			<div class="form_search">
+				<ul id="as-selections-074" class="as-selections">
+					<li id="as-original-074" class="as-original">
+						<form action="">
+							<div><input class="search_input" id="as-input-010" type="text" placeholder="ask for advice here..." value="" name="" />
+							<input class="search_button" type="submit" name="" value="" /></div>
+						</form>
+					</li>
+				</ul>		
+				<div id="as-results-010" class="as-results" style="display:none;"></div>
+				<div class="bg_search">
+					<p>Sample:</p>
+					<span class="sample_link">project manager</span> \
+					<span class="sample_link">good mother</span> \
+					<span class="sample_link">professional driver</span> \
+					<span class="sample_link">SEO expert</span> \
+					<span class="sample_link">resident of the Amazon forest etc...</span>
+				</div>
+			</div>
+			<!-- end form_search -->
+			
+		</div>
+		<!-- end top_wrapper_block -->
+							
+		<!-- banner -->
+		<div class="banner">
+		
+			<!-- right_banner -->
+			<div class="right_banner">
+				<p class="title">Watch the presentation, how it works.</p>
+				<a href="#"><img src="images/banner_img.jpg" alt="" /></a>
+			</div>
+			<!-- end right_banner -->
+			
+			<p class="title">ABOUT US</p>
+			<p>Happens millions of times each week – a customer receives a drink from
+				a Starbucks barista – but each interaction is unique. It’s just a moment in
+				time – just one hand reaching over the counter to present a cup to
+				another outstretched hand. But it’s a connection!
+				<a href="#">read more</a>
+			</p>
+			<a class="close" href="#">Close</a>
+		</div>
+		<!-- end banner -->		
+		
+		<!-- advices -->
+		<div class="advices">
+		
+			<div class="title_advices">
+				<p class="title">TOP advices today:</p>		
+			</div>
+			
+			<!-- column_advices -->
+			<div class="column_advices">
+				
+				<!-- column_advices_inside -->
+				<div class="column_advices_inside">
+				
+					<div class="column_div"><a href="#" class="title_advices">@Rainforest green-blue coloured barbarian chief@Rainforest green-blue coloured barbarian chief</a>
+					<a href="#" class="comments">12</a></div>
+					<!-- entry -->
+					<div class="entry">
+						<p>Here's one thing parents don't know: Many driver's education programs  And the government? Many driver's education program very little to: Many
+						driver's education programs And the government? Many driver's education program very little to...Here's one thing parents don't know...</p>
+					</div>
+					<!-- end entry -->
+															
+					<!-- author -->
+					<div class="author">
+						<img src="images/photo.jpg" alt="" />
+						<a href="#">Svitelskyi Artemius</a>
+					</div>
+					<!-- end author -->		
+					
+					<!-- addition -->
+					<div class="addition">
+						<p>Addition:</p>
+						
+						<!-- win_addition -->
+						<div class="win_addition">
+							<img src="images/youtube.jpg" alt="" />
+							
+							<!-- r_win_add -->
+							<div class="r_win_add">
+								<a href="#">Svitelskyi Artemius</a>
+								<p> Many driver's education program very little to...</p>
+							</div>
+							<!-- end r_win_add -->
+						
+						</div>
+						<!-- end win_addition -->
+						
+					</div>
+					<!-- end addition -->
+
+					<!-- social_like -->
+					<div class="social_like">
+
+						<fb:like href="http://doonts.lxc/role/view/144/project-manager-with-spaces#130" send="false" layout="button_count" show_faces="false" class=" fb_edge_widget_with_comment fb_iframe_widget"><span><iframe id="f3d357f8ac" name="f1a26f1884" scrolling="no" style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 20px; width: 50px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " title="Like this content on Facebook." class="fb_ltr" src="http://www.facebook.com/plugins/like.php?api_key=159891950744662&amp;channel_url=https%3A%2F%2Fs-static.ak.fbcdn.net%2Fconnect%2Fxd_proxy.php%23cb%3Df14b0e3918%26origin%3Dhttp%253A%252F%252Fdoonts.lxc%252Ff3771a7e3c%26relation%3Dparent.parent%26transport%3Dpostmessage&amp;extended_social_context=false&amp;href=http%3A%2F%2Fdoonts.lxc%2Frole%2Fview%2F144%2Fproject-manager-with-spaces%23130&amp;layout=button_count&amp;locale=en_US&amp;node_type=link&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=90"></iframe></span></fb:like>
+
+					</div>
+					<!-- end social_like -->
+								
+				</div>
+				<!-- end column_advices_inside -->
+				
+				<!-- note -->
+				<div class="note">
+					<a href="#"></a>
+				</div>
+				<!-- end note -->
+			</div>
+			<!-- end column_advices -->
+			
+			<!-- column_advices_sh -->
+			<div class="column_advices_sh">
+			
+				<!-- column_advices_inside -->
+				<div class="column_advices_inside">
+					<div class="column_div">
+						<a href="#" class="title_advices">@Beginner designer</a>
+						<a href="#" class="comments">12</a>
+					</div>
+					<!-- entry -->
+					<div class="entry">
+						<p>Here's one thing parents don't know: Many driver's education programs  And the government? Many driver's education program very little to: Many
+						driver's education programs And the government?</p>
+					</div>
+					<!-- end entry -->
+									
+					<!-- author -->
+					<div class="author">
+						<img src="images/photo.jpg" alt="" />
+						<a href="#">Svitelskyi Artemius</a>
+					</div>
+					<!-- end author -->		
+					
+					<!-- social_like -->
+					<div class="social_like">
+
+						<fb:like href="http://doonts.lxc/role/view/144/project-manager-with-spaces#130" send="false" layout="button_count" show_faces="false" class=" fb_edge_widget_with_comment fb_iframe_widget"><span><iframe id="f3d357f8ac" name="f1a26f1884" scrolling="no" style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 20px; width: 50px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " title="Like this content on Facebook." class="fb_ltr" src="http://www.facebook.com/plugins/like.php?api_key=159891950744662&amp;channel_url=https%3A%2F%2Fs-static.ak.fbcdn.net%2Fconnect%2Fxd_proxy.php%23cb%3Df14b0e3918%26origin%3Dhttp%253A%252F%252Fdoonts.lxc%252Ff3771a7e3c%26relation%3Dparent.parent%26transport%3Dpostmessage&amp;extended_social_context=false&amp;href=http%3A%2F%2Fdoonts.lxc%2Frole%2Fview%2F144%2Fproject-manager-with-spaces%23130&amp;layout=button_count&amp;locale=en_US&amp;node_type=link&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=90"></iframe></span></fb:like>
+
+			 
+					</div>
+					<!-- end social_like -->
+						
+				</div>
+				<!-- end column_advices_inside -->
+				
+				<!-- note -->
+				<div class="note">
+					<a href="#"></a>
+				</div>
+				<!-- end note -->
+			
+			</div>
+			<!-- end column_advices_sh -->
+			
+			<!-- column_advices -->
+			<div class="column_advices">
+				
+				<!-- column_advices_inside -->
+				<div class="column_advices_inside">
+					<div class="column_div">
+						<a href="#" class="title_advices">@Beginner designer</a>
+						<a href="#" class="comments">12</a>
+					</div>
+					
+					<!-- entry -->
+					<div class="entry">
+						<p>Here's one thing parents don't know: Many driver's education programs  And the government? Many driver's education program very little to: Many
+						driver's education programs And the government? Many driver's education program very little to...Here's one thing parents don't know...</p>
+					</div>
+					<!-- end entry -->
+									
+					<!-- author -->
+					<div class="author">
+						<img src="images/photo.jpg" alt="" />
+						<a href="#">Svitelskyi Artemius</a>
+					</div>
+					<!-- end author -->
+								
+					<!-- social_like -->
+					<div class="social_like">
+
+						<fb:like href="http://doonts.lxc/role/view/144/project-manager-with-spaces#130" send="false" layout="button_count" show_faces="false" class=" fb_edge_widget_with_comment fb_iframe_widget"><span><iframe id="f3d357f8ac" name="f1a26f1884" scrolling="no" style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 20px; width: 50px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " title="Like this content on Facebook." class="fb_ltr" src="http://www.facebook.com/plugins/like.php?api_key=159891950744662&amp;channel_url=https%3A%2F%2Fs-static.ak.fbcdn.net%2Fconnect%2Fxd_proxy.php%23cb%3Df14b0e3918%26origin%3Dhttp%253A%252F%252Fdoonts.lxc%252Ff3771a7e3c%26relation%3Dparent.parent%26transport%3Dpostmessage&amp;extended_social_context=false&amp;href=http%3A%2F%2Fdoonts.lxc%2Frole%2Fview%2F144%2Fproject-manager-with-spaces%23130&amp;layout=button_count&amp;locale=en_US&amp;node_type=link&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=90"></iframe></span></fb:like>
+
+			 
+					</div>
+					<!-- end social_like -->
+						
+				</div>
+				<!-- end column_advices_inside -->
+				
+				<!-- note -->
+				<div class="note">
+					<a href="#"></a>
+				</div>
+				<!-- end note -->
+			
+			</div>
+			<!-- end column_advices -->
+			
+			<!-- column_advices_sh -->
+			<div class="column_advices_sh">
+				
+				<!-- column_advices_inside -->
+				<div class="column_advices_inside">
+					<div class="column_div">
+						<a href="#" class="title_advices">@Beginner designer</a>
+						<a href="#" class="comments">12</a>
+					</div>
+					
+					<!-- entry -->
+					<div class="entry">
+						<p>Here's one thing parents don't know: Many driver's education programs  And the government? Many driver's education program very little to: Many
+						driver's education programs And the government?</p>
+					</div>
+					<!-- end entry -->
+									
+					<!-- author -->
+					<div class="author">
+						<img src="images/photo.jpg" alt="" />
+						<a href="#">Svitelskyi Artemius</a>
+					</div>
+					<!-- end author -->
+								
+					<!-- social_like -->
+					<div class="social_like">
+
+						<fb:like href="http://doonts.lxc/role/view/144/project-manager-with-spaces#130" send="false" layout="button_count" show_faces="false" class=" fb_edge_widget_with_comment fb_iframe_widget"><span><iframe id="f3d357f8ac" name="f1a26f1884" scrolling="no" style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 20px; width: 50px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " title="Like this content on Facebook." class="fb_ltr" src="http://www.facebook.com/plugins/like.php?api_key=159891950744662&amp;channel_url=https%3A%2F%2Fs-static.ak.fbcdn.net%2Fconnect%2Fxd_proxy.php%23cb%3Df14b0e3918%26origin%3Dhttp%253A%252F%252Fdoonts.lxc%252Ff3771a7e3c%26relation%3Dparent.parent%26transport%3Dpostmessage&amp;extended_social_context=false&amp;href=http%3A%2F%2Fdoonts.lxc%2Frole%2Fview%2F144%2Fproject-manager-with-spaces%23130&amp;layout=button_count&amp;locale=en_US&amp;node_type=link&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=90"></iframe></span></fb:like>
+
+			 
+					</div>
+					<!-- end social_like -->
+						
+				</div>
+				<!-- end column_advices_inside -->
+				
+				<!-- note -->
+				<div class="note">
+					<a href="#"></a>
+				</div>
+				<!-- end note -->
+			
+			</div>
+			<!-- end column_advices_sh -->
+
+		</div>
+		<!-- end advices -->
+		
+		<!-- load_more -->
+		<div class="load_more">
+			<a class="button" href="#"></a>
+		</div>
+		<!-- end load_more -->	
+
+		<!-- questions-->
+		<div class="questions">
+			<p class="title">top questions:</p>
+				<a href="#">@Driver</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+				<a href="#">@erector</a>
+				<a href="#">@Driver</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+				<a href="#">@erector</a>
+				<a href="#">@Driver</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+				<a href="#">@erector</a>
+				<a href="#">@Driver</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+				<a href="#">@erector</a>
+				<a href="#">@Driver</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+				<a href="#">@erector</a>
+				<a href="#">@Driver</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+				<a href="#">@erector</a>
+				<a href="#">@Driver</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+				<a href="#">@erector</a>
+				<a href="#">@Driver</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+				<a href="#">@erector</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+				<a href="#">@erector</a>
+				<a href="#">@Driver</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+				<a href="#">@erector</a>
+				<a href="#">@Driver</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+				<a href="#">@erector</a>
+				<a href="#">@SEO Engineer</a>
+				<a href="#">@builder</a>
+		</div>
+		<!-- end questions -->
+						
+	</div>
+	<!-- end wrapper -->
+	<div class="h_footer"></div>
+</div>
+<!-- end main -->
+<!-- footer -->
+<div class="footer">
+
+	<!-- footer_inside -->
+	<div class="footer_inside">
+	
+		<div class="copy">
+			<p class="copy">Copyright © 2012 Doonts</p>
+			<a href="#">Privacy Policy</a>
+			<ul>
+				<li><a href="#">About Us</a></li>
+				<li class="mail"><a href="#">Contacts Us</a></li>
+				<li><a href="#">help@doonts.com</a></li>
+			</ul>
+			<p>Join us on social networks:</p>
+			<a href="#">Tweeter </a>
+			<a href="#">Facebook</a>
+		</div>
+		<div class="up">
+			<a href="#"></a>
+		</div>
+		
+	</div>
+	<!-- end footer_inside -->	
+
+</div>
+<!-- end footer -->	
+
+<!--  left_buttons -->	
+<div class="left_buttons">
+
+	<!-- add_advice -->	
+	<div class="add_advice">
+		<a href="#"></a>
+	</div>
+	<!-- end add_advice -->	
+	
+	<!-- ask_advice -->	
+	<div class="ask_advice">
+		<a href="#"></a>
+		<div class="panel_ask">
+			<div class="advice-content-fb">
+				<img style="margin:0 auto; display:block;" src="images/img_fb.jpg" alt="" />
+			</div>
+			<div class="advice-content-tw"></div>
+			<div class="advice-content-mail">
+				<form action="">
+					<p>Ask for advice from your friends on:</p>
+					<a href="#">@Rainforest green-blue coloured barbarian chief</a>
+					
+					<div class="advice-content-mail-form">
+						<p>Email your friend:</p>
+						<input class="input" type="text" name="name" />
+					</div>
+					<div class="add_mail">
+						<p><a href="#">Add Email</a></p>
+					</div>
+					<div><input class="button" type="submit" value="send"/></div>
+				</form>
+			</div>
+			<a class="fb" href="#"><span>Ask to facebook</span></a>
+			<a class="tw" href="#"><span>Ask on Twitter</span></a>
+			<a class="mail" href="#"><span>Ask by e-mail</span></a>
+		</div>
+	</div>
+	<!-- end ask_advice -->	
+	
+</div>
+<!-- end left_buttons -->	
+
+
+<!--  modal-background -->
+<div class="modal-bg"></div>
+<!-- end modal-background -->	
+
+</body>
+</html>

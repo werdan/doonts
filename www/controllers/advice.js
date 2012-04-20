@@ -68,7 +68,9 @@ module.exports = function(app, amazonClient) {
                     result = extractAmazonInfo(advice, results);
                 }
 
-                res.render('advice/apac.ejs',{resultJson: JSON.stringify(result), callback: callbackFuncName});
+                res.render('advice/apac.ejs',{resultJson: JSON.stringify(result),
+                                              callback: callbackFuncName,
+                                              layout: "layout_ajax.ejs"});
             });
         });
     });
