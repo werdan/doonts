@@ -31,47 +31,9 @@
 </div>
 <!-- end footer -->
 
-<!--  left_buttons -->
-<div class="left_buttons">
-
-    <!-- add_advice -->
-    <div class="add_advice">
-        <a href="#"></a>
-    </div>
-    <!-- end add_advice -->
-
-    <!-- ask_advice -->
-    <div class="ask_advice">
-        <a href="#"></a>
-        <div class="panel_ask">
-            <div class="advice-content-fb">
-                <img style="margin:0 auto; display:block;" src="images/img_fb.jpg" alt="" />
-            </div>
-            <div class="advice-content-tw"></div>
-            <div class="advice-content-mail">
-                <form action="">
-                    <p>Ask for advice from your friends on:</p>
-                    <a href="#">@Rainforest green-blue coloured barbarian chief</a>
-
-                    <div class="advice-content-mail-form">
-                        <p>Email your friend:</p>
-                        <input class="input" type="text" name="name" />
-                    </div>
-                    <div class="add_mail">
-                        <p><a href="#">Add Email</a></p>
-                    </div>
-                    <div><input class="button" type="submit" value="send"/></div>
-                </form>
-            </div>
-            <a class="fb" href="#"><span>Ask to facebook</span></a>
-            <a class="tw" href="#"><span>Ask on Twitter</span></a>
-            <a class="mail" href="#"><span>Ask by e-mail</span></a>
-        </div>
-    </div>
-    <!-- end ask_advice -->
-
-</div>
-<!-- end left_buttons -->
+<% if (typeof rolePage != 'undefined') { %>
+    <%- partial('role/leftbuttons.ejs') %>
+<% } %>
 
 
 <!--  modal-background -->

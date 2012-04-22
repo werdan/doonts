@@ -9,22 +9,18 @@ module.exports = function(app, securityManager) {
 		    .run(function(err, role) {
 			if (err) {
 				next(new Error(err));
-				return
+				return;
 			} else if (!role) {
 				next(new Error("Role id=" + req.params.roleUID + " was not found"));
 				return;
 			} else {
 				res.render('role/role.ejs', 
-						{role: role}
+						{role: role, rolePage: true}
 				);
 			}
 		});
 	});
 
-	app.get('/role/create', securityManager.requireAuth, function(req,res, next){
-		res.render('role/role_create.ejs');
-	});
-	
 	app.post('/role/update/:roleUID', securityManager.requireAuth, function(req,res, next){
 		Role.findByUID(req.params.roleUID, function(err, role) {
 			if (err) {
