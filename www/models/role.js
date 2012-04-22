@@ -54,7 +54,6 @@ roleSchema.statics.findTop = function (qty, skipFirst, callback) {
     query.desc('totalFacebookLikes')
                  .limit(qty)
                  .where('hasAdvices',true)
-                 .populate('advices')
                  .run(callback);
 };
 

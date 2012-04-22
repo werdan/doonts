@@ -26,6 +26,9 @@ module.exports = function(app, express){
         //Number of roles to load on home page before "Load more is clicked"
     	app.set("web.homepage.rolesOnFirstLoad", 10);
 
+        //Max number of roles in footer seo block (TOP ROLES)
+        app.set("web.homepage.seoRolesInFooter", 30);
+
     	app.set("web.autocomplete.resultsNumber", 5); //Max number of results to return in search autocomplete
 
         app.set("web.amazon.awsId", 'AKIAJIPCNYWM3IOPRN6A');

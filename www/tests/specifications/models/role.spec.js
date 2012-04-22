@@ -42,7 +42,6 @@ describe('Tests on role model', function(){
                 expect(parseInt(roles[1].uid)).toEqual(152);
                 expect(parseInt(roles[2].uid)).toEqual(145);
                 expect(parseInt(roles[3].uid)).toEqual(149);
-                expect(roles[0].advices[1].text.length).toBeGreaterThan(5);
                 latch = true;
             });
             waitsFor(done, "Function has been never called",1000);
