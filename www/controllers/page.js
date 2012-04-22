@@ -7,7 +7,7 @@ module.exports = function(app) {
             var viewsDir = app.settings.views;
             var absoluteFileName = viewsDir + '/static/' + req.params.page + ".ejs";
             var fileName = 'static/' + req.params.page + ".ejs";
-            logger.debug("Checking that file" + absoluteFileName + " exists");
+            logger.debug("Checking that file " + absoluteFileName + " exists");
             fs.lstat(absoluteFileName, function(err, stats) {
                 if (!err) {
                     logger.debug("Rendering template " + fileName);

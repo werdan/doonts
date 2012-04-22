@@ -26,18 +26,22 @@
             <a href="<%= authors[role.topAdvice.author].link %>"><%= authors[role.topAdvice.author].first_name %> <%= authors[role.topAdvice.author].last_name %></a>
         </div>
         <!-- end author -->
-        <% if(role.topAdvice.youtubeId || role.topAdvice.amazon.asin) { %>
+        <% if(role.topAdvice.youtube.videoId || role.topAdvice.amazon.asin) { %>
         <!-- addition -->
         <div class="addition">
             <p>Media:</p>
-            <% if(role.topAdvice.youtubeId && role.topAdvice.youtubeId.length >0) { %>
-                <%- partial('externals/youtube.preview.ejs', {videoId: role.topAdvice.youtubeId}) %>
+            <% if(role.topAdvice.youtube.videoId && role.topAdvice.youtube.title && role.topAdvice.youtube.title.length >0) { %>
+                <%- partial('externals/youtube.preview.ejs', {youtubeInfo: role.topAdvice.youtube}) %>
+            <% } else if (role.topAdvice.youtube.videoId && role.topAdvice.youtube.videoId.length > 0) { %>
+                <%- partial('externals/youtube.preview.ajax.ejs', {adviceUID: role.topAdvice.uid, youtubeInfo: role.topAdvice.youtube}) %>
             <% } %>
+
             <% if(role.topAdvice.amazon.asin && role.topAdvice.amazon.title && role.topAdvice.amazon.title.length >0 ) { %>
                 <%- partial('externals/amazon.preview.ejs', {amazonInfo: role.topAdvice.amazon}) %>
             <% } else if (role.topAdvice.amazon.asin && role.topAdvice.amazon.asin.length > 0) {%>
                 <%- partial('externals/amazon.preview.ajax.ejs', {adviceUID: role.topAdvice.uid, amazonInfo: role.topAdvice.amazon}) %>
             <% } %>
+
         </div>
         <!-- end addition -->
         <% } %>

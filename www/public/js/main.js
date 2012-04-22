@@ -60,7 +60,7 @@ function initAutocomplete() {
 
 function initFB() {
     window.fbAsyncInit = function() {
-        console.log('FB init');
+        console.log('Facebook init completed');
         FB.init({
             appId      : '159891950744662', // App ID
             channelUrl : '//doonts.lxc/channel.html', // Channel File
@@ -101,17 +101,13 @@ function fillInLoginBox() {
     });
 }
 
-function youtubeThumbnailCallback(data) {
-
-    jQuery('.youtubePreview-' + data['data']['id'] + " .r_win_add p").html(data['data']['viewCount'] + " views");
+function youtubePreviewCallback(data) {
     jQuery('.youtubePreview-' + data['data']['id'] + " img").attr('src',data['data']['thumbnail']['sqDefault']);
     jQuery('.youtubePreview-' + data['data']['id'] + " .r_win_add a.title").html(data['data']['title']);
     jQuery('.youtubePreview-' + data['data']['id'] + " .r_win_add a.title").attr("href",data['data']['player']['default']);
 }
 
 function amazonPreviewCallback(data) {
-    console.log(data);
-    console.log($('.amazonPreview-' + data['asin'] + " .r_win_add a.title"));
     jQuery('.amazonPreview-' + data['asin'] + " img").attr('src',data['imgSrc']);
     jQuery('.amazonPreview-' + data['asin'] + " .r_win_add a.title").html(data['title']);
     jQuery('.amazonPreview-' + data['asin'] + " .r_win_add a.title").attr('href',data['url']);

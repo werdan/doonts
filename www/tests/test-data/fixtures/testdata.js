@@ -46,7 +46,7 @@ exports.Role = [
                 { _id: roleId6, uid: 149, name: "Project manager with spaces", advices: [adviceId9,adviceId10,adviceId11,adviceId12], author: authorId1},
                 { _id: roleId7, uid: 150, name: "Project manager with spaces", advices: [adviceId13,adviceId14,adviceId15,adviceId16], author: authorId1},
                 { _id: roleId8, uid: 151, name: "Project manager with spaces", advices: [adviceId17], author: authorId1},
-                { _id: roleId9, uid: 152, name: "Project manager with spaces", advices: [adviceId18], author: authorId1},
+                { _id: roleId9, uid: 152, name: "Doctor with video advices", advices: [adviceId18], author: authorId1},
                 {uid: 153, name: "Empty role", author: authorId1}
                 ];
 
@@ -77,5 +77,5 @@ exports.Advice = {
     //151 role
     advice17 : {roleId: roleId8, uid:12801, text: "The next best advice ever", facebookLikes: 0, _id: adviceId17, author: authorId1},
     //152 role
-    advice18 : {roleId: roleId9, uid:12802, text: "The next best advice ever", facebookLikes: 10, _id: adviceId18, author: authorId1, youtubeId: "HLDbx4Y_ybU"}
+    advice18 : {roleId: roleId9, uid:12802, text: "Cool advice with youtube video", facebookLikes: 10, _id: adviceId18, author: authorId1, youtube: {videoId: "HLDbx4Y_ybU"}}
 };

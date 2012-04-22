@@ -11,13 +11,18 @@ var adviceSchema = new Schema({
     author: {type: Schema.ObjectId, ref: 'User'},
 	nextFacebookInfoUpdateTime: Number,
 	facebookLikes: Number,
-	youtubeId: String,
+	youtube: {
+        videoId: String,
+        url: String,
+        title: String,
+        imgSrc: String
+    },
 	amazon: {
-                asin: String,
-                url: String,
-                title: String,
-                author: String,
-                imgSrc: String
+        asin: String,
+        url: String,
+        title: String,
+        author: String,
+        imgSrc: String
             }
 }, {
 	strict : true

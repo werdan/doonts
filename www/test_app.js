@@ -18,11 +18,13 @@ require('./config/cron.js')(app, fb);
 
 var securityManager = require("./lib/securityManager")(fb);
 var amazonClientStub = require("./tests/stubs/amazonClient-stub.js");
+var youtubeClientStub = require("./tests/stubs/youtubeClient-stub.js");
 
 require('./controllers/role.js')(app,securityManager);
-require('./controllers/advice.js')(app, amazonClientStub);
+require('./controllers/advice.js')(app, amazonClientStub, youtubeClientStub);
 require('./controllers/home.js')(app);
 require('./controllers/search.js')(app);
+require('./controllers/page.js')(app);
 require('./controllers/myaccount.js')(app,securityManager);
 
 //ALWAYS THE LAST CONTROLLER

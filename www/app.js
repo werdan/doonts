@@ -14,11 +14,13 @@ require('./config/cron.js')(app, fb);
 
 var securityManager = require("./lib/securityManager")(fb);
 var amazonClient = require("./lib/amazonClient.js");
+var youtubeClient = require("./lib/youtubeClient.js");
 
 require('./controllers/role.js')(app,securityManager);
-require('./controllers/advice.js')(app, amazonClient);
+require('./controllers/advice.js')(app, amazonClient, youtubeClient);
 require('./controllers/home.js')(app);
 require('./controllers/search.js')(app);
+require('./controllers/page.js')(app);
 require('./controllers/myaccount.js')(app,securityManager);
 
 //ALWAYS THE LAST CONTROLLER

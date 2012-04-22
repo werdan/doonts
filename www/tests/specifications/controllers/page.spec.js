@@ -22,16 +22,18 @@ describe('Static page controller', function(){
     });
 
     it('checks routing to file, when file does not exists', function () {
-        var routes = app.match.get('/page/aboutus');
+        var routes = app.match.get('/page/nofilelikethat');
         var callback = routes[0].callbacks[0];
 
         var req = {params: {page: 'nofilelikethat'}};
 
         var next = jasmine.createSpy('next');
-        runs(function(){
-            callback(req, null, next);
 
-            waitsFor(function(){return next.wasCalled;},'next() is never called',1000);
+        callback(req, null, next);
+
+        waitsFor(function(){return next.wasCalled;},'next() is never called',1000);
+        runs(function(){
+            expect(next.mostRecentCall.args[0] instanceof Error).toBeTruthy();
         });
     });
 

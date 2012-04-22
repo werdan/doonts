@@ -1,11 +1,9 @@
 <!-- win_addition -->
-<div class="win_addition youtubePreview-<%= videoId %>">
-    <img src="images/loading.gif" alt=""/>
+<div class="win_addition">
+    <img src="<%= youtubeInfo.imgSrc %>" alt=""/>
     <!-- r_win_add -->
     <div class="r_win_add">
-        <a target="_blank" href="#" class="title"></a>
-        <p></p>
+        <a target="_blank" href="<%= youtubeInfo.url %>" class="title"><%= youtubeInfo.title %></a>
     </div>
     <!-- end r_win_add -->
 </div>
-<script type="text/javascript" src="http://gdata.youtube.com/feeds/api/videos/<%= videoId %>?v=2&alt=jsonc&callback=youtubeThumbnailCallback"></script>

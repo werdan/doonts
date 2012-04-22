@@ -10,6 +10,8 @@ module.exports = function(app, express){
 	var logger = log4js.getLogger();
 
 	log4js.addAppender(log4js.fileAppender('doonts.log'), 'doonts.log');
+    app.set('views', __dirname + '/../views');
+
     app.configure(function() {
         app.set("web.authInfoTTL",86400*1000*30); //TTL for personal infor on facebook milliseconds
         //Configuration
@@ -20,6 +22,8 @@ module.exports = function(app, express){
     	app.set("web.facebook.client_secret","6ddf951ee8a086d0c3bd30c520576a31");
         app.set("web.adviceInfoTTL",86400*1000*1); //Interval between unconditional update of advice info,
         app.set("web.facebook.likeUpdateJobInterval", 1); //in minutes
+
+        //Number of roles to load on home page before "Load more is clicked"
     	app.set("web.homepage.rolesOnFirstLoad", 10);
 
     	app.set("web.autocomplete.resultsNumber", 5); //Max number of results to return in search autocomplete

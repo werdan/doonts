@@ -1,0 +1,8 @@
+module.exports = {
+    execute: function(videoId, next, callback) {
+        return callback(
+              null,
+              '{"apiVersion":"2.1","data":{"id":"HLDbx4Y_ybU","uploaded":"2010-05-28T20:02:17.000Z","updated":"2012-04-19T18:56:40.000Z","uploader":"n0fight","category":"Comedy","title":"Comedy Club 2010 Случай В Семье Тусовщиков REMIXED","description":"New Remix Тимур Батрудинов & Гавр - Случай В Семье Тусовщиков","tags":["семья","тусовщиков","New","Remix","Тимур","Батрудинов","Гавр","Случай","В","Семье","comedy","club"],"thumbnail":{"sqDefault":"http://i.ytimg.com/vi/HLDbx4Y_ybU/default.jpg","hqDefault":"http://i.ytimg.com/vi/HLDbx4Y_ybU/hqdefault.jpg"},"player":{"default":"http://www.youtube.com/watch?v=HLDbx4Y_ybU&feature=youtube_gdata_player","mobile":"http://m.youtube.com/details?v=HLDbx4Y_ybU"},"content":{"5":"http://www.youtube.com/v/HLDbx4Y_ybU?version=3&f=videos&app=youtube_gdata","1":"rtsp://v4.cache2.c.youtube.com/CiILENy73wIaGQm1yT-Gx9uwHBMYDSANFEgGUgZ2aWRlb3MM/0/0/0/video.3gp","6":"rtsp://v4.cache3.c.youtube.com/CiILENy73wIaGQm1yT-Gx9uwHBMYESARFEgGUgZ2aWRlb3MM/0/0/0/video.3gp"},"duration":120,"recorded":"2010-05-24","geoCoordinates":{"latitude":61.85614879566797,"longitude":99.4921875},"rating":4.097923,"likeCount":"261","ratingCount":337,"viewCount":357626,"favoriteCount":167,"accessControl":{"comment":"denied","commentVote":"allowed","videoRespond":"moderated","rate":"allowed","embed":"allowed","list":"allowed","autoPlay":"allowed","syndicate":"allowed"}}}'
+            );
+    }
+};
