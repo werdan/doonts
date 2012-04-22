@@ -271,10 +271,8 @@ input.search_button:active{
 	font:13px/36px arial, sans-serif;
 	color:#1e9bc5;
 }
-.form_search span.sample_link{
-	border-bottom:1px dashed #1898c3;
+.form_search a.sample_link{
 	padding:0 0 1px;
-	cursor:pointer;
 	margin:0 5px;
 }
 .people{

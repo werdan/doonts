@@ -33,7 +33,8 @@ var adviceId17 = new ObjectID();
 var adviceId18 = new ObjectID();
 
 exports.User = [
-    {_id: authorId1, uid: 100002043624653, first_name: "Andriy", last_name: "Samilyak", gender: "male", locale: "uk_UA"}
+    {_id: authorId1, uid: 100002043624653, first_name: "Andriy", last_name: "Samilyak", gender: "male", locale: "uk_UA",
+        link: "https://www.facebook.com/profile.php?id=100002043624653"}
 ];
 
 

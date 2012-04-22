@@ -176,6 +176,10 @@ function initAnimations() {
         $(".banner").hide(400);
         $.cookie('banner_closed',true);
     });
+
+    //Toggle placeholder usage
+    $('input[placeholder], textarea[placeholder]').placeholder();
+
 }
 
 function turnOnModalBackground() {
