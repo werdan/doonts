@@ -14,7 +14,8 @@ module.exports = function(app) {
                     res.render(fileName);
                     return
                 }
-                next(new Error('Template ' + fileName + " not found"));
+                //Will be trapped in error.js
+                next();
             });
             return;
         }

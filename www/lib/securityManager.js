@@ -122,8 +122,15 @@ function logInUser(req, next, userId) {
 	if (req.session) {
 		req.session.userId = userId;
 		req.session.authInfoExpires = Date.now() + app.set("web.authInfoTTL");
-		next();
-		return;
+        User.findByUID(userId, function(err, user){
+            if (err) {
+                next(new Error(err));
+                return;
+            }
+            req.session.userName = user.first_name + " " + user.last_name;
+            next();
+            return;
+        });
 	} else {
 		next(new Error("No req.session object found - can not log-in user"));
 	}

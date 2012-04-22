@@ -39,6 +39,7 @@ jQuery(document).ready(function(){
 //    initAutocomplete();
     fillInLoginBox();
     initAnimations();
+    addMailto();
 });
 
 function initAutocomplete() {
@@ -94,7 +95,7 @@ function initFB() {
 function fillInLoginBox() {
     var pathname = window.location.pathname;
     $.post("/myaccount/loginbox",{redirectUri: pathname},function(data){
-        $(".loginbox").html(data);
+        $(".login").html(data);
         $(".FBlogout").click(function(){
             FB.logout();
         });
@@ -218,4 +219,11 @@ function moveLeftButtonsDown() {
         {top:leftButtonsBoxLower},
         0.3 * 1000
     );
+}
+
+function addMailto(){
+    var l = "mailto:";
+    var m = "@";
+    jQuery("a.email").attr("href", l + "info" + m + "doonts.com");
+    jQuery("a.email").html("info" + m + "doonts.com");
 }
