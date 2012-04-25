@@ -35,10 +35,10 @@ exports.Role = [
                 { _id: roleId3, uid: 146, name: "Project manager with spaces", advices: [adviceId6]},
                 { _id: roleId4, uid: 147, name: "Project manager with cosmos in head", advices: [adviceId7]},
                 { _id: roleId5, uid: 148, name: "Project manager with spaces", advices: [adviceId8]},
-                { _id: roleId6, uid: 149, name: "Project manager with spaces", advices: [adviceId9,adviceId10,adviceId11,adviceId12]},
-                { _id: roleId7, uid: 150, name: "Project manager with spaces", advices: [adviceId13,adviceId14,adviceId15,adviceId16]},
-                { _id: roleId8, uid: 151, name: "Project manager with spaces", advices: [adviceId17]},
-                { _id: roleId9, uid: 152, name: "Project manager with spaces", advices: [adviceId18]},
+                { _id: roleId6, uid: 149, name: "Something about doctor of medicine", advices: [adviceId9,adviceId10,adviceId11,adviceId12]},
+                { _id: roleId7, uid: 150, name: "Mega doctor and MD", advices: [adviceId13,adviceId14,adviceId15,adviceId16]},
+                { _id: roleId8, uid: 151, name: "Doctor professor in biology", advices: [adviceId17]},
+                { _id: roleId9, uid: 152, name: "Doctor role", advices: [adviceId18]},
                 {uid: 153, name: "Empty role"}
                 ];
 

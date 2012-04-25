@@ -56,7 +56,7 @@ describe('advice controller', function(){
             res.render = jasmine.createSpy('res');
             callback(req, res, null);
             
-            waitsFor(function(){return res.render.wasCalled;},'res.redirect() is never called',1000);
+            waits(700);
             runs(function () {
                 latch = false;
                 expect(res.render).toHaveBeenCalledWith('empty.ejs');

@@ -1,0 +1,19 @@
+<%- partial('main_header.ejs') %>
+
+<!-- advices -->
+<div class="advices">
+
+    <div class="title_advices">
+        <p class="title">Search results: </p>
+        <p class="number">The number of any matches found <span><% needsVirtualRole ? roles.length + 1 : roles.length %></span></p>
+    </div>
+
+    <% for(var i=0; i<=roles.length-1; i++) {%>
+        <%- partial('search/roleline.ejs', {role: roles[i]}) %>
+    <% } %>
+
+</div>
+<!-- end advices -->
+
+<%- partial('seo_roles_footer.ejs')%>
+<%- partial('main_footer.ejs') %>

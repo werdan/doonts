@@ -15,11 +15,12 @@ require('./config/cron.js')(app, fb);
 var securityManager = require("./lib/securityManager")(fb);
 var amazonClient = require("./lib/amazonClient.js");
 var youtubeClient = require("./lib/youtubeClient.js");
+var seoFooterDataAppender = require("./lib/seoFooterDataAppender.js");
 
 require('./controllers/role.js')(app,securityManager);
 require('./controllers/advice.js')(app, amazonClient, youtubeClient);
-require('./controllers/home.js')(app);
-require('./controllers/search.js')(app);
+require('./controllers/home.js')(app, seoFooterDataAppender);
+require('./controllers/search.js')(app, seoFooterDataAppender);
 require('./controllers/page.js')(app);
 require('./controllers/myaccount.js')(app,securityManager);
 

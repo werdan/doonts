@@ -18,7 +18,7 @@ describe('Home controller', function(){
     
     it('checks home page load', function () {
         var routes = app.match.get('/');
-        var callback = routes[0].callbacks[0];
+        var callback = routes[0].callbacks[1];
         
         var req = {};
         
@@ -37,6 +37,23 @@ describe('Home controller', function(){
                 expect(parseInt(rolesRendered[0].topAdvice.uid)).toEqual(12785);
                 expect(parseInt(rolesRendered[0].topAdvice.uid)).toEqual(12785);
                 expect(authorsWithKeys[rolesRendered[0].topAdvice.author]).toBeDefined();
+            });
+        });
+    });
+
+    it('tests seo footer middleware: seoFooterDataAppender', function () {
+        var routes = app.match.get('/');
+        var callback = routes[0].callbacks[0];
+
+        var next = jasmine.createSpy('next');
+
+        runs(function(){
+            callback(null, null, next);
+
+            waitsFor(function(){return next.wasCalled;},'next() is never called',1000);
+            runs(function () {
+                var viewOptions = app.set("view options");
+                expect(viewOptions.seoRoles.length).toBeGreaterThan(1);
             });
         });
     });

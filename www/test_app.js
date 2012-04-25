@@ -19,11 +19,12 @@ require('./config/cron.js')(app, fb);
 var securityManager = require("./lib/securityManager")(fb);
 var amazonClientStub = require("./tests/stubs/amazonClient-stub.js");
 var youtubeClientStub = require("./tests/stubs/youtubeClient-stub.js");
+var seoFooterDataAppender = require("./lib/seoFooterDataAppender.js");
 
 require('./controllers/role.js')(app,securityManager);
 require('./controllers/advice.js')(app, amazonClientStub, youtubeClientStub);
-require('./controllers/home.js')(app);
-require('./controllers/search.js')(app);
+require('./controllers/home.js')(app, seoFooterDataAppender);
+require('./controllers/search.js')(app, seoFooterDataAppender);
 require('./controllers/page.js')(app);
 require('./controllers/myaccount.js')(app,securityManager);
 

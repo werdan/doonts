@@ -32,9 +32,6 @@ describe('Static page controller', function(){
         callback(req, null, next);
 
         waitsFor(function(){return next.wasCalled;},'next() is never called',1000);
-        runs(function(){
-            expect(next.mostRecentCall.args[0] instanceof Error).toBeTruthy();
-        });
     });
 
 

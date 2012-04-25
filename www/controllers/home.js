@@ -16,8 +16,8 @@ var compareAdvices = function(adviceA, adviceB) {
     }
 };
 
-module.exports = function(app) {
-	app.get('/', function(req, res, next) {
+module.exports = function(app, seoFooterDataAppender) {
+	app.get('/', seoFooterDataAppender, function(req, res, next) {
         Advice.findTop(RolesOnHomePage,function(err,roles){
             if (err) {
                 next(new Error(err));
@@ -47,8 +47,7 @@ module.exports = function(app) {
                         return;
                     }
                     res.render('home/home.ejs',{roles: rolesWithTopAdvices,
-                        authors: authorsWithKeys,
-                        seoRoles: seoRoles});
+                        authors: authorsWithKeys});
                 });
             });
         });

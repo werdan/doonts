@@ -43,6 +43,8 @@ module.exports = function(app, express){
         app.use(function(req,res,next){
             next();
         });
+
+        app.use(express.bodyParser());
         app.use(express.logger());
         app.use(express.cookieParser());
 

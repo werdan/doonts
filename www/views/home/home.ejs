@@ -10,7 +10,7 @@
 				<p class="title">TOP advices today:</p>
 			</div>
 
-        <% for(var i=0; i<roles.length; i++) {%>
+        <% for(var i=0; i<=roles.length-1; i++) {%>
             <%- partial('home/roleline.ejs', {role: roles[i], index: i}) %>
         <% } %>
 
