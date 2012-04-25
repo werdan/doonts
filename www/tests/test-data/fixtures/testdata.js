@@ -39,7 +39,7 @@ exports.User = [
 
 
 exports.Role = [
-                { _id: roleId1,  uid: 144, name: "Runner rubber man with Amazon book", advices: [adviceId1, adviceId2, adviceId3], author: authorId1, totalFacebookLikes: 190},
+                { _id: roleId1,  uid: 144, name: "Runner rubber man with Amazon book", advices: [adviceId1, adviceId2, adviceId3], author: authorId1, totalFacebookLikes: 190, totalMedia: 2},
                 { _id: roleId2, uid: 145, name: "Project manager with spaces", advices: [adviceId4,adviceId5], author: authorId1, totalFacebookLikes: 6},
                 { _id: roleId3, uid: 146, name: "Project manager with spaces", advices: [adviceId6], author: authorId1, totalFacebookLikes: 0},
                 { _id: roleId4, uid: 147, name: "Project manager with spaces", advices: [adviceId7], author: authorId1, totalFacebookLikes: 0},
@@ -47,7 +47,7 @@ exports.Role = [
                 { _id: roleId6, uid: 149, name: "Project manager with spaces", advices: [adviceId9,adviceId10,adviceId11,adviceId12], author: authorId1, totalFacebookLikes: 4},
                 { _id: roleId7, uid: 150, name: "Project manager with spaces", advices: [adviceId13,adviceId14,adviceId15,adviceId16], author: authorId1, totalFacebookLikes: 3},
                 { _id: roleId8, uid: 151, name: "Project manager with spaces", advices: [adviceId17], author: authorId1, totalFacebookLikes: 0},
-                { _id: roleId9, uid: 152, name: "Doctor with video advices", advices: [adviceId18], author: authorId1, totalFacebookLikes: 10},
+                { _id: roleId9, uid: 152, name: "Doctor with video advices", advices: [adviceId18], author: authorId1, totalFacebookLikes: 10, totalMedia: 1},
                 {uid: 153, name: "Empty role", author: authorId1}
                 ];
 

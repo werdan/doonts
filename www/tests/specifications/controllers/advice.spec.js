@@ -374,4 +374,34 @@ describe('advice controller', function(){
             expect(err instanceof Error).toBeTruthy();
         });
     });
+
+    it('checks that setting amazon.asin on advice updates totalMedia of corresponding role', function () {
+        var latch = false;
+        done = function() {
+            return latch;
+        };
+
+        Advice.findByUID(12787, function(err, advice){
+            if (!err) {
+                expect(advice.amazon.asin).toBeUndefined();
+
+                advice.amazon.asin = 'teststest';
+                advice.save(function(){
+
+                    waits(1000);
+                    runs(function(){
+                        Advice.findByUID(12787, function(err, advice){
+                            if (!err) {
+                                advice.getRole(function(err, role){
+                                    expect(parseInt(role.totalMedia)).toEqual(6);
+                                    latch = true;
+                                });
+                            }
+                        });
+                        waitsFor(function() {return done();}, 'Advice is not updated', 1000);
+                    });
+                });
+            }
+        });
+    });
 });

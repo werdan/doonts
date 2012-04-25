@@ -129,13 +129,21 @@ adviceSchema.statics.findTop = function (qty, skipFirst, callback) {
  */
 adviceSchema.post("save",function(){
     var mapAggregateAdvices = function() {
-        emit(this.roleId, {totalFacebookLikes: this.facebookLikes});  
+
+        var adviceHasMedia = 0;
+
+        if ((this.youtube && this.youtube.videoId) || (this.amazon && this.amazon.asin)) {
+            adviceHasMedia = 1;
+        }
+
+        emit(this.roleId, {totalFacebookLikes: this.facebookLikes, totalMedia: adviceHasMedia});
     };
     
     var reduceAggregateAdvices = function(key, values) {
-        var result = {totalFacebookLikes: 0};
+        var result = {totalFacebookLikes: 0, totalMedia: 0};
         values.forEach(function(value){
             result.totalFacebookLikes += value.totalFacebookLikes;
+            result.totalMedia += value.totalMedia;
         });
         return result;
     };
@@ -165,6 +173,7 @@ adviceSchema.post("save",function(){
             return
         } else {
             role.totalFacebookLikes = collection[0].value.totalFacebookLikes;
+            role.totalMedia = collection[0].value.totalMedia;
             role.hasAdvices = true;
             role.save(function(err){
                 if (err) {

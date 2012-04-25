@@ -5,11 +5,19 @@
 
     <div class="title_advices">
         <p class="title">Search results: </p>
-        <p class="number">The number of any matches found <span><% needsVirtualRole ? roles.length + 1 : roles.length %></span></p>
+        <p class="number">The number of any matches found <span><%= needsVirtualRole ? roles.length + 1 : roles.length %></span></p>
     </div>
 
+    <% if (needsVirtualRole && (typeof searchQuery != 'undefined')) { %>
+        <form class="virtual-role" action="/role/create" method="POST">
+            <input type="hidden" name="roleName" value="<%= searchQuery %>">
+        </form>
+    <% } %>
+
+    <%- partial('search/roleline.ejs', {role: {name: searchQuery, totalFacebookLikes: 0, advices: new Array()}, index: 1, virtualRole: true}) %>
+
     <% for(var i=0; i<=roles.length-1; i++) {%>
-        <%- partial('search/roleline.ejs', {role: roles[i]}) %>
+        <%- partial('search/roleline.ejs', {role: roles[i], index: i, virtualRole: false}) %>
     <% } %>
 
 </div>

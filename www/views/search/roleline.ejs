@@ -1,23 +1,30 @@
 <!-- column_advices_search_sh -->
-			<div class="column_advices_search_sh">
+			<div class="column_advices_search_sh<%if(virtualRole) {%> virtual-role<%}%>">
 
 				<!-- column_advices_inside -->
 				<div class="column_advices_inside">
-
+                    <% if (typeof role.totalMedia != 'undefined') { %>
 					<div class="including">
-						<p href="#">Including <a href="#">3 media advices</a></p>
+						<p href="#">Including <a href="#"><%= role.totalMedia%> media advice<% if (role.totalMedia > 1) { %>s<% } %></a></p>
 					</div>
+					<% } %>
 
 					<div class="fb_likes">
 						<p href="#"><%= role.totalFacebookLikes %></p>
 					</div>
 
 					<div class="res_advices">
-						<p href="#">4198 advices<p>
+						<p href="#"><%= role.advices.length %> advice<% if (role.advices.length > 1 || role.advices.length == 0) { %>s<% } %>
+						<p>
 					</div>
 
+                    <% var columnAdviceClass = "";
+                    if (index % 2 == 0) {
+                        columnAdviceClass = " active";
+                    } %>
+
 					<div class="column_div">
-						<a href="#" class="title_advices">@<%= role.name %></a>
+						<a href="#" class="title_advices<%= columnAdviceClass %>">@<%= role.name %></a>
 					</div>
 
 				</div>

@@ -39,7 +39,8 @@ jQuery(document).ready(function(){
 //    initAutocomplete();
     fillInLoginBox();
     initAnimations();
-    addMailto();
+    addFooterMailto();
+    initVirtualRoleOnSearchResultsPage();
 });
 
 function initAutocomplete() {
@@ -176,10 +177,6 @@ function initAnimations() {
         $(".banner").hide(400);
         $.cookie('banner_closed',true);
     });
-
-    //Toggle placeholder usage
-    $('input[placeholder], textarea[placeholder]').placeholder();
-
 }
 
 function turnOnModalBackground() {
@@ -225,9 +222,18 @@ function moveLeftButtonsDown() {
     );
 }
 
-function addMailto(){
+function addFooterMailto(){
     var l = "mailto:";
     var m = "@";
     jQuery("a.email").attr("href", l + "info" + m + "doonts.com");
     jQuery("a.email").html("info" + m + "doonts.com");
 }
+
+function initVirtualRoleOnSearchResultsPage() {
+    jQuery("div.virtual-role div.column_advices_inside div.column_div a").click(function(event){
+        event.preventDefault();
+        jQuery("form.virtual-role").submit();
+    });
+}
+
+
