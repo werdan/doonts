@@ -43,7 +43,6 @@ module.exports = function(app, securityManager) {
 
 	app.get('/myaccount/loginbox', function(req,res,next){
         var redirectUri = "/";
-        console.log(req.query.redirectUri);
         if (req.query && ('redirectUri' in req.query) && req.query.redirectUri.indexOf("/") === 0) {
             redirectUri = decodeURIComponent(req.query.redirectUri);
         }

@@ -17,7 +17,7 @@ describe('role controller', function(){
 	
 	it('checks what if role does not exists', function () {
 		var routes = app.match.get('/role/view/123/test');
-		var callback = routes[0].callbacks[0];
+		var callback = routes[0].callbacks[1];
 		
 		var req = {params: {roleUID: 112}};
 		
@@ -34,7 +34,7 @@ describe('role controller', function(){
 	it('checks role object in view when role exists', function () {
 		
 		var routes = app.match.get('/role/view/144/test');
-		var callback = routes[0].callbacks[0];
+		var callback = routes[0].callbacks[1];
 		
 		var req = {params: {roleUID: 144}};
 

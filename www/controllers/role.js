@@ -2,8 +2,8 @@ var Role = db.model("Role");
 var User = db.model("User");
 var logger = app.set("logger");
 
-module.exports = function(app, securityManager) {
-	app.get('/role/view/:roleUID/:urlTitle/:adviceId?', function(req, res, next) {
+module.exports = function(app, securityManager, seoFooterDataAppender) {
+	app.get('/role/view/:roleUID/:urlTitle/:adviceId?', seoFooterDataAppender, function(req, res, next) {
 		Role.findByUID(req.params.roleUID)
 		    .populate('advices')
 		    .run(function(err, role) {
@@ -14,9 +14,13 @@ module.exports = function(app, securityManager) {
 				next(new Error("Role id=" + req.params.roleUID + " was not found"));
 				return;
 			} else {
-				res.render('role/role.ejs', 
-						{role: role, rolePage: true}
-				);
+               fillInAuthors(role, next, function(authors){
+                    res.render('role/role.ejs',
+                        {role: role,
+                        rolePage: true,
+                        authors: authors}
+                    );
+                });
 			}
 		});
 	});
@@ -41,3 +45,22 @@ module.exports = function(app, securityManager) {
 		});
 	});
 };
+
+
+function fillInAuthors(role, next, callback) {
+    var authorIds = new Array();
+    role.advices.forEach(function(advice){
+        authorIds.push(advice.author);
+    });
+    User.findByIds(authorIds,function(err,authors){
+        if (err) {
+            next(new Error(err));
+            return;
+        }
+        var authorsWithKeys = [];
+        authors.forEach(function(author) {
+            authorsWithKeys[author._id] = author;
+        });
+        callback(authorsWithKeys);
+    });
+}

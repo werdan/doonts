@@ -14,43 +14,7 @@
             <a href="<%= role.href %>" class="title_advices">@<%= role.name %></a>
             <a href="<%= role.href %>" class="comments"><%= role.advices.length %></a>
         </div>
-        <!-- entry -->
-        <div id="<% role.topAdvice.uid %>" class="entry">
-            <p><%= role.topAdvice.text %></p>
-        </div>
-        <!-- end entry -->
-
-        <!-- author -->
-        <div class="author">
-            <img src="https://graph.facebook.com/<%= authors[role.topAdvice.author].uid %>/picture" alt=""/>
-            <a href="<%= authors[role.topAdvice.author].link %>"><%= authors[role.topAdvice.author].first_name %> <%= authors[role.topAdvice.author].last_name %></a>
-        </div>
-        <!-- end author -->
-        <% if(role.topAdvice.youtube.videoId || role.topAdvice.amazon.asin) { %>
-        <!-- addition -->
-        <div class="addition">
-            <p>Media:</p>
-            <% if(role.topAdvice.youtube.videoId && role.topAdvice.youtube.title && role.topAdvice.youtube.title.length >0) { %>
-                <%- partial('externals/youtube.preview.ejs', {youtubeInfo: role.topAdvice.youtube}) %>
-            <% } else if (role.topAdvice.youtube.videoId && role.topAdvice.youtube.videoId.length > 0) { %>
-                <%- partial('externals/youtube.preview.ajax.ejs', {adviceUID: role.topAdvice.uid, youtubeInfo: role.topAdvice.youtube}) %>
-            <% } %>
-
-            <% if(role.topAdvice.amazon.asin && role.topAdvice.amazon.title && role.topAdvice.amazon.title.length >0 ) { %>
-                <%- partial('externals/amazon.preview.ejs', {amazonInfo: role.topAdvice.amazon}) %>
-            <% } else if (role.topAdvice.amazon.asin && role.topAdvice.amazon.asin.length > 0) {%>
-                <%- partial('externals/amazon.preview.ajax.ejs', {adviceUID: role.topAdvice.uid, amazonInfo: role.topAdvice.amazon}) %>
-            <% } %>
-
-        </div>
-        <!-- end addition -->
-        <% } %>
-        <!-- social_like -->
-        <div class="social_like">
-            <fb:like href="<%= role.href + "#" + role.topAdvice.uid %>" send="false" layout="button_count" show_faces="false"  class=" fb_edge_widget_with_comment fb_iframe_widget"></fb:like>
-        </div>
-        <!-- end social_like -->
-
+        <%- partial('role/advice.ejs', {advice: role.topAdvice, role: role, author: authors[role.topAdvice.author]}) %>
     </div>
     <!-- end column_advices_inside -->
 

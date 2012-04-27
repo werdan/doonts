@@ -1,0 +1,37 @@
+<!-- entry -->
+<div id="<% advice.uid %>" class="entry">
+    <p><%= advice.text %></p>
+</div>
+<!-- end entry -->
+
+<!-- author -->
+    <div class="author">
+        <img src="https://graph.facebook.com/<%= authors[advice.author].uid %>/picture" alt=""/>
+        <a href="<%= authors[advice.author].link %>"><%= authors[advice.author].first_name %> <%= authors[advice.author].last_name %></a>
+    </div>
+<!-- end author -->
+
+<!-- addition -->
+<% if(advice.youtube.videoId || advice.amazon.asin) { %>
+    <div class="addition">
+        <p>Media:</p>
+        <% if(advice.youtube.videoId && advice.youtube.title && advice.youtube.title.length >0) { %>
+            <%- partial('externals/youtube.preview.ejs', {youtubeInfo: advice.youtube}) %>
+        <% } else if (advice.youtube.videoId && advice.youtube.videoId.length > 0) { %>
+            <%- partial('externals/youtube.preview.ajax.ejs', {adviceUID: advice.uid, youtubeInfo: advice.youtube}) %>
+        <% } %>
+
+        <% if(advice.amazon.asin && advice.amazon.title && advice.amazon.title.length >0 ) { %>
+            <%- partial('externals/amazon.preview.ejs', {amazonInfo: advice.amazon}) %>
+        <% } else if (advice.amazon.asin && advice.amazon.asin.length > 0) {%>
+            <%- partial('externals/amazon.preview.ajax.ejs', {adviceUID: advice.uid, amazonInfo: advice.amazon}) %>
+        <% } %>
+    </div>
+<% } %>
+<!-- end addition -->
+
+<!-- social_like -->
+<div class="social_like">
+    <fb:like href="<%= role.href + "#" + advice.uid %>" send="false" layout="button_count" show_faces="false"  class=" fb_edge_widget_with_comment fb_iframe_widget"></fb:like>
+</div>
+<!-- end social_like -->

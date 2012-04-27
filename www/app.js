@@ -17,7 +17,7 @@ var amazonClient = require("./lib/amazonClient.js");
 var youtubeClient = require("./lib/youtubeClient.js");
 var seoFooterDataAppender = require("./lib/seoFooterDataAppender.js");
 
-require('./controllers/role.js')(app,securityManager);
+require('./controllers/role.js')(app,securityManager, seoFooterDataAppender);
 require('./controllers/advice.js')(app, amazonClient, youtubeClient);
 require('./controllers/home.js')(app, seoFooterDataAppender);
 require('./controllers/search.js')(app, seoFooterDataAppender);
