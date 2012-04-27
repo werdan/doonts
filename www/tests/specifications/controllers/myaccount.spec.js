@@ -6,10 +6,10 @@ var fixtures = require('mongoose-fixtures');
 describe('myaccount controller', function(){
 
 	it('checks that loginbox renders Login button if user is not logged-in', function () {
-		var routes = app.match.post('/myaccount/loginbox');
+		var routes = app.match.get('/myaccount/loginbox');
 		var callback = routes[0].callbacks[0];
 
-		var req = {query: {redirectUri: '%2Ftest%2Ftest'}};
+		var req = {query: {redirectUri: '/test/test'}};
 
 		var res = function() {};
         res.render = function() {};
@@ -28,10 +28,10 @@ describe('myaccount controller', function(){
 	});
 
     it('checks that loginbox renders User name if user is logged-in', function () {
-        var routes = app.match.post('/myaccount/loginbox');
+        var routes = app.match.get('/myaccount/loginbox');
         var callback = routes[0].callbacks[0];
 
-        var req = {session: {userId: 123}, query: {redirectUri: '%2Ftest%2Ftest'}};
+        var req = {session: {userId: 123}, query: {redirectUri: '/test/test'}};
 
         var res = function() {};
         res.render = function() {};

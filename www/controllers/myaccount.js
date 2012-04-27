@@ -41,9 +41,10 @@ module.exports = function(app, securityManager) {
         securityManager.requireAuth.apply(securityManager, args);
     }
 
-	app.post('/myaccount/loginbox', function(req,res,next){
+	app.get('/myaccount/loginbox', function(req,res,next){
         var redirectUri = "/";
-        if (req.query && ('redirectUri' in req.query) && req.query.redirectUri.indexOf("%") === 0) {
+        console.log(req.query.redirectUri);
+        if (req.query && ('redirectUri' in req.query) && req.query.redirectUri.indexOf("/") === 0) {
             redirectUri = decodeURIComponent(req.query.redirectUri);
         }
         if (securityManager.isLoggedIn(req)) {
@@ -61,7 +62,6 @@ module.exports = function(app, securityManager) {
      * Login action that relies heavily on saving redirectUrl to session and Facebook authentication
      */
 	app.get('/myaccount/login', saveRedirectUriToSession, requireAuth, function(req, res, next) {
-        logger.info("Redirection from /login action, assuming that Facebook operations are completed");
         redirectToSavedUri(req, res, next);
     });
 

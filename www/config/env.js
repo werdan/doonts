@@ -39,13 +39,15 @@ module.exports = function(app, express){
         app.set("solr.port",8080);
 
 
-    	app.set("logger", log4js.getLogger());
+        app.set("logger", log4js.getLogger());
+
         app.use(function(req,res,next){
             next();
         });
-
         app.use(express.bodyParser());
+
         app.use(express.logger());
+
         app.use(express.cookieParser());
 
     	//TODO move params to app.set

@@ -94,8 +94,8 @@ function initFB() {
 }
 
 function fillInLoginBox() {
-    var pathname = window.location.pathname;
-    $.post("/myaccount/loginbox",{redirectUri: pathname},function(data){
+    var redirectUri = window.location.pathname + window.location.search;
+    $.get("/myaccount/loginbox",{redirectUri: redirectUri},function(data){
         $(".login").html(data);
         $(".FBlogout").click(function(){
             FB.logout();

@@ -11,6 +11,7 @@ Add phonetic indexing to Solr
 Delete .git from mongoose-fixtures
 autoSuggest.css упаковать в styles.css
 If not needed autocomplete - delete initialization from main.js
+After login there is a redirection to URL with #=_= appended, this part should not be appended
 
 
 
