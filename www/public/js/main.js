@@ -230,7 +230,7 @@ function addFooterMailto(){
 }
 
 function initVirtualRoleOnSearchResultsPage() {
-    jQuery("div.virtual-role div.column_advices_inside div.column_div a").click(function(event){
+    jQuery("div.virtual-role div.column_advices_inside a").click(function(event){
         event.preventDefault();
         jQuery("form.virtual-role").submit();
     });

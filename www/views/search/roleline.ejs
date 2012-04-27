@@ -18,7 +18,7 @@
 					</div>
 
 					<div class="fb_likes">
-						<a href="<%= role.href %>"><%= role.totalFacebookLikes %></a>
+						<a href="<%= role.href %>"><%= role.totalFacebookLikes %> like<% if (role.totalFacebookLikes > 1 || role.totalFacebookLikes == 0) { %>s<% } %></a>
 					</div>
 
                     <% if (typeof role.totalMedia != 'undefined') { %>
