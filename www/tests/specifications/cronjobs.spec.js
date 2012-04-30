@@ -16,8 +16,8 @@ describe('Tests on cronjobs', function(){
 	
 	it('tests facebookLikesUpdate cronjob', function () {
 	    var fb = require("../../tests/stubs/facebook-api-stub");
-	    var facebookLikesUpdater = require("../../cron/facebookLikesUpdater")(fb);
-	    facebookLikesUpdater.updateAdvices();
+	    var facebookLikesUpdateJob = require("../../cron/facebookLikesUpdateJob")(fb);
+	    facebookLikesUpdateJob.run();
 	    waits(1000);
 	    runs(function(){
 	        var latch1 = false;

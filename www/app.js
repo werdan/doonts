@@ -1,6 +1,7 @@
 /* Module dependencies. */
 
 var express = require('express');
+
 app = module.exports = express.createServer();
 
 process.env.NODE_ENV="production";
@@ -27,6 +28,7 @@ require('./controllers/myaccount.js')(app,securityManager);
 //ALWAYS THE LAST CONTROLLER
 require('./controllers/error.js')(app);
 
-app.listen(3000);
+require('./config/cluster.js')(app);
+
 
 
