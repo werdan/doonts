@@ -1,7 +1,7 @@
 var Schema = db.Schema, ObjectId = Schema.ObjectId;
 
 var userSchema = new Schema({
-	uid     : Number,
+	uid     : {type: String, unique: true},
     first_name  : String,
     last_name 	: String,
     gender		: String,

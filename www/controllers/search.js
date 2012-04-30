@@ -44,7 +44,8 @@ module.exports = function(app, seoFooterDataAppender) {
 
                     res.render('search/results.ejs', {roles: sortRolesAsInSolr(roleIds,roles),
                                                       needsVirtualRole: ! hasRoleWithExactName(roles, req.query.q),
-                                                      searchQuery : req.query.q});
+                                                      searchQuery : req.query.q,
+                                                      secretKey: Role.getSecretKeyForName(req.query.q)});
                 });
         });
     });

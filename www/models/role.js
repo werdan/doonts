@@ -3,16 +3,16 @@
 var Schema = db.Schema;
 var solrUpdaterPlugin = require('./plugins/solrUpdaterPlugin.js');
 
-
 var roleSchema = new Schema({
 	//TODO: Add unique constraint
-    uid : Number,
-	name : String,
+    uid : {type: Number, unique: true},
+    name : String,
     author: {type: Schema.ObjectId, ref: 'User'},
 	advices : [{ type: Schema.ObjectId, ref: 'Advice' }],
 	hasAdvices: {type: Boolean, default: false},
     totalMedia: Number,
-    totalFacebookLikes: Number
+    totalFacebookLikes: Number,
+    timestampCreated: {type: Number, default: Date.now}
 }, {
 	strict : true
 });
@@ -38,8 +38,17 @@ roleSchema.statics.findByUID = function (uid, callback) {
 	        callback);
 };
 
+roleSchema.statics.getSecretKeyForName = function(roleName) {
+    var systemSalt = app.set('web.roleCreation.secretKeySalt');
+
+    var shasum = require('crypto').createHash('sha1');
+    shasum.update(roleName + systemSalt);
+    return shasum.digest('hex');
+}
+
+
 /**
- * Return collection of top roles rated by totalFacebookLikes. 
+ * Return collection of top roles rated by totalFacebookLikes.
  * 
  * param skipFirst (can be ommitted) - ommit certain number of roles from the beginning of result collection
  */

@@ -35,6 +35,8 @@ module.exports = function(app, express){
         app.set("web.amazon.awsSecret", 'qNSSmD38BZ9sMs95uq5iZGAhaV+gBUw1UIkHVz6R');
         app.set("web.amazon.assocId", 'doonts-20');
 
+        app.set("web.roleCreation.secretKeySalt", "TyhgjGyahagghG658");
+
         app.set("solr.host","127.0.0.1");
         app.set("solr.port",8080);
 

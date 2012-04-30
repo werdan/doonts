@@ -11,6 +11,7 @@
     <% if (needsVirtualRole && (typeof searchQuery != 'undefined')) { %>
         <form class="virtual-role" action="/role/create" method="POST">
             <input type="hidden" name="roleName" value="<%= searchQuery %>">
+            <input type="hidden" name="key" value="<%= secretKey %>">
         </form>
     <% } %>
 

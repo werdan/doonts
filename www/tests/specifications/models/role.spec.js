@@ -79,6 +79,19 @@ describe('Tests on role model', function(){
         });
     });
 
+
+    it('tests defaults of timestampCreated', function () {
+        var latch = false;
+        done = function() {
+            return latch;
+        };
+        Role.create({name: 'test'}, function(err,role){
+            expect(role.timestampCreated).toBeGreaterThan(100000);
+            latch = true;
+        });
+        waitsFor(done, "Function has been never called",1000);
+    });
+
     
 	it('Checks Advice model consistency', function () {
 		var latch = false;
@@ -100,5 +113,9 @@ describe('Tests on role model', function(){
             });
             waitsFor(done, "Role.href has been never checked",1000);
         });
-        });
+    });
+
+    it('tests secretKey creation', function () {
+        expect(Role.getSecretKeyForName('test name')).toEqual('002c0dbfbf39d8dafd1a77ade0ae5c47fed3e131');
+    });
 });

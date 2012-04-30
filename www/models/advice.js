@@ -6,8 +6,8 @@ var solrUpdaterPlugin = require('./plugins/solrUpdaterPlugin.js');
 var adviceSchema = new Schema({
 	// ID in Role
     roleId : Schema.ObjectId,
-	uid : Number,
-	text : String,
+	uid : {type: Number, unique: true},
+    text : String,
     author: {type: Schema.ObjectId, ref: 'User'},
 	nextFacebookInfoUpdateTime: Number,
 	facebookLikes: Number,

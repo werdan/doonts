@@ -54,6 +54,7 @@ describe('search controller', function(){
             var passedParams = res.render.mostRecentCall.args[1];
             var needsVirtualRole = res.render.mostRecentCall.args[2];
             expect(parseInt(passedParams['roles'].length)).toEqual(4);
+            expect(passedParams['secretKey']).toBeDefined();
             expect(passedParams['needsVirtualRole']).toBeTruthy();
         });
     });
