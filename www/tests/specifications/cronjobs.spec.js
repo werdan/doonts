@@ -43,5 +43,25 @@ describe('Tests on cronjobs', function(){
 	        waitsFor(done,"",1000);
 	    });
 	});
+
+    it('tests emptyRoleDelete cronjob', function () {
+        var emptyRoleDeleteJob = require("../../cron/emptyRoleDeleteJob");
+        emptyRoleDeleteJob.run();
+        waits(1000);
+        runs(function(){
+            var latch = false;
+            done = function() {
+                return latch;
+            };
+            Role.find({},function(err,roles){
+                expect(parseInt(roles.length)).toEqual(7);
+                Role.findOne({uid: 151}, function(err, role){
+                    expect(role).toBeNull();
+                    latch = true;
+                });
+            });
+            waitsFor(done,"",1000);
+        });
+    });
 	
 });
