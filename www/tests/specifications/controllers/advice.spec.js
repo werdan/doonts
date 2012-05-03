@@ -388,7 +388,7 @@ describe('advice controller', function(){
                 advice.amazon.asin = 'teststest';
                 advice.save(function(){
 
-                    waits(1000);
+                    waits(2000);
                     runs(function(){
                         Advice.findByUID(12787, function(err, advice){
                             if (!err) {
@@ -402,6 +402,110 @@ describe('advice controller', function(){
                     });
                 });
             }
+        });
+    });
+
+    it('checks that new advice is saved in session', function () {
+        var routes = app.match.post('/advice/create/144');
+        var callback = routes[0].callbacks[0];
+
+        var req = {params: {'roleUID': 144}, session: {}, body: {text: "New advice text"}};
+
+        var next = jasmine.createSpy('next');
+
+        callback(req, null, next);
+
+        waitsFor(function(){return next.wasCalled;},'next is never called',10000);
+        runs(function () {
+            expect(next.mostRecentCall.args[0] instanceof Error).toBeFalsy();
+            expect(req.session.newAdvice.text).toEqual("New advice text");
+            expect(req.session.newAdvice.roleId).toBeDefined();
+        });
+    });
+
+    it('checks that new advice is set in session created without advice text', function () {
+        var routes = app.match.post('/advice/create/144');
+        var callback = routes[0].callbacks[0];
+
+        var req = {params: {'roleUID': 144}, session: {}, body: {}};
+
+        var next = jasmine.createSpy('next');
+
+        callback(req, null, next);
+
+        waitsFor(function(){return next.wasCalled;},'next is never called',10000);
+        runs(function () {
+            expect(next.mostRecentCall.args[0] instanceof Error).toBeTruthy();
+        });
+    });
+
+
+    it('checks that new advice is not set in session with incorrect roleId', function () {
+        var routes = app.match.post('/advice/create/199');
+        var callback = routes[0].callbacks[0];
+
+        var req = {params: {'roleUID': 199}, session: {}, body: {text: "New advice text"}};
+
+        var next = jasmine.createSpy('next');
+
+        callback(req, null, next);
+
+        waitsFor(function(){return next.wasCalled;},'next is never called',10000);
+        runs(function () {
+            expect(next.mostRecentCall.args[0] instanceof Error).toBeTruthy();
+        });
+    });
+
+    it('checks that new advice is not changed in session, if there is another one in it', function () {
+        var routes = app.match.post('/advice/create/144');
+        var callback = routes[0].callbacks[0];
+
+        var req = {params: {'roleUID': 144}, session: {newAdvice: {text: "Old advice text", roleId: "46474849"}}, body: {text: "New advice text"}};
+
+        var next = jasmine.createSpy('next');
+
+
+        waitsFor(function(){return next.wasCalled;},'next is never called',10000);
+        callback(req, null, next);
+        runs(function () {
+            expect(next.mostRecentCall.args[0] instanceof Error).toBeFalsy();
+            expect(req.session.newAdvice.text).toEqual("Old advice text");
+            expect(req.session.newAdvice.roleId).toEqual("46474849");
+        });
+    });
+
+    it('checks that new advice is created from information stored in session', function () {
+        var latch = false;
+        done = function() {
+            return latch;
+        };
+
+        var routes = app.match.post('/advice/create/144');
+        var callback = routes[0].callbacks[2];
+
+        var req = {};
+        var res = function() {};
+        res.redirect = function() {};
+        spyOn(res, 'redirect');
+
+        Role.findByUID(144, function(err, role){
+            req = {params: {'roleUID': 144}, session: {userId: 123123123, newAdvice: {text: "New advice text", roleId: role._id}}};
+            callback(req, res, null);
+        });
+        waitsFor(function(){return res.redirect.wasCalled;},'res.redirect is never called',10000);
+        runs(function () {
+            expect(res.redirect.mostRecentCall.args[0]).toContain('/role/view/144');
+            expect(typeof req.session.newAdvice === 'undefined').toBeTruthy();
+            Advice.findByUID('12791',function(err, advice){
+                expect(advice.text).toEqual("New advice text");
+                expect(advice.author).toBeDefined();
+                advice.getRole(function(err, role){
+                    expect(role.uid).toEqual(144);
+                    expect(role.advices.length).toEqual(7);
+                    latch = true;
+                });
+            });
+            waitsFor(function() {return done();}, 'Advice not found');
         });
     });
 });

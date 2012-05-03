@@ -3,6 +3,7 @@ var logger = app.set("logger");
 module.exports = function(app) {
     var cluster = require('cluster');
     var numCPUs = require('os').cpus().length;
+    var numCPUs = 1;
 
     if (cluster.isMaster) {
         for (var i = 0; i < numCPUs; i++) {

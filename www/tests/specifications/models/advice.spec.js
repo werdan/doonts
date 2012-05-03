@@ -13,7 +13,20 @@ describe('Tests on advice model', function(){
         });
 		waitsFor(done,"Before each init is timeouted",1000);
 	});
-	
+
+    it('tests defaults of advice', function () {
+        var latch = false;
+        done = function() {
+            return latch;
+        };
+        Advice.create({text: 'test', uid: 201}, function(err,advice){
+            expect(advice.nextFacebookInfoUpdateTime).toBeGreaterThan(100000);
+            expect(advice.facebookLikes).toEqual(0);
+            latch = true;
+        });
+        waitsFor(done, "Function has been never called",1000);
+    });
+
 	it('tests findReadyForFacebookUpdate function', function () {
 		var latch = false;
 		done = function() {

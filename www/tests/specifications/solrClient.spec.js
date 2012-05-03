@@ -9,10 +9,12 @@ describe('Solr client test', function(){
         };
 
         var mockClient = {
-            add: function(){}
+            add: function(){},
+            delete: function(){}
         };
 
         spyOn (mockClient, 'add');
+        spyOn (mockClient, 'delete');
 
         spyOn(solrClientFactoryMock,'getClient').andReturn(mockClient);
 

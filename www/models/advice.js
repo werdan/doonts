@@ -9,8 +9,8 @@ var adviceSchema = new Schema({
 	uid : {type: Number, unique: true},
     text : String,
     author: {type: Schema.ObjectId, ref: 'User'},
-	nextFacebookInfoUpdateTime: Number,
-	facebookLikes: Number,
+	nextFacebookInfoUpdateTime: {type: Number, default: Date.now() + app.set("web.adviceInfoTTL")},
+	facebookLikes: {type: Number, default: 0},
 	youtube: {
         videoId: String,
         url: String,

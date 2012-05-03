@@ -22,7 +22,7 @@ var youtubeClientStub = require("./tests/stubs/youtubeClient-stub.js");
 var seoFooterDataAppender = require("./lib/seoFooterDataAppender.js");
 
 require('./controllers/role.js')(app,securityManager, seoFooterDataAppender);
-require('./controllers/advice.js')(app, amazonClientStub, youtubeClientStub);
+require('./controllers/advice.js')(app, securityManager, amazonClientStub, youtubeClientStub);
 require('./controllers/home.js')(app, seoFooterDataAppender);
 require('./controllers/search.js')(app, seoFooterDataAppender);
 require('./controllers/page.js')(app);

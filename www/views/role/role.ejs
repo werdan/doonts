@@ -52,5 +52,27 @@
 </div>
 <!-- end advices -->
 
+<!-- add_new_advice -->
+		<div class="add_new_advice">
+			<p class="title">add new advice:<span>280 symbols MAX.</span></p>
+			<form method="POST" action="/advice/create/<%= role.uid %>/">
+				<div class="form_add_new_advice">
+					<textarea name="text"></textarea>
+
+					<!-- add_media_link -->
+					<div class="add_media_link">
+						<a class="link_one" href="#"></a>
+						<a class="link_two" href="#"></a>
+						<a class="link_three" href="#"></a>
+						<p>add media LINK</p>
+					</div>
+					<!-- end add_media_link -->
+
+					<input class="button" type="submit" value="ADD ADVICE">
+				</div>
+			</form>
+		</div>
+<!-- end add_new_advice -->
+
 <%- partial('seo_roles_footer.ejs')%>
 <%- partial('main_footer.ejs') %>

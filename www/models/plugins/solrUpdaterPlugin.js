@@ -8,7 +8,7 @@ module.exports = function (schema, solrClientFactory) {
     }
     var solrClient = solrClientFactory.getClient();
 
-    function updateRole(role, done) {
+    function updateRole(role) {
         var aggregatedAdvices = new Array();
 
         if (!role) {
@@ -27,6 +27,26 @@ module.exports = function (schema, solrClientFactory) {
 
         }
     }
+
+    function removeRoleFromSolr(role) {
+        if (!role) {
+            return;
+        }
+
+        solrClient.delete({roleId:role.uid}, function (err) {
+            if (err) {
+                logger.error(err);
+            }
+        });
+    }
+
+    schema.pre('remove', function (next) {
+        this.getRole(function (role) {
+            removeRoleFromSolr(role);
+        });
+        next();
+    });
+
     //Using parallel middleware
     schema.pre('save', function (next) {
         this.getRole(function (role) {
