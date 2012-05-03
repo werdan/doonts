@@ -13,14 +13,17 @@ module.exports = function(app) {
                 env.CRON=1;
             }
             var worker = cluster.fork(env);
+            if (i==0) {
+                worker.CRON = true;
+            }
         }
 
         cluster.on('death', function(worker) {
             var newWorker = cluster.fork();
-            logger.warn('Worker ' + worker.pid + ' died');
-            if (typeof worker.cron !== 'undefined') {
+            logger.warn('Worker ' + worker.pid + ' died and it will be re-spawned');
+            if (typeof worker.CRON !== 'undefined' && worker.CRON === true) {
                 logger.warn('Worker ' + worker.pid + ' was cron worker - re-spawning it as cron-worker');
-                newWorker.cron = true;
+                newWorker.CRON = true;
             }
         });
     } else {
