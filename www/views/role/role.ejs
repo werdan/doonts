@@ -31,7 +31,7 @@
 
 <!-- add_new_advice -->
 		<div class="add_new_advice">
-			<p class="title">add new advice:<span>280 symbols MAX.</span></p>
+			<p class="title">add new advice:<span><span class="charsLeft">280</span> characters left</span></p>
 			<form method="POST" action="/advice/create/<%= role.uid %>/">
 				<div class="form_add_new_advice">
 					<textarea name="text"></textarea>
@@ -49,6 +49,7 @@
 				</div>
 			</form>
 		</div>
+		<script>initCharsLeftCounter();</script>
 <!-- end add_new_advice -->
 
 <%- partial('seo_roles_footer.ejs')%>

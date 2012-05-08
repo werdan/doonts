@@ -9,8 +9,10 @@ Meta description
 Favorites corners <a href
 loginbox: link on user name
 
+
 Minor:
 
+Check that advice doesn't contain more than 280 chars
 Use Solr synonims from WordNet : https://issues.apache.org/jira/browse/LUCENE-2347
 Add phonetic indexing to Solr
 Delete .git from mongoose-fixtures
@@ -19,6 +21,7 @@ If not needed autocomplete - delete initialization from main.js
 After login there is a redirection to URL with #=_= appended, this part should not be appended
 Facebook app deauthorization
 Remove LogEvent - replace it with logger level appenders
+Characters typed better calculation on adding advice on Role page (1 Character(S) left)
 
 
 Features:

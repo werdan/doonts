@@ -24,6 +24,8 @@ var modalBackgroundColor         = '#333' ;
 var modalBackgroundOpacity       = 0.6 ;
 var modalBackgroundSwitchTime    = 0.3 ; // sec
 
+var limitCharsInAdvice           = 280;
+
 
 function getAdviceUIDFromURL(url) {
     var matches = url.match(/#(\d+)$/);
@@ -238,7 +240,7 @@ function initVirtualRoleOnSearchResultsPage() {
 }
 
 function initAdviceTabs() {
-    jQuery("div.nav_advice ul li.latest").click(function(){
+    jQuery("div.nav_advice ul li.latest").click(function(event){
         event.preventDefault();
         jQuery("div.advices.media").hide();
         jQuery("div.advices.top").hide();
@@ -247,7 +249,7 @@ function initAdviceTabs() {
         jQuery("div.nav_advice ul li.media").removeClass("active");
         jQuery("div.nav_advice ul li.top").removeClass("active");
     });
-    jQuery("div.nav_advice ul li.top").click(function(){
+    jQuery("div.nav_advice ul li.top").click(function(event){
         event.preventDefault();
         jQuery("div.advices.media").hide();
         jQuery("div.advices.top").show();
@@ -256,7 +258,7 @@ function initAdviceTabs() {
         jQuery("div.nav_advice ul li.media").removeClass("active");
         jQuery("div.nav_advice ul li.top").addClass("active");
     });
-    jQuery("div.nav_advice ul li.media").click(function(){
+    jQuery("div.nav_advice ul li.media").click(function(event){
         event.preventDefault();
         jQuery("div.advices.media").show();
         jQuery("div.advices.top").hide();
@@ -264,6 +266,24 @@ function initAdviceTabs() {
         jQuery("div.nav_advice ul li.latest").removeClass("active");
         jQuery("div.nav_advice ul li.media").addClass("active");
         jQuery("div.nav_advice ul li.top").removeClass("active");
+    });
+}
+
+function limitCharsAndUpdateCounter() {
+    var charsInput = jQuery(".form_add_new_advice textarea").val();
+    var charsLength = charsInput.length;
+    if (charsLength >=limitCharsInAdvice) {
+        var truncatedInput = charsInput.substring(0, limitCharsInAdvice-1);
+        jQuery(".form_add_new_advice textarea").val(truncatedInput);
+    }
+    if (limitCharsInAdvice-charsLength >= 0 ) {
+        jQuery(".charsLeft").html(limitCharsInAdvice-charsLength);
+    }
+}
+
+function initCharsLeftCounter() {
+    jQuery(".form_add_new_advice textarea").keyup(function(){
+        limitCharsAndUpdateCounter();
     });
 }
 
