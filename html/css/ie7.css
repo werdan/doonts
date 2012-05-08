@@ -38,13 +38,6 @@ div.title_advices {
 .top_title_advice{
 	margin:20px 0 0;
 }
-.column_advices_search_sh .column_advices_inside{
-	margin:16px 7px 5px 13px;
-}
 .column_advices_sh .column_advices_inside{
 	padding:1px 0 2px;
-}
-.column_advices_sh .column_advices_inside:hover{
-	margin:-1px 6px 1px 12px;
-	padding:0;
 }
