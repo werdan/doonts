@@ -44,6 +44,7 @@ jQuery(document).ready(function(){
     addFooterMailto();
     initVirtualRoleOnSearchResultsPage();
     initAdviceTabs();
+    initMediaLinksPanel();
 });
 
 function initAutocomplete() {
@@ -137,11 +138,13 @@ function initAnimations() {
     $('.'+askAdviceSlidePanelClass+' .'+fbLinkClass).click(function(event){
         event.preventDefault();
         moveLeftButtonsUp();
-        $('.'+askAdviceSlidePanelClass+' a > span').removeClass('opened');
-        $('.'+askAdviceSlidePanelClass+' .'+fbLinkClass+' > span').addClass('opened');
-        $('.'+askAdviceSlidePanelClass+' .'+twBoxClass).slideUp(boxCloseTime*1000);
-        $('.'+askAdviceSlidePanelClass+' .'+mailBoxClass).slideUp(boxCloseTime*1000);
-        $('.'+askAdviceSlidePanelClass+' .'+fbBoxClass).slideToggle(boxToggleTime*1000);
+        closeAskPanel();
+        //$('.'+askAdviceSlidePanelClass+' a > span').removeClass('opened');
+        //$('.'+askAdviceSlidePanelClass+' .'+fbLinkClass+' > span').addClass('opened');
+        //$('.'+askAdviceSlidePanelClass+' .'+twBoxClass).slideUp(boxCloseTime*1000);
+        //$('.'+askAdviceSlidePanelClass+' .'+mailBoxClass).slideUp(boxCloseTime*1000);
+        //$('.'+askAdviceSlidePanelClass+' .'+fbBoxClass).slideToggle(boxToggleTime*1000);
+        sendRequestViaMultiFriendSelector();
     });
     // open/close tw panel
     $('.'+askAdviceSlidePanelClass+' .'+twLinkClass).click(function(event){
@@ -287,4 +290,32 @@ function initCharsLeftCounter() {
     });
 }
 
+function sendRequestViaMultiFriendSelector() {
+    FB.ui({method: 'apprequests',
+        message: 'Could you, please, give an advice how to be ' + window['roleName'],
+        title: 'Ask your friends for an advice'
+    }, function(){});
+}
+
+function initMediaLinksPanel() {
+    jQuery("a.link_youtube").click(function(event){
+        openAddMediaLinkPanel('youtube');
+    });
+
+    jQuery("a.link_amazon").click(function(event){
+        openAddMediaLinkPanel('amazon');
+    });
+}
+
+function openAddMediaLinkPanel(type) {
+    event.preventDefault();
+    turnOnModalBackground();
+    jQuery(".z_block_add_media_link").show();
+    jQuery(".z_block_add_media_link .icon").removeClass().addClass("link_" + type).addClass("icon");
+    jQuery(".z_block_add_media_link a.close").click(function(event){
+        event.preventDefault();
+        jQuery(".z_block_add_media_link").hide();
+        turnOffModalBackground();
+    });
+}
 

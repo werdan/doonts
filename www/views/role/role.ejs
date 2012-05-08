@@ -38,18 +38,28 @@
 
 					<!-- add_media_link -->
 					<div class="add_media_link">
-						<a class="link_one" href="#"></a>
-						<a class="link_two" href="#"></a>
-						<a class="link_three" href="#"></a>
+						<a class="link_youtube" href="#"></a>
+						<a class="link_amazon" href="#"></a>
 						<p>add media LINK</p>
 					</div>
 					<!-- end add_media_link -->
+
+                    <!-- z_block_add_media_link -->
+					<div class="z_block_add_media_link">
+						<a class="icon" href="#"></a><p>YOUTUBE LINK</p><input type="text" name="">
+						<a class="close" href="#"></a>
+					</div>
+					<!-- end z_block_add_media_link -->
+
 
 					<input class="button" type="submit" value="ADD ADVICE">
 				</div>
 			</form>
 		</div>
-		<script>initCharsLeftCounter();</script>
+		<script>
+		    initCharsLeftCounter();
+		    window['roleName'] = "<%= role.name %>";
+		</script>
 <!-- end add_new_advice -->
 
 <%- partial('seo_roles_footer.ejs')%>
