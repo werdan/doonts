@@ -805,7 +805,7 @@ div.title_advices{
     padding:8px 0 5px;
     box-shadow:inset 3px 3px 13px rgba(0, 0, 0, 0.15);
     behavior:url(pie.htc);
-    height:61px;
+    min-height:58px;
 }
 .column_advices_sh{
     background:url(../images/bg_advices.png);
@@ -837,10 +837,10 @@ a.title_advices{
 }
 .column_advices_search a.title_advices{
     color:#3594b8;
-    font:bold 24px/61px Helvetica, sans-serif;
-    margin:5px 0 0;
+    font:bold 24px/34px Helvetica, sans-serif;
     position:relative;
     text-decoration:none;
+    float:left;
 }
 .column_div .active{
     color:#75a100 !important;
@@ -850,10 +850,11 @@ a.title_advices{
 }
 .column_advices_search_sh a.title_advices{
     color:#3594b8;
-    font:bold 24px/39px Helvetica, sans-serif;
+    font:bold 24px/34px Helvetica, sans-serif;
     margin:5px 0 0;
     position:relative;
     text-decoration:none;
+    float:left;
 }
 .column_div{
     background:url(../images/img-spr.png) no-repeat left -421px;
@@ -862,12 +863,13 @@ a.title_advices{
     left:-14px;
 }
 .column_advices_search .column_div{
-    background:url(../images/img-spr.png) no-repeat left -409px;
+    background:url(../images/img-spr.png) no-repeat left -415px;
     padding:0 0 0 15px;
     position:relative;
     left:-14px;
     width:515px;
     float:left;
+    margin-top:5px;
 }
 .column_advices_search_sh .column_div{
     background:url(../images/img-spr.png) no-repeat left -455px;
@@ -876,6 +878,7 @@ a.title_advices{
     left:-14px;
     width:515px;
     float:left;
+    margin-top:5px;
 }
 .column_advices_sh .column_div{
     background:url(../images/img-spr.png) no-repeat left -457px;
@@ -888,7 +891,7 @@ a.title_advices{
     background:url(../images/spr-01.png) no-repeat 0 -802px;
     color:#3d6c7e;
     width:142px;
-    margin:5px 0 0;
+    margin:15px 0 0;
     position: relative;
     z-index: 99;
 }
@@ -900,10 +903,10 @@ a.title_advices{
 }
 .fb_likes{
     float:left;
-    margin:5px 0 0 42px;
+    margin:15px 10px 0 37px;
     position: relative;
     z-index: 99;
-    width:94px;
+    width:110px;
 }
 .fb_likes a{
     color:#3d6c7e;
@@ -918,7 +921,7 @@ a.title_advices{
     float:left;
     background:url(../images/spr-01.png) no-repeat 0 -609px;
     padding:0 0 0 30px;
-    margin:5px 5px 0 22px;
+    margin:15px 5px 0 0;
     position: relative;
     z-index: 99;
 }
@@ -1081,18 +1084,21 @@ a.link_three{
     position:relative;
 }
 .column_advices_search_sh .column_advices_inside{
-    margin:8px 7px 5px 13px;
+    margin:0 7px 4px 13px;
     padding:0 1px;
     position:relative;
     z-index:0;
-    overflow:hidden;
+    min-height:60px;
 }
 .column_advices_search .column_advices_inside{
     margin:8px 7px 5px 13px;
     padding:0 1px;
     position:relative;
     z-index:0;
-    overflow:hidden;
+    min-height: 60px;
+}
+.clear{
+    clear:both;
 }
 .column_advices_search .column_advices_inside:hover{
     border:1px dashed #898b8c;
@@ -1114,11 +1120,11 @@ a.link_three{
     position:relative;
 }
 .column_advices_search_sh .column_advices_inside:hover{
+    border:1px dashed #898b8c;
+    margin:-2px 6px 2px 13px;
     border-radius:5px;
     behavior:url(pie.htc);
-    margin:-1px 7px 0 13px;
-    padding:8px 0;
-    border:1px dashed #898b8c;
+    padding:1px 0;
 }
 .author{
     margin:4px 16px 10px 0;
