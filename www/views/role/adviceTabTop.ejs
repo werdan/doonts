@@ -1,0 +1,25 @@
+<div id="top" class="advices top">
+    <% for(var i=0; i<=role.topAdvices.length-1; i++) { %>
+
+        <%
+        var columnAdviceClass = "column_advices";
+        if (i % 2 == 0) {
+        columnAdviceClass = "column_advices_sh";
+        }
+    %>
+
+        <!-- column_advices -->
+            <div class="<%= columnAdviceClass %>">
+                <!-- column_advices_inside -->
+                <div class="column_advices_inside">
+
+                    <%- partial('role/advice.ejs', {advice: role.topAdvices[i],
+                                                role: role,
+                                                author: role.topAdvices[i].author}) %>
+
+            </div>
+            <!-- end column_advices_inside -->
+        </div>
+        <!-- end column_advices_sh -->
+    <% } %>
+</div>

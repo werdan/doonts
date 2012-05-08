@@ -21,4 +21,6 @@ Facebook app deauthorization
 Remove LogEvent - replace it with logger level appenders
 
 
+Features:
+Open role page on one of the tabs: Latest/Top/Media (as defined in URL)
 

@@ -41,6 +41,7 @@ jQuery(document).ready(function(){
     initAnimations();
     addFooterMailto();
     initVirtualRoleOnSearchResultsPage();
+    initAdviceTabs();
 });
 
 function initAutocomplete() {
@@ -233,6 +234,36 @@ function initVirtualRoleOnSearchResultsPage() {
     jQuery("div.virtual-role div.column_advices_inside a").click(function(event){
         event.preventDefault();
         jQuery("form.virtual-role").submit();
+    });
+}
+
+function initAdviceTabs() {
+    jQuery("div.nav_advice ul li.latest").click(function(){
+        event.preventDefault();
+        jQuery("div.advices.media").hide();
+        jQuery("div.advices.top").hide();
+        jQuery("div.advices.latest").show();
+        jQuery("div.nav_advice ul li.latest").addClass("active");
+        jQuery("div.nav_advice ul li.media").removeClass("active");
+        jQuery("div.nav_advice ul li.top").removeClass("active");
+    });
+    jQuery("div.nav_advice ul li.top").click(function(){
+        event.preventDefault();
+        jQuery("div.advices.media").hide();
+        jQuery("div.advices.top").show();
+        jQuery("div.advices.latest").hide();
+        jQuery("div.nav_advice ul li.latest").removeClass("active");
+        jQuery("div.nav_advice ul li.media").removeClass("active");
+        jQuery("div.nav_advice ul li.top").addClass("active");
+    });
+    jQuery("div.nav_advice ul li.media").click(function(){
+        event.preventDefault();
+        jQuery("div.advices.media").show();
+        jQuery("div.advices.top").hide();
+        jQuery("div.advices.latest").hide();
+        jQuery("div.nav_advice ul li.latest").removeClass("active");
+        jQuery("div.nav_advice ul li.media").addClass("active");
+        jQuery("div.nav_advice ul li.top").removeClass("active");
     });
 }
 

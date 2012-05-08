@@ -1,0 +1,25 @@
+<div id="latest" class="advices latest">
+    <% for(var i=0; i<=role.advices.length-1; i++) { %>
+
+        <%
+        var columnAdviceClass = "column_advices";
+        if (i % 2 == 0) {
+        columnAdviceClass = "column_advices_sh";
+        }
+    %>
+
+        <!-- column_advices -->
+            <div class="<%= columnAdviceClass %>">
+                <!-- column_advices_inside -->
+                <div class="column_advices_inside">
+
+                    <%- partial('role/advice.ejs', {advice: role.advices[i],
+                                                role: role,
+                                                author: role.advices[i].author}) %>
+
+            </div>
+            <!-- end column_advices_inside -->
+        </div>
+        <!-- end column_advices_sh -->
+    <% } %>
+</div>

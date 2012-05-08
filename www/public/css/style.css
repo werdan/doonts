@@ -765,6 +765,11 @@ a.close{
     z-index:0;
     clear:both;
 }
+
+.advices.top, .advices.media{
+    display: none;
+}
+
 .title_advices p.title{
     line-height:38px;
     float:left;

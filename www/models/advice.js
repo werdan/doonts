@@ -11,6 +11,7 @@ var adviceSchema = new Schema({
     author: {type: Schema.ObjectId, ref: 'User'},
 	nextFacebookInfoUpdateTime: {type: Number, default: Date.now() + app.set("web.adviceInfoTTL")},
 	facebookLikes: {type: Number, default: 0},
+    timestampCreated: {type: Number, default: Date.now},
 	youtube: {
         videoId: String,
         url: String,

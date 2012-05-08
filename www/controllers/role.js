@@ -15,6 +15,16 @@ module.exports = function(app, securityManager, seoFooterDataAppender) {
 				return;
 			} else {
                fillInAuthors(role, next, function(authors){
+                    role.advices.sort(sortByTimestampCreated);
+
+                    //TODO: There should be a better way to copy object by value, but I didn't find it
+                    var topAdvices = new Array();
+                    role.advices.forEach(function(advice) {
+                        topAdvices.push(advice);
+                    });
+                    topAdvices.sort(sortByFacebookLikes);
+
+                    role.topAdvices = topAdvices;
                     res.render('role/role.ejs',
                         {role: role,
                         rolePage: true,
@@ -151,5 +161,13 @@ module.exports = function(app, securityManager, seoFooterDataAppender) {
             callback(role);
             return;
         }
+    }
+
+    function sortByFacebookLikes(adviceA, adviceB) {
+        return adviceB.facebookLikes - adviceA.facebookLikes;
+    }
+
+    function sortByTimestampCreated(adviceA, adviceB) {
+        return adviceB.timestampCreated - adviceA.timestampCreated;
     }
 };
