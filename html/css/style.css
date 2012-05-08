@@ -1400,16 +1400,14 @@ a.link_three{
 	color:#3d6c7e;
 	font:12px/25px helvetca, sans-serif;
 	float:left;
-	margin:0 10px 0 0;
 }
 .z_block_add_media_link input{
-	width:625px;
+	width:680px;
 	height:21px;
-	float:left;
-	padding:1px 67px 1px 8px;
+	float:right;
+	padding:1px 8px;
 	font:12px/23px helvetica, sans-serif;
-	color:#3d6c7e;
-	overflow:hidden;	
+	color:#3d6c7e;	
 	border:1px solid #1898c3;
 	border-radius:5px;
 	behavior:url(pie.htc);
