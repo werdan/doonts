@@ -32,7 +32,6 @@ describe('Tests on advice model', function(){
 		done = function() {
 			return latch;
 		};
-
 		Advice.findReadyForFacebookUpdate(function(err, advices) {
 		    expect(advices.length).toEqual(2);
 		    latch = true;

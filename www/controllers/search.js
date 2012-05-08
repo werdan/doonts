@@ -24,12 +24,12 @@ module.exports = function(app, seoFooterDataAppender) {
         var query = util.format('q=%s', encodeURIComponent(req.query.q));
 
 
-        solrClient.query(query, function(err, resposeString){
+        solrClient.query(query, function(err, responseString){
             if (err) {
                 next(new Error(err));
                 return;
             }
-            var parsedJson = JSON.parse(resposeString);
+            var parsedJson = JSON.parse(responseString);
             var roleIds = new Array();
             parsedJson.response.docs.forEach(function(doc){
                 roleIds.push(doc.roleId);

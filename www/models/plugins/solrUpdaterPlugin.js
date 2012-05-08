@@ -28,6 +28,11 @@ module.exports = function (schema, solrClientFactory) {
         }
     }
 
+    /**
+     * TODO: Possibility for performance optimization.
+     * We can first find all roles to remove, and then a) remove by id from Solr and use Role.remove(criteria) to remove all empty roles in one request
+     * In this case, it is necessary to remove .pre('remove') from solrUpdatePlugin, as role.remove() call middleware, but Role.remove() - no
+     */
     function removeRoleFromSolr(role) {
         if (!role) {
             return;
@@ -40,8 +45,11 @@ module.exports = function (schema, solrClientFactory) {
         });
     }
 
+
     schema.pre('remove', function (next) {
+        logger.info("Removing role from Solr index");
         this.getRole(function (role) {
+            logger.info("Removing role from Solr index 2");
             removeRoleFromSolr(role);
         });
         next();
@@ -50,7 +58,7 @@ module.exports = function (schema, solrClientFactory) {
     //Using parallel middleware
     schema.pre('save', function (next) {
         this.getRole(function (role) {
-           updateRole(role);
+            updateRole(role);
         });
         next();
     });

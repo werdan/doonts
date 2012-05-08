@@ -118,4 +118,53 @@ describe('Tests on role model', function(){
     it('tests secretKey creation', function () {
         expect(Role.getSecretKeyForName('test name')).toEqual('002c0dbfbf39d8dafd1a77ade0ae5c47fed3e131');
     });
+
+    xit('Checks that role is removed from Solr on remove()', function () {
+        var latch = false;
+            done = function() {
+            return latch;
+        };
+
+        var solrClientFactory = require('../../../lib/solrClientFactory.js');
+        var solrClient = solrClientFactory.getClient();
+
+        runs(function(){
+            latch = false;
+            Role.create({uid:199, name: "Some name"}, function(err, role){
+                expect(role).not.toBeNull();
+                role.save(function(){
+                    waits(2000);
+                    runs(function(){
+                        solrClient.commit(function(){
+                            solrClient.query("q=roleId:199",function(err, responseString){
+                                expect(err).toBeNull();
+                                var parsedJson = JSON.parse(responseString);
+                                var foundRoles = parseInt(parsedJson.response.docs.length);
+                                expect(foundRoles).toEqual(1);
+                                role.remove(function(err){
+                                    expect(err).toBeNull();
+                                    latch = true;
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+            waitsFor(function(){return done;},5000);
+        });
+        runs(function(){
+            latch = false;
+            solrClient.commit(function(err) {
+                expect(err).toBeNull;
+                solrClient.query("q=roleId:199",function(err, responseString){
+                    expect(err).toBeNull();
+                    var parsedJson = JSON.parse(responseString);
+                    var foundRoles = parseInt(parsedJson.response.docs.length);
+                    expect(foundRoles).toEqual(0);
+                    latch = true;
+                });
+            });
+        });
+        waitsFor(function(){return done;},5000);
+    });
 });
