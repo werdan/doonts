@@ -67,6 +67,7 @@ module.exports = function(app, express){
      });
 
     app.configure('production', function() {
-
+        app.set("web.unsecureUrl","http://doonts.com");
+        app.set('db.name', 'doonts');
     });
 };

@@ -4,8 +4,10 @@ var express = require('express');
 
 app = module.exports = express.createServer();
 
-//process.env.NODE_ENV="production";
-process.env.NODE_ENV="development";
+console.log(process.env.NODE_ENV);
+if (typeof process.env.NODE_ENV === 'undefined') {
+    process.env.NODE_ENV="development";
+}
 
 require('./config/env.js')(app, express);
 require('./config/orm.js')(app);
