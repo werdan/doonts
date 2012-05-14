@@ -105,13 +105,14 @@ module.exports = function(app, securityManager, seoFooterDataAppender) {
     }
 
     function findNextUIDAndCreateRole(req, res, next){
-        Role.find().desc('_id').limit(1).run(function(err,docs){
+        Role.find().desc('uid').limit(1).run(function(err,docs){
             logger.debug("Found a biggest uid for role = " + docs[0].uid);
             createRoleAndRedirect(req, res, next, docs[0].uid+1);
         });
     }
 
     function createRoleAndRedirect(req, res, next, uid) {
+        logger.debug("Trying to create role with new uid = " + uid);
         Role.create({name: req.body.roleName, uid: uid}, function(err,role){
             if (err && err.code == 11000) {
                 logger.warn("Bumped into a duplicate role UID when creating a role");

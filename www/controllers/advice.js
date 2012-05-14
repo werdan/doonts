@@ -41,7 +41,7 @@ module.exports = function (app, securityManager, amazonClient, youtubeClient) {
     }
 
     function findNextUIDAndCreateAdvice(req, res, next){
-        Advice.find().desc('_id').limit(1).run(function(err,docs){
+        Advice.find().desc('uid').limit(1).run(function(err,docs){
             logger.debug("Found a highest uid for advice = " + docs[0].uid);
             createAdviceAndRedirect(req, res, next, docs[0].uid+1);
         });

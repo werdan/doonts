@@ -12,6 +12,7 @@ loginbox: link on user name
 
 Minor:
 
+Page if facebook auth request is declined
 Check that advice doesn't contain more than 280 chars
 Use Solr synonims from WordNet : https://issues.apache.org/jira/browse/LUCENE-2347
 Add phonetic indexing to Solr
