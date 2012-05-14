@@ -12,7 +12,9 @@ loginbox: link on user name
 
 Minor:
 
-Page if facebook auth request is declined
+Facebook Dialog Request is set with display=popup, but popup maybe blocked. Test page/iframe options (https://developers.facebook.com/docs/reference/dialogs/)
+Page if facebook auth request is declined (+ remove user from list?)
+
 Check that advice doesn't contain more than 280 chars
 Use Solr synonims from WordNet : https://issues.apache.org/jira/browse/LUCENE-2347
 Add phonetic indexing to Solr

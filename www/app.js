@@ -4,7 +4,6 @@ var express = require('express');
 
 app = module.exports = express.createServer();
 
-console.log(process.env.NODE_ENV);
 if (typeof process.env.NODE_ENV === 'undefined') {
     process.env.NODE_ENV="development";
 }

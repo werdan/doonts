@@ -1,15 +1,11 @@
 var MongoStore = require('connect-mongo');
 var log4js = require('log4js');
 var connect = require('connect');
+var logger = log4js.getLogger();
+
 
 module.exports = function(app, express){
 
-    /**
-	 * Configure logger
-	 */
-	var logger = log4js.getLogger();
-
-	log4js.addAppender(log4js.fileAppender('doonts.log'), 'doonts.log');
     app.set('views', __dirname + '/../views');
 
     app.configure(function() {
@@ -43,9 +39,6 @@ module.exports = function(app, express){
         app.set("solr.host","127.0.0.1");
         app.set("solr.port",8080);
 
-
-        app.set("logger", log4js.getLogger());
-
         app.use(function(req,res,next){
             next();
         });
@@ -64,10 +57,18 @@ module.exports = function(app, express){
     	app.set("web.unsecureUrl","http://doonts.lxc");
     	app.set("db.debug",true);
     	app.set('db.name', 'tests');
-     });
+
+        log4js.addAppender(log4js.fileAppender('/tmp/doonts.log'), '/tmp/doonts.log');
+        app.set("logger", log4js.getLogger());
+
+    });
 
     app.configure('production', function() {
         app.set("web.unsecureUrl","http://doonts.com");
         app.set('db.name', 'doonts');
+
+        log4js.addAppender(log4js.fileAppender('/var/log/doonts.log'), '/var/log/doonts.log');
+        app.set("logger", log4js.getLogger());
+
     });
 };
