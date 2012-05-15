@@ -2,7 +2,7 @@ describe('Static page controller', function(){
 
     it('checks routing to files using URL params', function () {
         var routes = app.match.get('/page/aboutus');
-        var callback = routes[0].callbacks[0];
+        var callback = routes[0].callbacks[1];
 
         var req = {params: {page: 'aboutus'}};
 
@@ -23,7 +23,7 @@ describe('Static page controller', function(){
 
     it('checks routing to file, when file does not exists', function () {
         var routes = app.match.get('/page/nofilelikethat');
-        var callback = routes[0].callbacks[0];
+        var callback = routes[0].callbacks[1];
 
         var req = {params: {page: 'nofilelikethat'}};
 
@@ -37,7 +37,7 @@ describe('Static page controller', function(){
 
     it('checks routing to file, when filename param is absent', function () {
         var routes = app.match.get('/page/aboutus');
-        var callback = routes[0].callbacks[0];
+        var callback = routes[0].callbacks[1];
 
         var req = {params: {}};
         var next = jasmine.createSpy('next');

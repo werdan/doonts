@@ -1351,6 +1351,7 @@ a.link_slideshare{
     margin:17px 0 0;
     position:relative;
     width:878px;
+    display: none;
 }
 .block_add_media_link a.delete_addition{
     position:absolute;

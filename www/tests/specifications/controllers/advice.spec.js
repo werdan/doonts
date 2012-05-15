@@ -388,7 +388,7 @@ describe('advice controller', function(){
                 advice.amazon.asin = 'teststest';
                 advice.save(function(){
 
-                    waits(2000);
+                    waits(3000);
                     runs(function(){
                         Advice.findByUID(12787, function(err, advice){
                             if (!err) {
@@ -420,6 +420,48 @@ describe('advice controller', function(){
             expect(next.mostRecentCall.args[0] instanceof Error).toBeFalsy();
             expect(req.session.newAdvice.text).toEqual("New advice text");
             expect(req.session.newAdvice.roleId).toBeDefined();
+        });
+    });
+
+    it('checks parsing of youtube link', function () {
+        var routes = app.match.post('/advice/create/144');
+        var callback = routes[0].callbacks[0];
+
+        var req = {params: {'roleUID': 144}, session: {}, body: {mediaType: 'youtube',
+            mediaLink: 'http://www.youtube.com/watch?v=8mwKq7_JlS8&feature=g-vrec',
+            text: "New advice text"}};
+
+        var next = jasmine.createSpy('next');
+
+        callback(req, null, next);
+
+        waitsFor(function(){return next.wasCalled;},'next is never called',10000);
+        runs(function () {
+            expect(next.mostRecentCall.args[0] instanceof Error).toBeFalsy();
+            expect(req.session.newAdvice.text).toEqual("New advice text");
+            expect(req.session.newAdvice.roleId).toBeDefined();
+            expect(req.session.newAdvice.youtube).toEqual('8mwKq7_JlS8');
+        });
+    });
+
+    it('checks parsing of amazon link', function () {
+        var routes = app.match.post('/advice/create/144');
+        var callback = routes[0].callbacks[0];
+
+        var req = {params: {'roleUID': 144}, session: {}, body: {mediaType: 'amazon',
+            mediaLink: 'http://www.amazon.com/Information-Rules-Strategic-Network-Economy/dp/087584863X/ref=wl_it_dp_o_pC_S?ie=UTF8&coliid=I2QZEXQQ7VN06K&colid=12IPLBPF7Y4A6',
+            text: "New advice text"}};
+
+        var next = jasmine.createSpy('next');
+
+        callback(req, null, next);
+
+        waitsFor(function(){return next.wasCalled;},'next is never called',10000);
+        runs(function () {
+            expect(next.mostRecentCall.args[0] instanceof Error).toBeFalsy();
+            expect(req.session.newAdvice.text).toEqual("New advice text");
+            expect(req.session.newAdvice.roleId).toBeDefined();
+            expect(req.session.newAdvice.amazon).toEqual('087584863X');
         });
     });
 
@@ -474,7 +516,7 @@ describe('advice controller', function(){
         });
     });
 
-    it('checks that new advice is created from information stored in session', function () {
+    it('checks that new advice is created from information stored in session - no youtube/amazon media links attached', function () {
         var latch = false;
         done = function() {
             return latch;
@@ -489,7 +531,7 @@ describe('advice controller', function(){
         spyOn(res, 'redirect');
 
         Role.findByUID(144, function(err, role){
-            req = {params: {'roleUID': 144}, session: {userId: 123123123, newAdvice: {text: "New advice text", roleId: role._id}}};
+            req = {params: {'roleUID': 144}, session: {userId: 123123123, newAdvice: {text: "New advice text", roleId: role._id, youtube: '8mwKq7_JlS8'}}};
             callback(req, res, null);
         });
         waitsFor(function(){return res.redirect.wasCalled;},'res.redirect is never called',10000);
@@ -499,6 +541,7 @@ describe('advice controller', function(){
             Advice.findByUID('12791',function(err, advice){
                 expect(advice.text).toEqual("New advice text");
                 expect(advice.author).toBeDefined();
+                expect(advice.youtube.videoId).toEqual('8mwKq7_JlS8');
                 advice.getRole(function(err, role){
                     expect(role.uid).toEqual(144);
                     expect(role.advices.length).toEqual(7);

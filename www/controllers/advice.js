@@ -2,6 +2,7 @@ var Advice = db.model("Advice");
 var User = db.model("User");
 var Role = db.model("Role");
 var logger = app.set("logger");
+var url = require('url');
 
 var amazonHelper = require("./helper/adviceAmazonUpdater.js");
 var youtubeHelper = require("./helper/adviceYoutubeUpdater.js");
@@ -34,6 +35,7 @@ module.exports = function (app, securityManager, amazonClient, youtubeClient) {
             } else {
                 logger.debug("Creating new advice and saving it to user session");
                 req.session.newAdvice = {text: adviceText, roleId: role._id};
+                req.session.newAdvice = parseMediaLink(req, req.session.newAdvice);
                 next();
                 return;
             }
@@ -47,8 +49,43 @@ module.exports = function (app, securityManager, amazonClient, youtubeClient) {
         });
     }
 
+    function parseMediaLink(req, newAdviceDescription) {
+        if (req.hasOwnProperty('body') &&
+            req.body.hasOwnProperty('mediaLink') &&
+            req.body.mediaLink.length > 0 &&
+            req.body.hasOwnProperty('mediaType')) {
+            switch (req.body.mediaType) {
+                case "amazon":
+                    var matches = req.body.mediaLink.match(/\/dp\/([^\/]*)\//);
+                    if (matches != null) {
+                        newAdviceDescription.amazon = matches[1];
+                    }
+                    break;
+                case "youtube":
+                    var parsedUrl = url.parse(req.body.mediaLink, true);
+                    if (parsedUrl.query.hasOwnProperty('v')) {
+                        newAdviceDescription.youtube = parsedUrl.query.v;
+                    }
+                    break;
+                default:
+                    logger.warn("Wrong mediaType ' " + req.body.mediaType + ' "');
+            }
+        }
+        return newAdviceDescription;
+    }
+
     function createAdviceAndRedirect(req, res, next, adviceUID) {
-        Advice.create({text: req.session.newAdvice.text, roleId: req.session.newAdvice.roleId, uid: adviceUID}, function(err,advice){
+        var newAdviceDescription = {text: req.session.newAdvice.text,
+            roleId: req.session.newAdvice.roleId,
+            uid: adviceUID};
+
+        if (req.session.newAdvice.hasOwnProperty('youtube')) {
+            newAdviceDescription.youtube = {'videoId': req.session.newAdvice.youtube};
+        } else if(req.session.newAdvice.hasOwnProperty('amazon')) {
+            newAdviceDescription.amazon = {'asin': req.session.newAdvice.amazon};
+        }
+
+        Advice.create(newAdviceDescription, function(err,advice){
             if (err && err.code == 11000) {
                 logger.warn("Bumped into a duplicate role UID when creating a role");
                 findNextUIDAndCreateAdvice(req, res, next);

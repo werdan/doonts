@@ -72,7 +72,8 @@ function initFB() {
             channelUrl : '//doonts.lxc/channel.html', // Channel File
             status     : true, // check login status
             cookie     : true, // enable cookies to allow the server to access the session
-            xfbml      : true  // parse XFBML
+            xfbml      : true,  // parse XFBML
+            frictionlessRequests : true
         });
 
         // Load the SDK Asynchronously
@@ -294,28 +295,46 @@ function sendRequestViaMultiFriendSelector() {
     FB.ui({method: 'apprequests',
         message: 'Could you, please, give an advice how to be ' + window['roleName'],
         title: 'Ask your friends for an advice'
-    }, function(){});
+    }, function(request){
+    });
 }
 
 function initMediaLinksPanel() {
     jQuery("a.link_youtube").click(function(event){
-        openAddMediaLinkPanel('youtube');
+        addMediaLinkPanel('youtube');
     });
 
     jQuery("a.link_amazon").click(function(event){
-        openAddMediaLinkPanel('amazon');
+        addMediaLinkPanel('amazon');
     });
 }
 
-function openAddMediaLinkPanel(type) {
+function addMediaLinkPanel(type) {
     event.preventDefault();
     turnOnModalBackground();
+    jQuery("#mediaType").val(type);
+    jQuery(".z_block_add_media_link input.userinput").val(jQuery("#mediaLink").val());
     jQuery(".z_block_add_media_link").show();
     jQuery(".z_block_add_media_link .icon").removeClass().addClass("link_" + type).addClass("icon");
-    jQuery(".z_block_add_media_link a.close").click(function(event){
+
+
+    //Close icon
+    jQuery(".z_block_add_media_link a.close").unbind('click').click(function(event){
         event.preventDefault();
+        jQuery("#mediaLink").val(jQuery(".z_block_add_media_link input.userinput").val());
         jQuery(".z_block_add_media_link").hide();
+        if (jQuery("#mediaLink").val().length > 0) {
+            jQuery("div.block_add_media_link a").first().removeClass().addClass("link_" + type);
+            jQuery("div.block_add_media_link").show();
+        }
         turnOffModalBackground();
     });
-}
 
+    //Delete button
+    jQuery("a.delete_addition").unbind('click').click(function(event){
+        event.preventDefault();
+        jQuery("#mediaType").val("");
+        jQuery("#mediaLink").val("");
+        jQuery("div.block_add_media_link").hide();
+    });
+}

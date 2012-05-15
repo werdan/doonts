@@ -8,8 +8,12 @@ Meta title
 Meta description
 Favorites corners <a href
 loginbox: link on user name
-Contact US page
-Twitter/Facebook links on header + 404 page
+Contact US page: form + delete direct email
+Twitter/Facebook links on header + footer + 404 page
+Add a media advice:
+ - click on modal background closes it - should not
+ - hit Enter on media - submiting form, should not
+ - move focus to add media box on open
 
 
 
@@ -19,6 +23,9 @@ Facebook Dialog Request is set with display=popup, but popup maybe blocked. Test
 Page if facebook auth request is declined (+ remove user from list?)
 
 Check that advice doesn't contain more than 280 chars
+Check that advice is not empty when adding it
+
+
 Use Solr synonims from WordNet : https://issues.apache.org/jira/browse/LUCENE-2347
 Add phonetic indexing to Solr
 Delete .git from mongoose-fixtures
@@ -28,6 +35,8 @@ After login there is a redirection to URL with #=_= appended, this part should n
 Facebook app deauthorization
 Remove LogEvent - replace it with logger level appenders
 Characters typed better calculation on adding advice on Role page (1 Character(S) left)
+Graceful stop of node cluster: http://www.subbu.org/blog/2012/01/cluster-example-with-node-0-6-x
+
 
 
 Features:
