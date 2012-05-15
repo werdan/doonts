@@ -16,8 +16,7 @@ module.exports = function(app, express){
         //Number of roles to load on home page before "Load more is clicked"
         app.set("web.authInfoTTL",86400*1000*30); //TTL for personal infor on facebook milliseconds
         //Configuration
-    	app.set('db.name', 'doonts');
-        app.set('db.host', 'localhost');
+        app.set('db.host', '127.0.0.1');
         app.set("web.unsecureUrl","http://doonts.com");
         app.set("web.facebook.client_id","159891950744662");
         app.set("web.facebook.client_secret","6ddf951ee8a086d0c3bd30c520576a31");
@@ -47,18 +46,16 @@ module.exports = function(app, express){
         app.use(express.logger());
 
         app.use(express.cookieParser());
-
-    	//TODO move params to app.set
-    	app.use(express.session({ secret: "doontsecret", key: "doofront", store: new MongoStore({ db: app.set('db.name') })}));
-	    app.use(connect.query());
+	app.use(connect.query());
     });
 
     app.configure('development', function() {
     	app.set("web.unsecureUrl","http://doonts.lxc");
     	app.set("db.debug",true);
     	app.set('db.name', 'tests');
-
-        log4js.addAppender(log4js.fileAppender('/tmp/doonts.log'), '/tmp/doonts.log');
+	app.use(express.session({ secret: "doontsecret", key: "doofront", store: new MongoStore({ db: app.set('db.name') })}));
+        
+	log4js.addAppender(log4js.fileAppender('/tmp/doonts.log'), '/tmp/doonts.log');
         app.set("logger", log4js.getLogger());
 
     });
@@ -66,6 +63,7 @@ module.exports = function(app, express){
     app.configure('production', function() {
         app.set("web.unsecureUrl","http://doonts.com");
         app.set('db.name', 'doonts');
+	app.use(express.session({ secret: "doontsecret", key: "doofront", store: new MongoStore({ db: app.set('db.name') })}));
 
         log4js.addAppender(log4js.fileAppender('/var/log/doonts.log'), '/var/log/doonts.log');
         app.set("logger", log4js.getLogger());
