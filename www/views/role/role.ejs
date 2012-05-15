@@ -30,7 +30,7 @@
 <%- partial('role/adviceTabMedia.ejs') %>
 
 <!-- add_new_advice -->
-		<div class="add_new_advice">
+		<div id="addAdvice" class="add_new_advice">
 			<p class="title">add new advice:<span><span class="charsLeft">280</span> characters left</span></p>
 			<form method="POST" action="/advice/create/<%= role.uid %>/">
 				<div class="form_add_new_advice">
