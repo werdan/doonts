@@ -1,1 +1,26 @@
-TBD
+<%- partial('main_header.ejs') %>
+
+		<!-- content -->
+		<div class="content">
+
+				<!-- feedback -->
+				<div class="feedback">
+					<h3>Feedback</h3>
+					<form action="" method="post">
+						<p>You name:</p><input class="input" type="text" name="name">
+						<p>You email:</p><input class="input" type="text" name="email">
+						<p>You message:</p><textarea name="mess"></textarea>
+						<input class="button" type="submit" value="send">
+				   </form>
+				</div>
+				<!-- end feedback -->
+
+				<h3>© Doonts 2012</h3>
+				<p>Support — <a href="mailto:help@doonts.com">help@doonts.com</a></p>
+
+		</div>
+		<!-- end content -->
+
+<%- partial('static/banner_aboutus.ejs') %>
+<%- partial('seo_roles_footer.ejs')%>
+<%- partial('main_footer.ejs') %>

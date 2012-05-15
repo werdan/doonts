@@ -24,11 +24,11 @@ require('./controllers/role.js')(app, securityManager, seoFooterDataAppender);
 require('./controllers/advice.js')(app, securityManager, amazonClient, youtubeClient);
 require('./controllers/home.js')(app, seoFooterDataAppender);
 require('./controllers/search.js')(app, seoFooterDataAppender);
-require('./controllers/page.js')(app);
+require('./controllers/page.js')(app, seoFooterDataAppender);
 require('./controllers/myaccount.js')(app,securityManager);
 
 //ALWAYS THE LAST CONTROLLER
-require('./controllers/error.js')(app);
+require('./controllers/error.js')(app, seoFooterDataAppender);
 
 require('./config/cluster.js')(app);
 

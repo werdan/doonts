@@ -1,8 +1,8 @@
 var logger = app.set('logger');
 var fs = require('fs');
 
-module.exports = function(app) {
-    app.get('/page/:page', function(req, res, next) {
+module.exports = function(app, seoFooterDataAppender) {
+    app.get('/page/:page', seoFooterDataAppender, function(req, res, next) {
         if ('page' in req.params) {
             var viewsDir = app.settings.views;
             var absoluteFileName = viewsDir + '/static/' + req.params.page + ".ejs";

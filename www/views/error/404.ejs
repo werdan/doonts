@@ -1,1 +1,36 @@
-404 error
+<%- partial('main_header.ejs') %>
+
+		<!-- content -->
+		<div class="content">
+
+			<!-- content_text -->
+			<div class="content_text">
+
+			<div class="circle"></div>
+
+				<div class="text_error">
+
+					<div class="link">
+						<a href="javascript: history.go(-1)">Back</a>
+						<a href="/">Main page</a>
+					</div>
+
+					<div class="right_text_error">
+						<p>Oops...</p>
+						<p><span>page not found!</span></p>
+						<span>Check the address<br/>you typed or use <br/>search form above</span>
+					</div>
+
+				</div>
+
+				<div class="social_networks">
+					<p>Join us on social networks: <a href="#">Tweeter</a>  |  <a href="#">Facebook</a> </p>
+				</div>
+			</div>
+			<!-- end content_text -->
+
+		</div>
+		<!-- end content -->
+
+<%- partial('seo_roles_footer.ejs')%>
+<%- partial('main_footer.ejs') %>
