@@ -6,7 +6,7 @@ var logger = app.set("logger");
 
 module.exports = function(app, seoFooterDataAppender) {
 
-    app.error(seoFooterDataAppender, function(err, req, res, next){
+    app.error(function(err, req, res, next){
         logger.error(err);
         res.render('error/500.ejs',{ status:500});
     });
