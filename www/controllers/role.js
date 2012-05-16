@@ -11,7 +11,8 @@ module.exports = function(app, securityManager, seoFooterDataAppender) {
 				next(new Error(err));
 				return;
 			} else if (!role) {
-				next(new Error("Role id=" + req.params.roleUID + " was not found"));
+                logger.warn("Role id=" + req.params.roleUID + " was not found");
+				next();
 				return;
 			} else {
                fillInAuthors(role, next, function(authors){
