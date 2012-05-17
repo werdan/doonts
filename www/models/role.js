@@ -10,8 +10,8 @@ var roleSchema = new Schema({
     author: {type: Schema.ObjectId, ref: 'User'},
 	advices : [{ type: Schema.ObjectId, ref: 'Advice' }],
 	hasAdvices: {type: Boolean, default: false},
-    totalMedia: Number,
-    totalFacebookLikes: Number,
+    totalMedia: {type: Number, default: 0},
+    totalFacebookLikes: {type: Number, default: 0},
     timestampCreated: {type: Number, default: Date.now}
 }, {
 	strict : true

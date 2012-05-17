@@ -19,13 +19,12 @@ module.exports = function (schema, solrClientFactory) {
             role.advices.forEach(function (advice) {
                 aggregatedAdvices.push(advice.text);
             });
-            solrClient.add({roleId:role.uid, name:role.name, advices:aggregatedAdvices.join(" ")}, function (err) {
-                if (err) {
-                    logger.error(err);
-                }
-            });
-
         }
+        solrClient.add({roleId:role.uid, name:role.name, advices:aggregatedAdvices.join(" ")}, function (err) {
+            if (err) {
+                logger.error(err);
+            }
+        });
     }
 
     /**

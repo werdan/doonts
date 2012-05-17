@@ -21,7 +21,7 @@
 						<a href="<%= role.href %>"><%= role.totalFacebookLikes %> like<% if (role.totalFacebookLikes > 1 || role.totalFacebookLikes == 0) { %>s<% } %></a>
 					</div>
 
-                    <% if (typeof role.totalMedia != 'undefined') { %>
+                    <% if (typeof role.totalMedia != 'undefined' && role.totalMedia > 0) { %>
 					<div class="including">
 						<p>Including <a href="<%= role.href %>"><%= role.totalMedia%> media advice<% if (role.totalMedia > 1) { %>s<% } %></a></p>
 					</div>
