@@ -1380,9 +1380,9 @@ a.link_slideshare{
     behavior:url(pie.htc);
 }
 .z_block_add_media_link{
-    width:852px;
+    width:875px;
     height:25px;
-    padding:9px 12px 9px 0;
+    padding:9px 0;
     border:1px solid #1898c3;
     border-radius:5px;
     behavior:url(pie.htc);
@@ -1394,6 +1394,22 @@ a.link_slideshare{
     float:left;
     display: none;
 }
+
+input.button_add_media{
+    width:112px !important;
+    height:25px !important;
+    background:url(../images/buttons_form.png) no-repeat;
+    border:0 !important;
+    cursor:pointer;
+    margin:0 12px 0 0 !important;
+    color:#fff !important;
+    float:right !important;
+    font:bold 14px/25px helvetica, sans-serif !important;
+    position:relative;
+    z-index:99;
+    border-radius:0 !important;
+}
+
 .z_block_add_media_link a.close{
     width:16px;
     height:16px;
@@ -1410,13 +1426,14 @@ a.link_slideshare{
     float:left;
 }
 .z_block_add_media_link input{
-    width:680px;
+    width:575px;
     height:21px;
-    float:right;
+    float:left;
     padding:1px 8px;
     font:12px/23px helvetica, sans-serif;
     color:#3d6c7e;
     border:1px solid #1898c3;
+    margin:0 0 0 8px;
     border-radius:5px;
     behavior:url(pie.htc);
 }

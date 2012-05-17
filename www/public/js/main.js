@@ -282,8 +282,8 @@ function addMediaLinkPanel(type) {
     jQuery(".z_block_add_media_link .icon").removeClass().addClass("link_" + type).addClass("icon");
 
 
-    //Close icon
-    jQuery(".z_block_add_media_link a.close").unbind('click').click(function(event){
+    //Close icon and "Add media" button
+    jQuery(".z_block_add_media_link .button_add_media").unbind('click').click(function(event){
         event.preventDefault();
         jQuery("#mediaLink").val(jQuery(".z_block_add_media_link input.userinput").val());
         jQuery(".z_block_add_media_link").hide();
