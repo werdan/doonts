@@ -1,0 +1,5 @@
+#!/bin/bash
+su -u www-data . /home/ansam/nvm/nvm.sh
+su -u www-data export NODE_ENV=production
+su -u www-data nvm run default /var/www/app.js
+
