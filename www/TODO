@@ -14,6 +14,7 @@ Add a media advice:
  - click on modal background closes it - should not
  - hit Enter on media - submiting form, should not
  - move focus to add media box on open
+Favicon
 
 
 
@@ -32,7 +33,7 @@ Delete .git from mongoose-fixtures
 autoSuggest.css упаковать в styles.css
 If not needed autocomplete - delete initialization from main.js
 After login there is a redirection to URL with #=_= appended, this part should not be appended
-Facebook app deauthorization
+Facebook app deauthorization handle
 Remove LogEvent - replace it with logger level appenders
 Characters typed better calculation on adding advice on Role page (1 Character(S) left)
 Graceful stop of node cluster: http://www.subbu.org/blog/2012/01/cluster-example-with-node-0-6-x
@@ -41,4 +42,11 @@ Graceful stop of node cluster: http://www.subbu.org/blog/2012/01/cluster-example
 
 Features:
 Open role page on one of the tabs: Latest/Top/Media (as defined in URL)
+
+
+Texts:
+Meta titles/descriptions:
+ - home
+ - role view
+ - static: about/contact/eula
 
