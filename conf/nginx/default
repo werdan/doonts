@@ -2,17 +2,29 @@ server {
   listen 80;
   server_name doonts.lxc;
   server_name doonts.com;
+  server_name www.doonts.com;
+
+  if ($host ~* www\.) {
+    rewrite ^(.*)$ http://doonts.com$1 permanent;
+  }
 
   # Let's put all static files like images, js and css in sub-folder: public
   root /var/www/public;
 
   #  static content
   location ~* ^.+.(jpg|jpeg|gif|css|png|js|ico|xml)$ {
-    # access_log        off;
+    access_log        off;
     expires           15d;
   }
 
   location / {
+    try_files $uri @node;
+  }
+
+  location @node {
+    auth_basic            "Restricted";
+    auth_basic_user_file  htpasswd;
+
     proxy_pass         http://127.0.0.1:3000;
     proxy_set_header   X-Real-IP            $remote_addr;
     proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
