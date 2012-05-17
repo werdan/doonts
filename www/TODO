@@ -1,17 +1,21 @@
 Major:
 
-Sort advices on Role page (LATEST tab) desc
 No empty advice (either text or media);
-Filter HTML/JS from Advice/Role
-Favorites corners <a href
+Filter HTML/JS from Advice/Role on user input
 Contact US page: form + delete direct email
 Twitter/Facebook links on header + footer + 404 page
+
 Add a media advice:
  - click on modal background closes it - should not
  - hit Enter on media - submiting form, should not
  - move focus to add media box on open
-Favicon
 
+Search commit bug:
+ - search for new role
+ - create it
+ - don't add advices
+ - wait 60s
+ - search this role again -> it should be in Solr
 
 
 Minor:
