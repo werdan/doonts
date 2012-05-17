@@ -4,14 +4,7 @@ Add a media advice:
  - click on modal background closes it - should not
  - hit Enter on media - submiting form, should not
  - move focus to add media box on open
-
-Search commit bug:
- - search for new role
- - create it
- - don't add advices
- - wait 60s
- - search this role again -> it should be in Solr
-
+ - on Escape close "Add media"
 
 Minor:
 
@@ -46,6 +39,7 @@ Meta titles/descriptions:
  - static: about/contact/eula
  Contact US page: form + delete direct email
  Twitter/Facebook links on header + footer + 404 page
+ - page about to show when Facebook auth is denied
 
 DESIGN:
 - validation error on Role page:
