@@ -17,10 +17,6 @@
         </head>
         <body>
         <div id="fb-root"></div>
-        <script type="text/javascript">
-            window.fbAsyncInit=function(){console.log('Facebook init completed');FB.init({appId:'159891950744662',channelUrl:'//doonts.lxc/channel.html',status:true,cookie:true,xfbml:true,frictionlessRequests:true});(function(d){var js,id='facebook-jssdk';if(d.getElementById(id)){return;}
-            js=d.createElement('script');js.id=id;js.async=true;js.src="//connect.facebook.net/en_US/all.js";d.getElementsByTagName('head')[0].appendChild(js);}(document));FB.Event.subscribe('edge.create',function(url){jQuery.post('/advice/like/'+getAdviceUIDFromURL(url));});FB.Event.subscribe('edge.remove',function(url){jQuery.post('/advice/unlike/'+getAdviceUIDFromURL(url));});};function getAdviceUIDFromURL(url){var matches=url.match(/#(\d+)$/);if(matches&&matches[1]&&matches.length==2){return matches[1];}else{console.log("Error while extracting advice uid from URL: = "+url);}}
-        </script>
         <%- body %>
         </body>
     </html>
