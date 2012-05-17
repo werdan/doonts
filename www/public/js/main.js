@@ -37,8 +37,6 @@ function getAdviceUIDFromURL(url) {
 }
 
 jQuery(document).ready(function(){
-    initFB();
-//    initAutocomplete();
     fillInLoginBox();
     initAnimations();
     addFooterMailto();
@@ -62,40 +60,6 @@ function initAutocomplete() {
             startText: "ask for advice here...",
             asHtmlID : "search-field",
             resultClick: resultClickCb});
-}
-
-function initFB() {
-    window.fbAsyncInit = function() {
-        console.log('Facebook init completed');
-        FB.init({
-            appId      : '159891950744662', // App ID
-            channelUrl : '//doonts.lxc/channel.html', // Channel File
-            status     : true, // check login status
-            cookie     : true, // enable cookies to allow the server to access the session
-            xfbml      : true,  // parse XFBML
-            frictionlessRequests : true
-        });
-
-        // Load the SDK Asynchronously
-        (function(d){
-            var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-            js = d.createElement('script'); js.id = id; js.async = true;
-            js.src = "//connect.facebook.net/en_US/all.js";
-            d.getElementsByTagName('head')[0].appendChild(js);
-        }(document));
-
-        //Listen like/unlike button clicks
-        FB.Event.subscribe('edge.create',
-            function(url) {
-                jQuery.post('/advice/like/' + getAdviceUIDFromURL(url));
-            }
-        );
-        FB.Event.subscribe('edge.remove',
-            function(url) {
-                jQuery.post('/advice/unlike/' + getAdviceUIDFromURL(url));
-            }
-        );
-    };
 }
 
 function fillInLoginBox() {
