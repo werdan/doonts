@@ -1,7 +1,5 @@
 Major:
 
-No empty advice (either text or media);
-
 Add a media advice:
  - click on modal background closes it - should not
  - hit Enter on media - submiting form, should not
@@ -33,6 +31,7 @@ Remove LogEvent - replace it with logger level appenders
 Characters typed better calculation on adding advice on Role page (1 Character(S) left)
 Graceful stop of node cluster: http://www.subbu.org/blog/2012/01/cluster-example-with-node-0-6-x
 
+Don't show error 503 on role/advice length validation, but show validator errors;
 
 
 Features:
@@ -47,5 +46,10 @@ Meta titles/descriptions:
  - static: about/contact/eula
  Contact US page: form + delete direct email
  Twitter/Facebook links on header + footer + 404 page
+
+DESIGN:
+- validation error on Role page:
+ > empty advice
+ > >280 chars advice
 
 

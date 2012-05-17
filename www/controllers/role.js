@@ -26,10 +26,12 @@ module.exports = function(app, securityManager, seoFooterDataAppender) {
                     topAdvices.sort(sortByFacebookLikes);
 
                     role.topAdvices = topAdvices;
+
                     res.render('role/role.ejs',
                         {role: role,
                         rolePage: true,
-                        authors: authors}
+                        authors: authors,
+                        adviceMaxLength: app.set("web.adviceMaxLength")}
                     );
                 });
 			}

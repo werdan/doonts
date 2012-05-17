@@ -3,11 +3,13 @@ var Role = db.model("Role");
 var logger = app.set("logger");
 var solrUpdaterPlugin = require('./plugins/solrUpdaterPlugin.js');
 
+var ADVICE_MAX_LENGTH = app.set("web.adviceMaxLength");
+
 var adviceSchema = new Schema({
 	// ID in Role
     roleId : Schema.ObjectId,
 	uid : {type: Number, unique: true},
-    text : String,
+    text : {type: String, validate: [adviceTextValidator, 'Advice text length']},
     author: {type: Schema.ObjectId, ref: 'User'},
 	nextFacebookInfoUpdateTime: {type: Number, default: Date.now() + app.set("web.adviceInfoTTL")},
 	facebookLikes: {type: Number, default: 0},
@@ -28,6 +30,10 @@ var adviceSchema = new Schema({
 }, {
 	strict : true
 });
+
+function adviceTextValidator(adviceText) {
+    return adviceText.length != 0 && adviceText.length <= ADVICE_MAX_LENGTH;
+}
 
 adviceSchema.plugin(solrUpdaterPlugin);
 

@@ -27,6 +27,33 @@ describe('Tests on advice model', function(){
         waitsFor(done, "Function has been never called",1000);
     });
 
+    it('tests advice text minimal length validation', function () {
+        var latch = false;
+        done = function() {
+            return latch;
+        };
+        Advice.create({text: '', uid: 203}, function(err,advice){
+            expect(err).not.toBeNull();
+            latch = true;
+        });
+        waitsFor(done, "Function has been never called",1000);
+    });
+
+    it('tests advice text max length validation', function () {
+        var latch = false;
+        done = function() {
+            return latch;
+        };
+        Advice.create({text: '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890' +
+                             '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890' +
+                             '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890',
+            uid: 203}, function(err,advice){
+            expect(err).not.toBeNull();
+            latch = true;
+        });
+        waitsFor(done, "Function has been never called",1000);
+    });
+
 	it('tests findReadyForFacebookUpdate function', function () {
 		var latch = false;
 		done = function() {

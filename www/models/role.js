@@ -6,7 +6,7 @@ var solrUpdaterPlugin = require('./plugins/solrUpdaterPlugin.js');
 var roleSchema = new Schema({
 	//TODO: Add unique constraint
     uid : {type: Number, unique: true},
-    name : String,
+    name : {type: String, validate: [roleTextValidator, 'Role text length']},
     author: {type: Schema.ObjectId, ref: 'User'},
 	advices : [{ type: Schema.ObjectId, ref: 'Advice' }],
 	hasAdvices: {type: Boolean, default: false},
@@ -16,6 +16,10 @@ var roleSchema = new Schema({
 }, {
 	strict : true
 });
+
+function roleTextValidator(roleText) {
+    return roleText.length != 0;
+}
 
 roleSchema.plugin(solrUpdaterPlugin);
 

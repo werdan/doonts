@@ -64,12 +64,12 @@
 					</div>
 					<!-- end z_block_add_media_link -->
 
-					<input class="button" type="submit" value="ADD ADVICE">
+					<input class="button submit_form" type="submit" value="ADD ADVICE">
 				</div>
 			</form>
 		</div>
 		<script>
-		    initCharsLeftCounter();
+		    initCharsLeftCounter(<%= adviceMaxLength %>);
 		    window['roleName'] = "<%= role.name %>";
 		</script>
 <!-- end add_new_advice -->
