@@ -162,7 +162,7 @@ a:hover{
     text-transform:capitalize;
     font:13px tahoma, sans-serif;
 }
-.login_fb p a {
+.login_fb p span.username {
     font:13px tahoma, sans-serif;
     color:#1898c3;
 }
