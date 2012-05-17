@@ -2,6 +2,11 @@ server {
   listen 80;
   server_name doonts.lxc;
   server_name doonts.com;
+  server_name www.doonts.com;
+
+  if ($host ~* www\.) {
+    rewrite ^(.*)$ http://doonts.com$1 permanent;
+  }
 
   # Let's put all static files like images, js and css in sub-folder: public
   root /var/www/public;
