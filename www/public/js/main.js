@@ -99,6 +99,9 @@ function initFB() {
             }
         );
     };
+    if(window.fbAsyncInit && !window.fbAsyncInit.hasRun){
+        window.fbAsyncInit.hasRun=true;fbAsyncInit();
+    }
 }
 
 function initAnimations() {
