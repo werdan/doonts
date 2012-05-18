@@ -115,11 +115,11 @@ a:hover{
     position:relative;
 }
 .logo a.slogan{
-    font:16px Helvetica, sans-serif;
+    font:19px Helvetica, sans-serif;
     color:#ccd8e2;
     text-decoration:none;
-    float:right;
-    margin:-7px 20px 0 0;
+    float:left;
+    margin:-7px 20px 0 200px;
 }
 .logo a.slogan span{
     display:block;
