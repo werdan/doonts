@@ -1079,13 +1079,18 @@ a.link_youtube{
     background:url(../images/spr-01.png) no-repeat 0 -1165px;
     margin:0 12px 0 17px;
 }
+
+z_block_add_media_link a.link_amazon{
+    margin:0 12px 0 17px;
+}
+
 a.link_amazon{
     width:24px;
     height:24px;
     display:block;
     float:left;
     background:url(../images/spr-01.png) no-repeat -36px -1165px;
-    margin:0 12px 0 17px;
+    margin: 0 12px 0 0;
 }
 a.link_slideshare{
     width:24px;
