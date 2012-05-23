@@ -1188,6 +1188,7 @@ social_like span {
     margin:4px 16px 10px 0;
     height:50px;
     float:right;
+    width: 180px;
 }
 .author img{
     float:left;

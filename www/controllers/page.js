@@ -11,7 +11,7 @@ module.exports = function(app, seoFooterDataAppender) {
             fs.lstat(absoluteFileName, function(err, stats) {
                 if (!err) {
                     logger.debug("Rendering template " + fileName);
-                    res.render(fileName);
+                    res.render(fileName, {canonicalURL: "/page/" + req.params.page});
                     return
                 }
                 //Will be trapped in error.js
