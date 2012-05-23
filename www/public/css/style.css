@@ -787,7 +787,7 @@ a.close{
 }
 .advices{
     position:relative;
-    z-index:0;
+    z-index:1;
     clear:both;
 }
 
@@ -1106,7 +1106,6 @@ a.link_slideshare{
     margin:7px 0 0 7px;
     background:url(../images/img-spr.png) no-repeat 0 -55px;
     position: relative;
-    z-index: 999;
 }
 
 social_like span {
@@ -1149,7 +1148,6 @@ social_like span {
     margin:8px 7px 5px 13px;
     padding:0 1px;
     position:relative;
-    z-index:0;
     min-height: 60px;
 }
 .clear{

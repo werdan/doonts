@@ -15,9 +15,9 @@
             <input type="hidden" name="roleName" value="<%= searchQuery %>">
             <input type="hidden" name="key" value="<%= secretKey %>">
         </form>
+    <%- partial('search/roleline.ejs', {role: {name: searchQuery, totalFacebookLikes: 0, advices: new Array(), href:"/search?q="+searchQuery }, index: 1, virtualRole: true}) %>
     <% } %>
 
-    <%- partial('search/roleline.ejs', {role: {name: searchQuery, totalFacebookLikes: 0, advices: new Array(), href:"/search?q="+searchQuery }, index: 1, virtualRole: true}) %>
 
     <% for(var i=0; i<=roles.length-1; i++) {%>
         <%- partial('search/roleline.ejs', {role: roles[i], index: i, virtualRole: false}) %>

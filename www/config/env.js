@@ -22,7 +22,7 @@ module.exports = function(app, express){
         app.set("web.facebook.client_secret","6ddf951ee8a086d0c3bd30c520576a31");
 
         app.set("web.adviceInfoTTL",86400*1000*1); //Interval between unconditional update of advice info,
-    	app.set("web.homepage.rolesOnFirstLoad", 10);
+    	app.set("web.homepage.rolesOnFirstLoad", 5);
 
         //Max number of roles in footer seo block (TOP ROLES)
         app.set("web.homepage.seoRolesInFooter", 30);

@@ -30,19 +30,19 @@ module.exports = function(app, seoFooterDataAppender) {
                 return;
             }
             var parsedJson = JSON.parse(responseString);
-            var roleIds = new Array();
+            var solrRoleIds = new Array();
             parsedJson.response.docs.forEach(function(doc){
-                roleIds.push(doc.roleId);
+                solrRoleIds.push(doc.roleId);
             });
 
             Role.where('uid').
-                in(roleIds).
+                in(solrRoleIds).
                 run(function(err,roles){
                     if (err) {
                         next(new Error(err));
                     }
 
-                    res.render('search/results.ejs', {roles: sortRolesAsInSolr(roleIds,roles),
+                    res.render('search/results.ejs', {roles: sortRolesAsInSolr(solrRoleIds,roles),
                                                       needsVirtualRole: ! hasRoleWithExactName(roles, req.query.q),
                                                       searchQuery : req.query.q,
                                                       secretKey: Role.getSecretKeyForName(req.query.q)});
@@ -51,13 +51,32 @@ module.exports = function(app, seoFooterDataAppender) {
     });
 };
 
+/**
+ * TODO
+ * There is perf optimization potentially here. Currently it is passing twice two arrays.
+ * It can be done in one pass
+ */
 function sortRolesAsInSolr(solrRolesId,roles) {
     var sortedRoles = new Array();
-    roles.forEach(function(role){
-        var index = solrRolesId.indexOf(parseInt(role.uid));
-        sortedRoles[index] = role;
+
+    solrRolesId.forEach(function(roleId){
+        var role = getRoleByIdFromArray(roles, roleId);
+        if (role != -1) {
+            sortedRoles.push(role);
+        }
     });
     return sortedRoles;
+}
+
+function getRoleByIdFromArray(roles,roleId){
+    var result = -1;
+    roles.forEach(function(role){
+        if (parseInt(role.uid) === roleId) {
+            result = role;
+            return;
+        }
+    });
+    return result;
 }
 
 
