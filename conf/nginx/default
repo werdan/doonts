@@ -22,14 +22,28 @@ server {
   }
 
   location @node {
+
+    error_page 418 = @allowed; 
+    if ($http_user_agent ~ "^facebook") { 
+                return 418; 
+    }
+
     auth_basic            "Restricted";
     auth_basic_user_file  htpasswd;
+
 
     proxy_pass         http://127.0.0.1:3000;
     proxy_set_header   X-Real-IP            $remote_addr;
     proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
     proxy_set_header   Host                   $http_host;
-    proxy_set_header   X-NginX-Proxy    true;
+    proxy_redirect off;
+  }
+
+  location @allowed {
+    proxy_pass         http://127.0.0.1:3000;
+    proxy_set_header   X-Real-IP            $remote_addr;
+    proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+    proxy_set_header   Host                   $http_host;
     proxy_redirect off;
   }
 
