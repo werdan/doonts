@@ -1,3 +1,5 @@
+var logger = app.set("logger");
+
 module.exports = function (client, advice, res, next) {
 
     if (advice.amazon.asin === undefined) {
@@ -21,10 +23,11 @@ module.exports = function (client, advice, res, next) {
 
                 if ('Request' in resultString['Items'] && 'Errors' in resultString['Items']['Request']) {
                     var err = resultString['Items']['Request']['Errors']['Error']['Message'];
-                    console.log(err);
                     next(new Error(err));
                     return;
                 }
+
+                logger.debug("Successfully received result from Amazon for ASIN=" + advice.amazon.asin);
 
                 var result = extractAmazonInfo(advice, resultString);
 

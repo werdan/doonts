@@ -308,6 +308,7 @@ function addMediaLinkPanel(type) {
     jQuery(".z_block_add_media_link input.userinput").val(jQuery("#mediaLink").val());
     jQuery(".z_block_add_media_link").show();
     jQuery(".z_block_add_media_link .icon").removeClass().addClass("link_" + type).addClass("icon");
+    jQuery(".z_block_add_media_link p").html(type + " link");
     jQuery(".z_block_add_media_link input.userinput").focus();
 
 
@@ -336,6 +337,8 @@ function initAddAdviceButton() {
     jQuery("div.add_advice").click(function(event){
         event.preventDefault();
         jQuery(".form_add_new_advice textarea").focus();
+        closeAskPanel();
+        turnOffModalBackground();
     });
 
     jQuery("div.form_add_new_advice input.submit_form").click(function(event){

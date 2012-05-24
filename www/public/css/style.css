@@ -1090,7 +1090,7 @@ a.link_amazon{
     display:block;
     float:left;
     background:url(../images/spr-01.png) no-repeat -36px -1165px;
-    margin: 0 12px 0 0;
+    margin: 0 12px 0 17px;
 }
 a.link_slideshare{
     width:24px;
@@ -1487,6 +1487,7 @@ input.button_add_media{
     color:#3d6c7e;
     font:12px/25px helvetca, sans-serif;
     float:left;
+    text-transform:uppercase;
 }
 .z_block_add_media_link input{
     width:575px;
