@@ -60,10 +60,10 @@ describe('Tests on advice model', function(){
 			return latch;
 		};
 		Advice.findReadyForFacebookUpdate(function(err, advices) {
-		    expect(advices.length).toEqual(2);
+            expect(advices.length).toEqual(2);
 		    latch = true;
 		});
-		waitsFor(done, "",1000);
+		waitsFor(done, "",10000);
 	});
 	
 	it('tests get role of advice', function () {

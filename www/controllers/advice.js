@@ -54,17 +54,23 @@ module.exports = function (app, securityManager, amazonClient, youtubeClient) {
             req.body.hasOwnProperty('mediaLink') &&
             req.body.mediaLink.length > 0 &&
             req.body.hasOwnProperty('mediaType')) {
+
+            var mediaLink = req.body.mediaLink;
             switch (req.body.mediaType) {
                 case "amazon":
-                    var matches = req.body.mediaLink.match(/\/dp\/([^\/]*)\//);
+	                logger.debug("Trying to match amazon link in url: " + mediaLink);
+                    var matches = mediaLink.match(/\/dp\/([^\/]*)(\/|$)/);
                     if (matches != null) {
                         newAdviceDescription.amazon = matches[1];
+			            logger.debug('Amazon ASIN found: ' + matches[1]);
                     }
                     break;
                 case "youtube":
-                    var parsedUrl = url.parse(req.body.mediaLink, true);
+		            logger.debug("Trying to match youtube link in url: " + mediaLink);
+                    var parsedUrl = url.parse(mediaLink, true);
                     if (parsedUrl.query.hasOwnProperty('v')) {
                         newAdviceDescription.youtube = parsedUrl.query.v;
+			            logger.debug('Youtube videoID found: ' + parsedUrl.query.v);
                     }
                     break;
                 default:

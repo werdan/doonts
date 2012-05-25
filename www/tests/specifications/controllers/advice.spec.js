@@ -465,6 +465,25 @@ describe('advice controller', function(){
         });
     });
 
+    it('checks parsing of amazon link without trailing slash', function () {
+        var routes = app.match.post('/advice/create/144');
+        var callback = routes[0].callbacks[0];
+
+        var req = {params: {'roleUID': 144}, session: {}, body: {mediaType: 'amazon',
+            mediaLink: 'http://www.amazon.com/Information-Rules-Strategic-Network-Economy/dp/057TEST7282',
+            text: "New advice text"}};
+
+        var next = jasmine.createSpy('next');
+
+        callback(req, null, next);
+
+        waitsFor(function(){return next.wasCalled;},'next is never called',10000);
+        runs(function () {
+            expect(req.session.newAdvice.amazon).toEqual('057TEST7282');
+        });
+    });
+
+
     it('checks that new advice is set in session created without advice text', function () {
         var routes = app.match.post('/advice/create/144');
         var callback = routes[0].callbacks[0];
