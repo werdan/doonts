@@ -2,18 +2,19 @@
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
         <head>
             <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-            <meta property="og:site_name" content="Doonts.com"/>
-            <meta property="og:image" content="http://doonts.com/images/logofb.png"/>
-            <meta property="og:url" content="<%= canonicalURL %>"/>
-            <meta property="og:title" content="Advice for role"/>
-            <meta property="og:type" content="article"/>
-            <meta property="fb:app_id" content="159891950744662"/>
             <title><%= title %></title>
+            <meta property="og:site_name" content="Doonts.com"/>
+            <meta property="fb:app_id" content="159891950744662"/>
+
+            <% for(var key in og) {%>
+                <meta property="og:<%- key %>" content="<%- og[key] %>"/>
+            <% } %>
+
             <meta name="description" content="<%= metadescription %>">
             <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-            <script type="text/javascript" src="//connect.facebook.net/en_US/all.js"></script>
             <script type="text/javascript" src="/js/main.js"></script>
             <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+            <script type="text/javascript" src="//connect.facebook.net/en_US/all.js"></script>
             <link rel="stylesheet" href="/css/style.css" type="text/css"/>
             <link rel="stylesheet" href="/css/autoSuggest.css" type="text/css"/>
             <link rel="icon" href="/favicon.ico" type="image/x-icon" />

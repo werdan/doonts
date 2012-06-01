@@ -3,7 +3,7 @@ var User = db.model("User");
 var logger = app.set("logger");
 
 module.exports = function(app, securityManager, seoFooterDataAppender) {
-	app.get('/role/view/:roleUID/:urlTitle/:adviceId?', seoFooterDataAppender, function(req, res, next) {
+	app.get('/role/view/:roleUID/:urlTitle', seoFooterDataAppender, function(req, res, next) {
 		Role.findByUID(req.params.roleUID)
 		    .populate('advices')
 		    .run(function(err, role) {
@@ -16,22 +16,31 @@ module.exports = function(app, securityManager, seoFooterDataAppender) {
 				return;
 			} else {
                fillInAuthors(role, next, function(authors){
+                    var focusedAdvice = null;
+
                     role.advices.sort(sortByTimestampCreated);
 
                     //TODO: There should be a better way to copy object by value, but I didn't find it
                     var topAdvices = new Array();
                     role.advices.forEach(function(advice) {
+                        if (req.hasOwnProperty('query') &&
+                            req.query.hasOwnProperty('advice') &&
+                            advice.uid == req.query.advice) {
+
+                            focusedAdvice = advice;
+                        }
                         topAdvices.push(advice);
                     });
                     topAdvices.sort(sortByFacebookLikes);
 
                     role.topAdvices = topAdvices;
-
                     res.render('role/role.ejs',
                         {role: role,
                         rolePage: true,
                         authors: authors,
-                        adviceMaxLength: app.set("web.adviceMaxLength")}
+                        og: getOgMeta(role,focusedAdvice),
+                        adviceMaxLength: app.set("web.adviceMaxLength")
+                        }
                     );
                 });
 			}
@@ -173,5 +182,36 @@ module.exports = function(app, securityManager, seoFooterDataAppender) {
 
     function sortByTimestampCreated(adviceA, adviceB) {
         return adviceB.timestampCreated - adviceA.timestampCreated;
+    }
+
+    function getOgMeta(role,advice) {
+        var og = new Array();
+        og['title'] = role.name;
+
+        //Setting default for overriding
+        og['url'] = role.href;
+        og['type'] = 'article';
+        og['image'] = app.set('web.unsecureUrl') + app.set('web.facebook.logo');
+
+        if (advice !== null) {
+            og['description'] = advice.text;
+            og['url'] = role.href + "?advice=" + advice.uid;
+            if (typeof advice.youtube.url === 'string' &&
+                advice.youtube.url.length > 0) {
+                og['type'] = 'video';
+                og['video'] = advice.youtube.url;
+                og['image'] = advice.youtube.imgSrc;
+                og['image:width'] = '120';
+                og['image:height'] = '90';
+            }
+            if (typeof advice.amazon.url === 'string' &&
+                advice.amazon.url.length > 0) {
+                og['type'] = 'book';
+                og['image'] = advice.amazon.imgSrc;
+                og['image:width'] = '69';
+                og['image:height'] = '110';
+            }
+        }
+        return og;
     }
 };

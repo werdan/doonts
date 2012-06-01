@@ -16,7 +16,9 @@ module.exports = function(req, res, next) {
             next(new Error(err));
             return;
         }
-        app.set('view options', {seoRoles: seoRoles});
+        var viewOptions = app.set('view options');
+        viewOptions.seoRoles = seoRoles;
+        app.set('view options', viewOptions);
         logger.debug("SEO roles filled");
         next();
     });

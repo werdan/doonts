@@ -43,6 +43,7 @@ jQuery(document).ready(function(){
     initAddAdviceButton();
     initAdviceTabs();
     initMediaLinksPanel();
+    focusOnAdvice();
 });
 
 function fillInLoginBox() {
@@ -346,4 +347,9 @@ function initAddAdviceButton() {
             event.preventDefault();
         }
     });
+}
+
+function focusOnAdvice() {
+    var adviceId = window.location.search.substring(8);
+    jQuery("div#" + adviceId).attr("tabindex",-1).focus();
 }

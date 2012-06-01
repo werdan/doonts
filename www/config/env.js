@@ -7,6 +7,7 @@ var logger = log4js.getLogger();
 module.exports = function(app, express){
 
     app.set('views', __dirname + '/../views');
+    app.set('view options', {og: new Array()});
 
     app.configure(function() {
         //CRON JOBS
@@ -20,6 +21,7 @@ module.exports = function(app, express){
         app.set("web.unsecureUrl","http://doonts.com");
         app.set("web.facebook.client_id","159891950744662");
         app.set("web.facebook.client_secret","6ddf951ee8a086d0c3bd30c520576a31");
+        app.set("web.facebook.logo","/images/logofb_200.jpg");
 
         app.set("web.adviceInfoTTL",86400*1000*1); //Interval between unconditional update of advice info,
     	app.set("web.homepage.rolesOnFirstLoad", 5);

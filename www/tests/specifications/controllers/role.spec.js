@@ -31,7 +31,7 @@ describe('role controller', function(){
 		});
 	});
 	
-	it('checks role object in view when role exists', function () {
+	it('checks role object in view when role exists (no advice in url)', function () {
 		
 		var routes = app.match.get('/role/view/144/test');
 		var callback = routes[0].callbacks[1];
@@ -56,10 +56,130 @@ describe('role controller', function(){
 			expect(next).not.toHaveBeenCalled();
 			expect(res.render).toHaveBeenCalled();
 			expect(res.render.mostRecentCall.args[1].role.uid).toEqual(144);
-			expect(res.render.mostRecentCall.args[1].role.advices[0].text).toEqual("Best advice ever");
+
+            var role = res.render.mostRecentCall.args[1].role;
+
+            expect(res.render.mostRecentCall.args[1].role.advices[0].text).toEqual("Best advice ever");
 			expect(res.render.mostRecentCall.args[1].role.advices[0].nextFacebookInfoUpdateTime).toEqual(123123123);
+            expect(res.render.mostRecentCall.args[1].og['type']).toEqual('article');
+            expect(res.render.mostRecentCall.args[1].og['url']).toEqual(role.href);
+            expect(res.render.mostRecentCall.args[1].og['title']).toEqual(role.name);
+            expect(res.render.mostRecentCall.args[1].og['image']).toContain('logofb');
 		});
 	});
+
+    it('checks role object in view when role exists (advice with no media/plain text)', function () {
+
+        var routes = app.match.get('/role/view/144/test?advice=12785');
+        var callback = routes[0].callbacks[1];
+
+        var req = {params: {roleUID: 144}};
+
+        var res = function() {};
+        res.render = function() {};
+        spyOn(res, 'render');
+
+        var next = jasmine.createSpy('next').andCallFake(function(err){
+            console.log(err);
+        });
+
+        next.isCalled = function() {
+            return next.wasCalled;
+        };
+
+        callback(req, res, next);
+        waitsFor(function(){return res.render.wasCalled;} ,'res.render() is never called',1000);
+        runs(function () {
+            expect(next).not.toHaveBeenCalled();
+            expect(res.render).toHaveBeenCalled();
+            expect(res.render.mostRecentCall.args[1].role.uid).toEqual(144);
+
+            var role = res.render.mostRecentCall.args[1].role;
+
+            expect(res.render.mostRecentCall.args[1].role.advices[0].text).toEqual("Best advice ever");
+            expect(res.render.mostRecentCall.args[1].role.advices[0].nextFacebookInfoUpdateTime).toEqual(123123123);
+            expect(res.render.mostRecentCall.args[1].og['type']).toEqual('article');
+            expect(res.render.mostRecentCall.args[1].og['url']).toEqual(role.href);
+            expect(res.render.mostRecentCall.args[1].og['title']).toEqual(role.name);
+            expect(res.render.mostRecentCall.args[1].og['image']).toContain('logofb');
+        });
+    });
+
+    it('checks role object in view when role exists (with Video advice)', function () {
+
+        var routes = app.match.get('/role/view/145/test?advice=12786');
+        var callback = routes[0].callbacks[1];
+
+        var req = {params: {roleUID: 145}, query: {advice: 12786}};
+
+        var res = function() {};
+        res.render = function() {};
+        spyOn(res, 'render');
+
+        var next = jasmine.createSpy('next').andCallFake(function(err){
+            console.log(err);
+        });
+
+        next.isCalled = function() {
+            return next.wasCalled;
+        };
+
+        callback(req, res, next);
+        waitsFor(function(){return res.render.wasCalled;} ,'res.render() is never called',1000);
+        runs(function () {
+            expect(next).not.toHaveBeenCalled();
+            expect(res.render).toHaveBeenCalled();
+            expect(res.render.mostRecentCall.args[1].role.uid).toEqual(145);
+
+            var role = res.render.mostRecentCall.args[1].role;
+
+            expect(res.render.mostRecentCall.args[1].role.advices[0].nextFacebookInfoUpdateTime).toEqual(123123123);
+            expect(res.render.mostRecentCall.args[1].og['url']).toEqual(role.href + "?advice=12786");
+            expect(res.render.mostRecentCall.args[1].og['title']).toEqual(role.name);
+            expect(res.render.mostRecentCall.args[1].og['video']).toEqual('http://titleindbyoutube.com');
+            expect(res.render.mostRecentCall.args[1].og['description']).toEqual(role.advices[0].text);
+            expect(res.render.mostRecentCall.args[1].og['image:width']).toEqual('120');
+            expect(res.render.mostRecentCall.args[1].og['image']).toEqual('http://somesomesome-youtube.jpg');
+        });
+    });
+
+    it('checks role object in view when role exists (with Amazon media in advice)', function () {
+
+        var routes = app.match.get('/role/view/145/test?advice=12787');
+        var callback = routes[0].callbacks[1];
+
+        var req = {params: {roleUID: 146}, query: {advice: 12787}};
+
+        var res = function() {};
+        res.render = function() {};
+        spyOn(res, 'render');
+
+        var next = jasmine.createSpy('next').andCallFake(function(err){
+            console.log(err);
+        });
+
+        next.isCalled = function() {
+            return next.wasCalled;
+        };
+
+        callback(req, res, next);
+        waitsFor(function(){return res.render.wasCalled;} ,'res.render() is never called',1000);
+        runs(function () {
+            expect(next).not.toHaveBeenCalled();
+            expect(res.render).toHaveBeenCalled();
+            expect(res.render.mostRecentCall.args[1].role.uid).toEqual(146);
+
+            var role = res.render.mostRecentCall.args[1].role;
+
+            expect(res.render.mostRecentCall.args[1].role.advices[0].nextFacebookInfoUpdateTime).toEqual(123123123);
+            expect(res.render.mostRecentCall.args[1].og['url']).toEqual(role.href + "?advice=12787");
+            expect(res.render.mostRecentCall.args[1].og['title']).toEqual(role.name);
+            expect(res.render.mostRecentCall.args[1].og['type']).toEqual('book');
+            expect(res.render.mostRecentCall.args[1].og['description']).toEqual(role.advices[0].text);
+            expect(res.render.mostRecentCall.args[1].og['image']).toEqual('http://somesomesome.jpg');
+        });
+    });
+
 
     it('test role creation when no role name is given', function () {
         var routes = app.match.post('/role/create');
