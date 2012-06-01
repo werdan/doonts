@@ -32,7 +32,7 @@
 
 <!-- social_like -->
 <div class="social_like">
-    <fb:like href="<%= role.href + "#" + advice.uid %>" send="false" layout="button_count" show_faces="false"  class=" fb_edge_widget_with_comment fb_iframe_widget"></fb:like>
+    <fb:like href="<%= role.href + "?advice=" + advice.uid %>" send="false" layout="button_count" show_faces="false"  class=" fb_edge_widget_with_comment fb_iframe_widget"></fb:like>
     <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%- role.href %>" data-text="I like this advice for <%- role.name %>">Tweet</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </div>
