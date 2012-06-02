@@ -16,6 +16,7 @@ var adviceSchema = new Schema({
     timestampCreated: {type: Number, default: Date.now},
 	youtube: {
         videoId: String,
+        contentUrl: String,
         url: String,
         title: String,
         imgSrc: String

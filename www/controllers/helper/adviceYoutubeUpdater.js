@@ -30,6 +30,7 @@ module.exports = function (client, advice, res, next) {
 function saveAdviceYoutubeInfo(result, advice) {
     advice.youtube.title = result['data']['title'];
     advice.youtube.url = result['data']['player']['default'];
+    advice.youtube.contentUrl = result['data']['content']['5'];
     advice.youtube.imgSrc = result['data']['thumbnail']['sqDefault'];
     advice.save();
     return result;

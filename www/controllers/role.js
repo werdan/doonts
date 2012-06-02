@@ -186,7 +186,7 @@ module.exports = function(app, securityManager, seoFooterDataAppender) {
 
     function getOgMeta(role,advice) {
         var og = new Array();
-        og['title'] = role.name;
+        og['title'] = "Advice for @" + role.name;
 
         //Setting default for overriding
         og['url'] = role.href;
@@ -199,7 +199,8 @@ module.exports = function(app, securityManager, seoFooterDataAppender) {
             if (typeof advice.youtube.url === 'string' &&
                 advice.youtube.url.length > 0) {
                 og['type'] = 'video';
-                og['video'] = advice.youtube.url;
+                og['video'] = advice.youtube.contentUrl;
+                og['video:type'] = 'application/x-shockwave-flash';
                 og['image'] = advice.youtube.imgSrc;
                 og['image:width'] = '120';
                 og['image:height'] = '90';
@@ -208,7 +209,7 @@ module.exports = function(app, securityManager, seoFooterDataAppender) {
                 advice.amazon.url.length > 0) {
                 og['type'] = 'book';
                 og['image'] = advice.amazon.imgSrc;
-                og['image:width'] = '69';
+                og['image:width'] = '64';
                 og['image:height'] = '110';
             }
         }

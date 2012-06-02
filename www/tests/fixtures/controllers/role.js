@@ -24,6 +24,7 @@ exports.Advice = {
             videoId: "yyjHgakg-d",
             title: "Youtube best title",
             url: "http://titleindbyoutube.com",
+            contentUrl: "http://titleindbyoutube.com",
             imgSrc: "http://somesomesome-youtube.jpg"
         }
     },
