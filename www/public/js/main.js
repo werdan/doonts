@@ -291,7 +291,6 @@ function initCharsLeftCounter(ADVICE_MAX_LENGTH) {
 function sendRequestViaMultiFriendSelector() {
     FB.ui({method: 'send',
         link: window.location.href,
-        redirect_uri: window.location.href
     }, function(request){
         closeAskPanel();
         turnOffModalBackground();
