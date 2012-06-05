@@ -86,7 +86,7 @@ function hasRoleWithExactName(roles, roleName) {
     //TODO: no need to pass all the role, when first match is found
     //BUT break or return don't solve the problem
     roles.forEach(function(role){
-        if (roleName == role.name) {
+        if (roleName.toLowerCase() == role.name.toLowerCase()) {
             hasFlag = true;
         }
     });
