@@ -44,6 +44,10 @@ module.exports = function (app, securityManager, amazonClient, youtubeClient) {
 
     function findNextUIDAndCreateAdvice(req, res, next){
         Advice.find().desc('uid').limit(1).run(function(err,docs){
+            if (!docs[0]) {
+                logger.debug("Empty advice collection - starting from uid=100");
+                docs[0] = {uid:100};
+            }
             logger.debug("Found a highest uid for advice = " + docs[0].uid);
             createAdviceAndRedirect(req, res, next, docs[0].uid+1);
         });
