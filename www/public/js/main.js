@@ -25,15 +25,6 @@ var modalBackgroundOpacity       = 0.6 ;
 var modalBackgroundSwitchTime    = 0.3 ; // sec
 
 
-function getAdviceUIDFromURL(url) {
-    var matches = url.match(/#(\d+)$/);
-    if (matches && matches[1] && matches.length == 2) {
-        return matches[1];
-    } else {
-        console.log("Error while extracting advice uid from URL: = " + url);
-    }
-}
-
 jQuery(document).ready(function(){
     initFB();
     fillInLoginBox();
@@ -175,11 +166,11 @@ function initAnimations() {
 }
 
 function getAdviceUIDFromURL(url) {
-    var matches = url.match(/#(\d+)$/);
+    var matches = url.match(/advice=(\d+)/);
     if (matches && matches[1] && matches.length == 2) {
         return matches[1];
     } else {
-        console.log("Error while extracting advice uid from URL: = " + url);
+        console.error("Error while extracting advice uid from URL: = " + url);
     }
 }
 
