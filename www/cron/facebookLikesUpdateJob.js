@@ -33,7 +33,7 @@ function update(advice,fbapi) {
 }
 
 function getTotalLikeCountFromFacebook(advice, role, fbapi, callback) {
-    var adviceUrl = role.href + "#" + advice.uid;
+    var adviceUrl = role.href + "?advice=" + advice.uid;
     var fql = "SELECT total_count FROM link_stat WHERE url=\"" + adviceUrl + "\"";
     var params = [];
     params['q'] = fql;
