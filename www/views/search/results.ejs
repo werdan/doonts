@@ -2,7 +2,7 @@
 <% title = "Search results for: " + searchQuery + " - Doonts"; %>
 <% metadescription = "" ;
 for(var i=0; i<=roles.length-1; i++) {
-   metadescription += roles[i].name + ", ";
+   metadescription += roles[i].capFirstName + ", ";
 }
 %>
 <% canonicalURL = "/search?q=" + searchQuery %>
@@ -20,7 +20,7 @@ for(var i=0; i<=roles.length-1; i++) {
             <input type="hidden" name="roleName" value="<%= searchQuery %>">
             <input type="hidden" name="key" value="<%= secretKey %>">
         </form>
-    <%- partial('search/roleline.ejs', {role: {name: searchQuery, totalFacebookLikes: 0, advices: new Array(), href:"/search?q="+searchQuery }, index: 1, virtualRole: true}) %>
+    <%- partial('search/roleline.ejs', {role: {capFirstName: searchQuery.charAt(0).toUpperCase() + searchQuery.slice(1), totalFacebookLikes: 0, advices: new Array(), href:"/search?q="+searchQuery }, index: 1, virtualRole: true}) %>
     <% } %>
 
 

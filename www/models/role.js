@@ -28,6 +28,11 @@ roleSchema.virtual('href').get(function() {
 	return app.set("web.unsecureUrl") + "/role/view/" + this.uid + "/" + urlTitle;
 });
 
+roleSchema.virtual('capFirstName').get(function() {
+    return this.name.charAt(0).toUpperCase() + this.name.slice(1);
+});
+
+
 /**
  * This is necessary to establish common interface for solr client plugin
  */
