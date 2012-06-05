@@ -104,6 +104,9 @@ function initFB() {
     if(window.fbAsyncInit && !window.fbAsyncInit.hasRun){
         window.fbAsyncInit.hasRun=true;fbAsyncInit();
     }
+
+    closeAskPanel();
+    turnOffModalBackground();
 }
 
 function initAnimations() {
@@ -286,10 +289,12 @@ function initCharsLeftCounter(ADVICE_MAX_LENGTH) {
 }
 
 function sendRequestViaMultiFriendSelector() {
-    FB.ui({method: 'apprequests',
-        message: 'Could you, please, give an advice how to be ' + window['roleName'],
-        title: 'Ask your friends for an advice'
+    FB.ui({method: 'send',
+        link: window.location.href,
+        redirect_uri: window.location.href
     }, function(request){
+        closeAskPanel();
+        turnOffModalBackground();
     });
 }
 
