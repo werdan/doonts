@@ -118,6 +118,9 @@ module.exports = function(app, securityManager, seoFooterDataAppender) {
 
     function findNextUIDAndCreateRole(req, res, next){
         Role.find().desc('uid').limit(1).run(function(err,docs){
+            if (typeof docs[0] == 'undefined' || !docs[0].hasOwnProperty('uid')) {
+                docs[0] = {uid:1};
+            }
             logger.debug("Found a biggest uid for role = " + docs[0].uid);
             createRoleAndRedirect(req, res, next, docs[0].uid+1);
         });
