@@ -37,6 +37,7 @@ function getAdviceUIDFromURL(url) {
 jQuery(document).ready(function(){
     initFB();
     fillInLoginBox();
+    initPlaceholder();
     initAnimations();
     addFooterMailto();
     initVirtualRoleOnSearchResultsPage();
@@ -352,4 +353,8 @@ function initAddAdviceButton() {
 function focusOnAdvice() {
     var adviceId = window.location.search.substring(8);
     jQuery("div#" + adviceId).attr("tabindex",-1).focus();
+}
+
+function initPlaceholder() {
+    jQuery('input[placeholder], textarea[placeholder]').placeholder();
 }

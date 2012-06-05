@@ -249,6 +249,12 @@ input.search_input{
     color:#c4c4c4 !important;
     font:16px/49px tahoma, sans-serif;
 }
+
+input.placeholder {
+    color:#c4c4c4 !important;
+    font:16px/49px tahoma, sans-serif;
+}
+
 input.search_button{
     width:97px;
     height:67px;
