@@ -11,7 +11,7 @@
     <!-- column_advices_inside -->
     <div class="column_advices_inside">
         <div class="column_div">
-            <a href="<%= role.href %>" class="title_advices">@<%= role.name %></a>
+            <a href="<%= role.href %>" class="title_advices">@<%= role.capFirstName %></a>
             <a href="<%= role.href %>" class="comments"><%= role.advices.length %></a>
         </div>
         <%- partial('role/advice.ejs', {advice: role.topAdvice, role: role, author: authors[role.topAdvice.author]}) %>
