@@ -1,6 +1,10 @@
 <%- partial('main_header.ejs') %>
-<% title = "Search results for: " + searchQuery; %>
-<% metadescription = title; %>
+<% title = "Search results for: " + searchQuery + " - Doonts"; %>
+<% metadescription = "" ;
+for(var i=0; i<=roles.length-1; i++) {
+   metadescription += roles[i].name + ", ";
+}
+%>
 <% canonicalURL = "/search?q=" + searchQuery %>
 
 <!-- advices -->

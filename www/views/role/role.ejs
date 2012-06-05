@@ -1,6 +1,12 @@
 <%- partial('main_header.ejs') %>
-<% title = role.name %>
-<% metadescription = role.name %>
+<% title = "Tips and advices for " + role.name + " - Doonts"%>
+<%
+   metadescription = "";
+   if (role.topAdvices.length >=1 ) {
+      metadescription = role.topAdvices[0].text;
+   }
+
+%>
 <% canonicalURL = role.href %>
 
 <!-- top_title_advice -->
