@@ -27,12 +27,12 @@ describe('Tests on cronjobs', function(){
 	            return latch1 && latch2 && latch3;
 	        };
 	        Advice.findByUID(130, function(err,advice){
-	            expect(advice.facebookLikes).toEqual(17804);
+	            expect(parseInt(advice.facebookLikes)).toEqual(17804);
 	            expect(parseInt(advice.nextFacebookInfoUpdateTime)).toBeGreaterThan(Date.now());
 	            latch1 = true;
 	        });
             Advice.findByUID(159, function(err,advice){
-                expect(advice.facebookLikes).toEqual(0);
+                expect(parseInt(advice.facebookLikes)).toEqual(0);
                 expect(parseInt(advice.nextFacebookInfoUpdateTime)).toBeGreaterThan(Date.now());
                 latch2 = true;
             });

@@ -46,9 +46,7 @@ module.exports = function (schema, solrClientFactory) {
 
 
     schema.pre('remove', function (next) {
-        logger.info("Removing role from Solr index");
         this.getRole(function (role) {
-            logger.info("Removing role from Solr index 2");
             removeRoleFromSolr(role);
         });
         next();
