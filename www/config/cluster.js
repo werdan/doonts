@@ -4,7 +4,7 @@ module.exports = function(app) {
     var cluster = require('cluster');
     var numCPUs = require('os').cpus().length;
     var workerList = new Array();
-    var sigint = false;
+    var sigkill = false;
 
     if (cluster.isMaster) {
         for (var i = 0; i < numCPUs; i++) {
@@ -32,12 +32,12 @@ module.exports = function(app) {
         });
 
         process.on('SIGINT',function(){
-            sigint = true;
+            sigkill = true;
             process.exit();
         });
 
         cluster.on('death', function(worker) {
-            if (sigint) {
+            if (sigkill) {
                 logger.warn("SIGKILL received - not respawning workers");
                 return;
             }
