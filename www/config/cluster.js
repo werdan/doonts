@@ -33,12 +33,6 @@ module.exports = function(app) {
 
         process.on('SIGINT',function(){
             sigint = true;
-            logger.warn("Received SIGINT from system");
-            var runningWorkers = workerList;
-            runningWorkers.forEach(function(worker){
-                logger.warn("Sending STOP message to worker PID=" + worker.pid);
-                worker.send({cmd: "stop"});
-            });
             process.exit();
         });
 
