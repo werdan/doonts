@@ -290,15 +290,15 @@ function sendRequestViaMultiFriendSelector() {
 
 function initMediaLinksPanel() {
     jQuery("a.link_youtube").click(function(event){
-        addMediaLinkPanel('youtube');
+        addMediaLinkPanel(event, 'youtube');
     });
 
     jQuery("a.link_amazon").click(function(event){
-        addMediaLinkPanel('amazon');
+        addMediaLinkPanel(event, 'amazon');
     });
 }
 
-function addMediaLinkPanel(type) {
+function addMediaLinkPanel(event, type) {
     event.preventDefault();
     turnOnModalBackground();
     jQuery("#mediaType").val(type);
