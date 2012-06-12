@@ -1,7 +1,8 @@
 var fixtures = require('mongoose-fixtures');
 
 describe('Home controller', function(){
-	
+
+
     beforeEach(function () {
 
         var latch = false;
@@ -12,23 +13,23 @@ describe('Home controller', function(){
         fixtures.load(__dirname + '/../../fixtures/controllers/home.js', function() {
             latch = true;
         });
-        
+
         waitsFor(done,"Before each init is timeouted",1000);
     });
-    
+
     it('checks home page load', function () {
         var routes = app.match.get('/');
         var callback = routes[0].callbacks[1];
-        
+
         var req = {};
-        
+
         var res = function() {};
         res.render = function() {};
         spyOn(res, 'render');
         waits(500);
         runs(function(){
             callback(req, res, null);
-            
+
             waitsFor(function(){return res.render.wasCalled;},'res.render() is never called',1000);
             runs(function () {
                 var rolesRendered = res.render.mostRecentCall.args[1].roles;
@@ -41,10 +42,32 @@ describe('Home controller', function(){
         });
     });
 
+    it('checks all-roles page load', function () {
+        var routes = app.match.get('/all-roles');
+        var callback = routes[0].callbacks[1];
+
+        var req = {};
+
+        var res = function() {};
+        res.render = function() {};
+        var next = jasmine.createSpy('next');
+
+        spyOn(res, 'render');
+        waits(500);
+        runs(function(){
+            callback(req, res, next);
+
+            waitsFor(function(){return res.render.wasCalled;},'res.render() is never called',1000);
+            runs(function () {
+                var rolesRendered = res.render.mostRecentCall.args[1].roles;
+                expect(rolesRendered.length).toEqual(9);
+            });
+        });
+    });
     it('tests seo footer middleware: seoFooterDataAppender', function () {
         var routes = app.match.get('/');
-        var callback = routes[0].callbacks[0];
 
+        var callback = routes[0].callbacks[0];
         var next = jasmine.createSpy('next');
 
         runs(function(){
@@ -57,4 +80,6 @@ describe('Home controller', function(){
             });
         });
     });
+
+
 });

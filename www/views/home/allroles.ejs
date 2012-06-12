@@ -1,0 +1,21 @@
+<%- partial('main_header.ejs') %>
+<% title = "Doonts.com : your social advisor - all roles"; %>
+<% metadescription = "Find useful tips and advices for your social roles"; %>
+<% canonicalURL = "/all-roles" %>
+
+
+		<!-- advices -->
+		<div class="advices">
+
+			<div class="title_advices">
+				<p class="title">All roles on Doonts:</p>
+			</div>
+
+        <% for(var i=0; i<=roles.length-1; i++) {%>
+            <%- partial('home/roleline.ejs', {role: roles[i], index: i}) %>
+        <% } %>
+
+		</div>
+		<!-- end advices -->
+
+<%- partial('main_footer.ejs') %>

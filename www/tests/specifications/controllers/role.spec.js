@@ -63,7 +63,7 @@ describe('role controller', function(){
 			expect(res.render.mostRecentCall.args[1].role.advices[0].nextFacebookInfoUpdateTime).toEqual(123123123);
             expect(res.render.mostRecentCall.args[1].og['type']).toEqual('article');
             expect(res.render.mostRecentCall.args[1].og['url']).toEqual(role.href);
-            expect(res.render.mostRecentCall.args[1].og['title']).toEqual(role.name);
+            expect(res.render.mostRecentCall.args[1].og['title']).toEqual("Advice for @" + role.name);
             expect(res.render.mostRecentCall.args[1].og['image']).toContain('logofb');
 		});
 	});
@@ -100,7 +100,7 @@ describe('role controller', function(){
             expect(res.render.mostRecentCall.args[1].role.advices[0].nextFacebookInfoUpdateTime).toEqual(123123123);
             expect(res.render.mostRecentCall.args[1].og['type']).toEqual('article');
             expect(res.render.mostRecentCall.args[1].og['url']).toEqual(role.href);
-            expect(res.render.mostRecentCall.args[1].og['title']).toEqual(role.name);
+            expect(res.render.mostRecentCall.args[1].og['title']).toEqual("Advice for @" + role.name);
             expect(res.render.mostRecentCall.args[1].og['image']).toContain('logofb');
         });
     });
@@ -135,7 +135,7 @@ describe('role controller', function(){
 
             expect(res.render.mostRecentCall.args[1].role.advices[0].nextFacebookInfoUpdateTime).toEqual(123123123);
             expect(res.render.mostRecentCall.args[1].og['url']).toEqual(role.href + "?advice=12786");
-            expect(res.render.mostRecentCall.args[1].og['title']).toEqual(role.name);
+            expect(res.render.mostRecentCall.args[1].og['title']).toEqual("Advice for @" + role.name);
             expect(res.render.mostRecentCall.args[1].og['video']).toEqual('http://titleindbyoutube.com');
             expect(res.render.mostRecentCall.args[1].og['description']).toEqual(role.advices[0].text);
             expect(res.render.mostRecentCall.args[1].og['image:width']).toEqual('120');
@@ -173,7 +173,7 @@ describe('role controller', function(){
 
             expect(res.render.mostRecentCall.args[1].role.advices[0].nextFacebookInfoUpdateTime).toEqual(123123123);
             expect(res.render.mostRecentCall.args[1].og['url']).toEqual(role.href + "?advice=12787");
-            expect(res.render.mostRecentCall.args[1].og['title']).toEqual(role.name);
+            expect(res.render.mostRecentCall.args[1].og['title']).toEqual("Advice for @" + role.name);
             expect(res.render.mostRecentCall.args[1].og['type']).toEqual('book');
             expect(res.render.mostRecentCall.args[1].og['description']).toEqual(role.advices[0].text);
             expect(res.render.mostRecentCall.args[1].og['image']).toEqual('http://somesomesome.jpg');

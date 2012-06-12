@@ -21,35 +21,42 @@ module.exports = function(app, seoFooterDataAppender) {
         Advice.findTop(RolesOnHomePage,function(err,roles){
             if (err) {
                 next(new Error(err));
-	            return
-	        }
-	        var rolesWithTopAdvices = [];
-            var authorIds = [];
-            roles.forEach(function(role){
-	            var sortedAdvices = role.advices.sort(compareAdvices);
-	            role.topAdvice = sortedAdvices[0]
-                authorIds.push(sortedAdvices[0].author);
-	            rolesWithTopAdvices.push(role);
-	        });
-            User.findByIds(authorIds,function(err,authors){
-                if (err) {
-                    next(new Error(err));
-                    return;
-                }
-                var authorsWithKeys = [];
-                authors.forEach(function(author) {
-                    authorsWithKeys[author._id] = author;
-                });
-
-                Role.findTop(10,function(err, seoRoles){
-                    if (err) {
-                        next(new Error(err));
-                        return;
-                    }
-                    res.render('home/home.ejs',{roles: rolesWithTopAdvices,
-                        authors: authorsWithKeys});
-                });
-            });
+                return
+            }
+            renderHomeLayoutRoles(res, next, roles, 'home/home.ejs');
         });
 	});
+
+    app.get('/all-roles', seoFooterDataAppender, function(req, res, next) {
+        Role.findAllWithAdvices(function(err,roles){
+            if (err) {
+                next(new Error(err));
+                return
+            }
+            renderHomeLayoutRoles(res, next, roles, 'home/allroles.ejs');
+        });
+    });
+
+    function renderHomeLayoutRoles(res, next, roles, template) {
+        var rolesWithTopAdvices = [];
+        var authorIds = [];
+        roles.forEach(function(role){
+            var sortedAdvices = role.advices.sort(compareAdvices);
+            role.topAdvice = sortedAdvices[0]
+            authorIds.push(sortedAdvices[0].author);
+            rolesWithTopAdvices.push(role);
+        });
+        User.findByIds(authorIds,function(err,authors){
+            if (err) {
+                next(new Error(err));
+                return;
+            }
+            var authorsWithKeys = [];
+            authors.forEach(function(author) {
+                authorsWithKeys[author._id] = author;
+            });
+
+            res.render('home/allroles.ejs',{roles: rolesWithTopAdvices, authors: authorsWithKeys});
+        });
+    }
 };

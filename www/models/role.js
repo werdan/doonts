@@ -76,6 +76,15 @@ roleSchema.statics.findTop = function (qty, skipFirst, callback) {
                  .run(callback);
 };
 
+roleSchema.statics.findAllWithAdvices = function (callback) {
+    this.find()
+        .desc('totalFacebookLikes')
+        .populate('advices')
+        .where('hasAdvices',true)
+        .run(callback);
+};
+
+
 roleSchema.pre("save",function(next){
     if (this.advices.length > 0) {
         this.hasAdvices = true;
