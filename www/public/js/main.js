@@ -26,8 +26,6 @@ var modalBackgroundSwitchTime    = 0.3 ; // sec
 
 
 jQuery(document).ready(function(){
-    initFB();
-    fillInLoginBox();
     initPlaceholder();
     initAnimations();
     addFooterMailto();
@@ -36,6 +34,8 @@ jQuery(document).ready(function(){
     initAdviceTabs();
     initMediaLinksPanel();
     focusOnAdvice();
+    fillInLoginBox();
+    initFB();
 });
 
 function fillInLoginBox() {
@@ -63,7 +63,6 @@ function amazonPreviewCallback(data) {
 
 function initFB() {
     window.fbAsyncInit = function() {
-        console.log('Facebook init completed');
         FB.init({
             appId      : '159891950744662', // App ID
             channelUrl : '//doonts.com/channel.html', // Channel File
@@ -93,7 +92,8 @@ function initFB() {
         );
     };
     if(window.fbAsyncInit && !window.fbAsyncInit.hasRun){
-        window.fbAsyncInit.hasRun=true;fbAsyncInit();
+        fbAsyncInit();
+        window.fbAsyncInit.hasRun=true;
     }
 
     closeAskPanel();
