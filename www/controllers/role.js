@@ -38,8 +38,7 @@ module.exports = function(app, securityManager, seoFooterDataAppender) {
                         {role: role,
                         rolePage: true,
                         authors: authors,
-                        og: getOgMeta(role,focusedAdvice),
-                        adviceMaxLength: app.set("web.adviceMaxLength")
+                        og: getOgMeta(role,focusedAdvice)
                         }
                     );
                 });

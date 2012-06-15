@@ -37,8 +37,6 @@ module.exports = function(app, express){
 
         app.set("web.roleCreation.secretKeySalt", "TyhgjGyahagghG658");
 
-        app.set("web.adviceMaxLength", 280);
-
         app.set("solr.host","127.0.0.1");
         app.set("solr.port",8080);
 

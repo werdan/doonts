@@ -24,6 +24,7 @@ var modalBackgroundColor         = '#333' ;
 var modalBackgroundOpacity       = 0.6 ;
 var modalBackgroundSwitchTime    = 0.3 ; // sec
 
+var ADVICE_MAX_LENGTH            = 280;
 
 jQuery(document).ready(function(){
     initPlaceholder();
@@ -34,18 +35,23 @@ jQuery(document).ready(function(){
     initAdviceTabs();
     initMediaLinksPanel();
     focusOnAdvice();
+    initCharsLeftCounter();
     fillInLoginBox();
     initFB();
 });
 
 function fillInLoginBox() {
     var redirectUri = window.location.pathname + window.location.search;
-    $.get("/myaccount/loginbox",{redirectUri: redirectUri},function(data){
-        $(".login").html(data);
+    jQuery.ajax({
+        type: "GET",
+        url: "/myaccount/loginbox?redirectUri=" + redirectUri,
+        cache: false})
+     .done(function(data){
+        jQuery(".login").html(data);
         $(".FBlogout").click(function(){
             FB.logout();
         });
-    });
+     });
 }
 
 function youtubePreviewCallback(data) {
@@ -64,11 +70,11 @@ function amazonPreviewCallback(data) {
 function initFB() {
     window.fbAsyncInit = function() {
         FB.init({
-            appId      : '159891950744662', // App ID
-            channelUrl : '//doonts.com/channel.html', // Channel File
-            status     : true, // check login status
-            cookie     : true, // enable cookies to allow the server to access the session
-            xfbml      : true  // parse XFBML
+            appId      : '159891950744662',
+            channelUrl : '//doonts.com/channel.html',
+            status     : true,
+            cookie     : true,
+            xfbml      : true
         });
 
         // Load the SDK Asynchronously
@@ -171,6 +177,7 @@ function getAdviceUIDFromURL(url) {
         return matches[1];
     } else {
         console.error("Error while extracting advice uid from URL: = " + url);
+        return 0;
     }
 }
 
@@ -204,17 +211,11 @@ function closeAskPanel() {
 }
 
 function moveLeftButtonsUp() {
-    $('.'+leftButtonsBoxClass).animate(
-        {top:leftButtonsBoxUpper},
-        0.3 * 1000
-    );
+    $('.'+leftButtonsBoxClass).animate({top:leftButtonsBoxUpper},0.3 * 1000);
 }
 
 function moveLeftButtonsDown() {
-    $('.'+leftButtonsBoxClass).animate(
-        {top:leftButtonsBoxLower},
-        0.3 * 1000
-    );
+    $('.'+leftButtonsBoxClass).animate({top:leftButtonsBoxLower},0.3 * 1000);
 }
 
 function addFooterMailto(){
@@ -261,7 +262,7 @@ function initAdviceTabs() {
     });
 }
 
-function limitCharsAndUpdateCounter(ADVICE_MAX_LENGTH) {
+function limitCharsAndUpdateCounter() {
     var charsInput = jQuery(".form_add_new_advice textarea").val();
     var charsLength = charsInput.length;
     if (charsLength >= ADVICE_MAX_LENGTH) {
@@ -273,7 +274,7 @@ function limitCharsAndUpdateCounter(ADVICE_MAX_LENGTH) {
     }
 }
 
-function initCharsLeftCounter(ADVICE_MAX_LENGTH) {
+function initCharsLeftCounter() {
     jQuery(".form_add_new_advice textarea").keyup(function(){
         limitCharsAndUpdateCounter(ADVICE_MAX_LENGTH);
     });
@@ -281,7 +282,7 @@ function initCharsLeftCounter(ADVICE_MAX_LENGTH) {
 
 function sendRequestViaMultiFriendSelector() {
     FB.ui({method: 'send',
-        link: window.location.href,
+        link: window.location.href
     }, function(request){
         closeAskPanel();
         turnOffModalBackground();
@@ -339,7 +340,7 @@ function initAddAdviceButton() {
     });
 
     jQuery("div.form_add_new_advice input.submit_form").click(function(event){
-        if (jQuery(".form_add_new_advice textarea").val().length == 0) {
+        if (jQuery(".form_add_new_advice textarea").val().length === 0) {
             event.preventDefault();
         }
     });
@@ -347,7 +348,7 @@ function initAddAdviceButton() {
 
 function focusOnAdvice() {
     var adviceId = window.location.search.substring(8);
-    jQuery("div#" + adviceId).attr("tabindex",-1).focus();
+    jQuery("#advice" + adviceId).attr("tabindex",-1).focus();
 }
 
 function initPlaceholder() {
