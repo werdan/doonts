@@ -114,13 +114,15 @@ a:hover{
     height:65px;
     position:relative;
 }
-.logo a.slogan{
-    font:19px Helvetica, sans-serif;
-    color:#ccd8e2;
-    text-decoration:none;
-    float:left;
-    margin:-7px 20px 0 200px;
+
+.logo a.slogan {
+    color: #CCD8E2;
+    float: right;
+    font: 19px Helvetica,sans-serif;
+    margin: -7px 20px 0 0;
+    text-decoration: none;
 }
+
 .logo a.slogan span{
     display:block;
     margin:0 0 0 30px;
@@ -207,7 +209,7 @@ a:hover{
 }
 .bg_search{
     background:#d2ebf3;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     -moz-border-radius: 0 0 10px 10px;
     -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
@@ -228,7 +230,7 @@ input.search_input{
     float:left;
     box-shadow:0 0 11px #b9b9b9;
     border-radius:10px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     border:5px solid #81b100;
     background:#fff url(../images/img-spr.png) no-repeat 13px -731px;
     font:22px/49px tahoma, sans-serif !important;
@@ -300,7 +302,7 @@ input.search_button:active{
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     border-radius:10px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     margin:6px 0;
     padding:12px 19px 25px;
     position:relative;
@@ -335,7 +337,7 @@ input.search_button:active{
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     height:26px;
     width:500px;
     padding:0 10px;
@@ -348,7 +350,7 @@ input.search_button:active{
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     height:100px;
     width:500px;
     padding:10px;
@@ -432,7 +434,7 @@ input.search_button:active{
     -moz-border-radius:2px;
     -webkit-border-radius:2px;
     border-radius:2px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     top:-8px;
     right:5px;
     z-index:999;
@@ -447,7 +449,7 @@ input.search_button:active{
     -moz-border-radius:2px;
     -webkit-border-radius:2px;
     border-radius:2px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     top:-8px;
     right:5px;
     z-index:999;
@@ -603,7 +605,7 @@ input.search_button:active{
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     position:relative;
     height:26px;
     width:250px;
@@ -619,7 +621,7 @@ input.search_button:active{
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     position:relative;
     height:26px;
     width:250px;
@@ -644,7 +646,7 @@ input.search_button:active{
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     position:relative;
     height:26px;
     width:602px;
@@ -670,7 +672,7 @@ a.delete_social_role{
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     margin:0 30px 0 40px;
     position:relative;
     text-align:center;
@@ -724,7 +726,7 @@ a.delete_social_role{
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     position:relative;
     height:26px;
     width:276px;
@@ -822,7 +824,7 @@ div.title_advices{
     -moz-border-radius:5px 5px 0 0;
     -webkit-border-radius:5px 5px 0 0;
     border-radius:5px 5px 0 0;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
 }
 .column_advices{
     background:#fff;
@@ -842,14 +844,14 @@ div.title_advices{
     position:relative;
     padding:8px 0 5px;
     box-shadow:inset 3px 3px 13px rgba(0, 0, 0, 0.15);
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     min-height:58px;
 }
 .column_advices_sh{
     background:url(../images/bg_advices.png);
     padding:8px 0 5px;
     box-shadow:inset 3px 3px 13px rgba(0, 0, 0, 0.15);
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
 }
 .column_advices_sh:last-child{
     border-bottom:1px dashed #e6e6e6;
@@ -861,7 +863,7 @@ div.title_advices{
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     margin:-1px 6px -1px 12px;
 }
 .column_advices_search  .column_div a.title_advices:hover,.column_advices_search_sh  .column_div a.title_advices:hover{
@@ -1003,7 +1005,7 @@ a:hover.comments{
     border-radius:5px;
     padding:9px 8px;
     margin:3px 13px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
 }
 .entry p{
     color:#012837;
@@ -1043,6 +1045,28 @@ a:hover.comments{
 .r_win_add{
     float:right;
 }
+
+.title-media{
+    color: #1C62B9;
+    display: block;
+    font: bold 12px Helvetica,sans-serif;
+    text-decoration: none;
+    width: 160px;
+    display:block;
+}
+.info-media{
+    color: #000000;
+    float: none;
+    font: 11px Helvetica,sans-serif;
+    width: 160px;
+    display:block;
+}
+.link-win_addition{
+    overflow:hidden;
+    display:block;
+}
+
+
 .addition p{
     color:#626262;
     font:16px Helvetica, sans-serif;
@@ -1065,7 +1089,7 @@ a:hover.comments{
     width:130px;
     height:48px;
     border:1px solid #1898c3;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     float:left;
     background:#fff;
     padding:15px 0;
@@ -1108,7 +1132,6 @@ a.link_slideshare{
 .social_like{
     height:39px;
     padding: 13px 6px 0;
-    width: 203px;
     margin:7px 0 0 7px;
     background:url(../images/img-spr.png) no-repeat 0 -55px;
     position: relative;
@@ -1139,7 +1162,7 @@ social_like span {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     margin:0 7px 0 13px;
     position:relative;
 }
@@ -1165,7 +1188,7 @@ social_like span {
     -moz-border-radius:5px;
     -webkit- border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
 }
 .column_advices .column_advices_inside{
     margin:8px 7px 5px 13px;
@@ -1178,7 +1201,7 @@ social_like span {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     position:relative;
 }
 .column_advices_search_sh .column_advices_inside:hover{
@@ -1187,7 +1210,7 @@ social_like span {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     padding:1px 0;
 }
 .author{
@@ -1285,7 +1308,7 @@ social_like span {
     -moz-border-radius:360em;
     -webkit-border-radius:360em;
     border-radius:360em;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     position:absolute;
     z-index:9;
 }
@@ -1380,7 +1403,7 @@ social_like span {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     padding:5px;
     overflow:hidden;
     position:relative;
@@ -1442,7 +1465,7 @@ social_like span {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
 }
 .z_block_add_media_link{
     width:875px;
@@ -1452,7 +1475,7 @@ social_like span {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     position:relative;
     z-index:99999;
     clear:both;
@@ -1507,7 +1530,7 @@ input.button_add_media{
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
 }
 .questions{
     padding:5px 21px 10px;
@@ -1516,7 +1539,7 @@ input.button_add_media{
     border-radius:0 0 10px 10px;
     text-align:center;
     background:#fff url(../images/bottom_content_text.png) no-repeat 20px 100%;
-    behavior:url(pie.htc);
+    behavior:url("/pie.htc");
     position:relative;
     z-index:9;
     min-height:100px;
