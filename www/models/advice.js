@@ -2,6 +2,8 @@ var Schema = db.Schema;
 var Role = db.model("Role");
 var logger = app.set("logger");
 var solrUpdaterPlugin = require('./plugins/solrUpdaterPlugin.js');
+var ADVICE_MAX_LENGTH = 280;
+
 
 var adviceSchema = new Schema({
 	// ID in Role

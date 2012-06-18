@@ -56,7 +56,7 @@ module.exports = function(app, seoFooterDataAppender) {
                 authorsWithKeys[author._id] = author;
             });
 
-            res.render('home/allroles.ejs',{roles: rolesWithTopAdvices, authors: authorsWithKeys});
+            res.render(template,{roles: rolesWithTopAdvices, authors: authorsWithKeys});
         });
     }
 };
