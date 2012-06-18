@@ -1,14 +1,12 @@
-<!-- win_addition -->
 <div class="win_addition amazonPreview-<%= amazonInfo.asin %>">
-    <img src="images/loading.gif" alt=""/>
-    <!-- r_win_add -->
-    <div class="r_win_add">
-        <a target="_blank" href="#" class="title"></a>
-        <span class="author"></span>
-        <p></p>
-    </div>
-    <!-- end r_win_add -->
-</div>
+<a class="link-win_addition" target="_blank" href="">
+    <img src="/images/loading.gif" alt=""/>
+    <span class="r_win_add">
+        <span class="title-media"></span>
+        <span class="info-media"></span>
+    </span>
+</a>
+
 <script type="text/javascript">
     jQuery.getJSON("/advice/media/amazon/<%= adviceUID %>", function(data) {
         amazonPreviewCallback(data);

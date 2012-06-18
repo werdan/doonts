@@ -55,16 +55,16 @@ function fillInLoginBox() {
 }
 
 function youtubePreviewCallback(data) {
-    jQuery('.youtubePreview-' + data['data']['id'] + " img").attr('src',data['data']['thumbnail']['sqDefault']);
-    jQuery('.youtubePreview-' + data['data']['id'] + " .r_win_add a.title").html(data['data']['title']);
-    jQuery('.youtubePreview-' + data['data']['id'] + " .r_win_add a.title").attr("href",data['data']['player']['default']);
+    jQuery('.youtubePreview-' + data['data']['id'] + " a img").attr('src',data['data']['thumbnail']['sqDefault']);
+    jQuery('.youtubePreview-' + data['data']['id'] + " a").attr("href",data['data']['player']['default']);
+    jQuery('.youtubePreview-' + data['data']['id'] + " a span.r_win_add span.title-media").html(data['data']['title']);
 }
 
 function amazonPreviewCallback(data) {
-    jQuery('.amazonPreview-' + data['asin'] + " img").attr('src',data['imgSrc']);
-    jQuery('.amazonPreview-' + data['asin'] + " .r_win_add a.title").html(data['title']);
-    jQuery('.amazonPreview-' + data['asin'] + " .r_win_add a.title").attr('href',data['url']);
-    jQuery('.amazonPreview-' + data['asin'] + " .r_win_add .author").html(data['author']);
+    jQuery('.amazonPreview-' + data['asin'] + " a img").attr('src',data['imgSrc']);
+    jQuery('.amazonPreview-' + data['asin'] + " a").attr('href',data['url']);
+    jQuery('.amazonPreview-' + data['asin'] + "  a span.r_win_add span.title-media").html(data['title']);
+    jQuery('.amazonPreview-' + data['asin'] + "  a span.r_win_add span.info-media").html(data['author']);
 }
 
 function initFB() {

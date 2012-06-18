@@ -1,10 +1,9 @@
 <div class="win_addition">
-    <img src="<%= amazonInfo.imgSrc %>" alt=""/>
-    <!-- r_win_add -->
-    <div class="r_win_add">
-        <a target="_blank" href="<%= amazonInfo.url %>" class="title"><%= amazonInfo.title %></a>
-        <span class="author"><%= amazonInfo.author %></span>
-        <p></p>
-    </div>
-    <!-- end r_win_add -->
+    <a class="link-win_addition" target="_blank" href="<%= amazonInfo.url %>">
+        <img src="<%= amazonInfo.imgSrc %>" alt="<%= amazonInfo.title %>"/>
+        <span class="r_win_add">
+            <span class="title-media"><%= amazonInfo.title %></span>
+            <span class="info-media"><%= amazonInfo.author %></span>
+        </span>
+    </a>
 </div>

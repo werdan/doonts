@@ -7,7 +7,6 @@ module.exports = function (client, advice, res, next) {
         return;
     }
 
-
     if (advice.amazon.title) {
         var result = getResultWithAmazonInfo(advice);
 

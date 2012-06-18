@@ -1,11 +1,11 @@
-<!-- win_addition -->
 <div class="win_addition youtubePreview-<%= youtubeInfo.videoId %>">
-    <img src="images/loading.gif" alt=""/>
-    <!-- r_win_add -->
-    <div class="r_win_add">
-        <a target="_blank" href="#" class="title"></a>
-    </div>
-    <!-- end r_win_add -->
+<a class="link-win_addition" target="_blank" href="">
+    <img src="/images/loading.gif" alt=""/>
+    <span class="r_win_add">
+        <span class="title-media"></span>
+        <span class="info-media"></span>
+    </span>
+</a>
 </div>
 <script type="text/javascript">
     jQuery.getJSON("/advice/media/youtube/<%= adviceUID %>", function(data) {

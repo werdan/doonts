@@ -1,9 +1,9 @@
-<!-- win_addition -->
 <div class="win_addition">
-    <img src="<%= youtubeInfo.imgSrc %>" alt=""/>
-    <!-- r_win_add -->
-    <div class="r_win_add">
-        <a target="_blank" href="<%= youtubeInfo.url %>" class="title"><%= youtubeInfo.title %></a>
-    </div>
-    <!-- end r_win_add -->
+    <a class="link-win_addition" target="_blank" href="<%= youtubeInfo.url %>">
+        <img src="<%= youtubeInfo.imgSrc %>" alt="<%= youtubeInfo.title %>"/>
+        <span class="r_win_add">
+            <span class="title-media"><%= youtubeInfo.title %></span>
+            <span class="info-media"></span>
+        </span>
+    </a>
 </div>
