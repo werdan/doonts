@@ -1563,7 +1563,6 @@ input.button_add_media{
     background:url(../images/footer_bg.png) no-repeat bottom;
     color:#fff;
     font:14px/44px Helvetica, sans-serif;
-    position:relative;
 }
 div.copy{}
 div.copy p.copy{
@@ -1596,9 +1595,8 @@ div.copy li.mail a{
     margin:0 0 0 23px;
 }
 .up{
-    position:absolute;
-    right:-12px;
-    top:-20px;
+    float: right;
+    margin: -20px -12px 0 0;
 }
 .up a{
     display:block;
